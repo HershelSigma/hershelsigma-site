@@ -160,7 +160,7 @@
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow">Managed Dialer AI</div>
-      <h1>Reach <span class="hl">45%+</span> of your list, <br/>not 3%.</h1>
+      <h1>Reach <span class="hl">40%+</span> of your list, <br/>not 3%.</h1>
       <p class="sub">Managed dialer AI that tunes pace, guards your numbers, and briefs every closer.</p>
       <div class="cta">
         <a href="#contact" class="btn btn-primary">Book a demo &rarr;</a>
@@ -176,7 +176,7 @@
       <div class="sec-head">
         <div class="eyebrow">Contact rate</div>
         <h2>Reach the people a standard setup never will</h2>
-        <p>Most floors connect on just 2-5% of their list. Tuned, protected, and managed by Hershel Sigma, that climbs past 45%.</p>
+        <p>Most floors connect on just 2-5% of their list. Tuned, protected, and managed by Hershel Sigma, that climbs past 40%.</p>
       </div>
       <div class="flow">
         <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Leads, numbers and campaigns flow through Hershel Sigma to reach a 45 percent plus contact rate versus 2 to 5 percent with a standard setup">
@@ -364,8 +364,8 @@
   if(crEl){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       if(!e.isIntersecting||crEl.dataset.done)return; crEl.dataset.done=1;
-      var c=0,t=45;
-      var step=function(){c+=t/32; if(c>=t){crEl.textContent='45%+'}else{crEl.textContent=Math.round(c)+'%';requestAnimationFrame(step)}};
+      var c=0,t=40;
+      var step=function(){c+=t/32; if(c>=t){crEl.textContent='40%+'}else{crEl.textContent=Math.round(c)+'%';requestAnimationFrame(step)}};
       step();
     })},{threshold:.5});
     io.observe(crEl);
