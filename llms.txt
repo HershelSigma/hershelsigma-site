@@ -22,6 +22,7 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 
 - [What is an AI dialer?](https://hershelsigma.ai/ai-dialer): how AI runs dial pace, caller IDs and call notes, and how an AI dialer differs from power, predictive and progressive dialers
 - [What is a predictive dialer?](https://hershelsigma.ai/predictive-dialer): how predictive dialing works, the three settings that decide its results (dial level, drop rate, agent wait time), and how it compares to power, progressive and preview dialers
+- [ViciDial alternative](https://hershelsigma.ai/vicidial-alternative): why floors leave ViciDial, what Hershel keeps from it (the engine, campaigns, lists and statuses), and a self-run vs hosted vs Hershel comparison
 
 ## Pages
 
