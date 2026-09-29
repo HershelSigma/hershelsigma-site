@@ -55,6 +55,11 @@
   .navlinks{display:flex;gap:34px;font-size:15px;color:var(--muted)}
   .navlinks a:hover{color:var(--text)}
   @media(max-width:760px){.navlinks{display:none}}
+  .navcta{display:flex;align-items:center;gap:26px;white-space:nowrap}
+  .login{font-size:15px;font-weight:500;color:var(--muted)}
+  .login:hover{color:var(--text)}
+  /* a phone has room for the wordmark, log in and book a demo on one line only without the suffix */
+  @media(max-width:760px){.brand-sub{display:none}.navcta{gap:18px}}
 
   /* HERO */
   .hero{position:relative;text-align:center;min-height:calc(100vh - 70px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
@@ -159,13 +164,16 @@
 <header>
   <div class="wrap">
     <nav>
-      <a href="#top" class="brand">H<span class="sig">Σ</span>RSHEL <span style="font-weight:600;font-size:14px;color:var(--dim)">SIGMA AI</span></a>
+      <a href="#top" class="brand">H<span class="sig">Σ</span>RSHEL <span class="brand-sub" style="font-weight:600;font-size:14px;color:var(--dim)">SIGMA AI</span></a>
       <div class="navlinks">
         <a href="#platform">Platform</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
       </div>
-      <a href="#contact" class="btn btn-primary" style="padding:10px 20px">Book a demo</a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="#contact" class="btn btn-primary" style="padding:10px 20px">Book a demo</a>
+      </div>
     </nav>
   </div>
 </header>
