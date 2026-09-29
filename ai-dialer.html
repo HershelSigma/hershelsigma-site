@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>What Is an AI Dialer? How AI Runs an Outbound Dialer (2026) | Hershel Sigma AI</title>
+<meta name="description" content="An AI dialer uses AI to make the calls a dialer manager used to make by hand: dial pace, caller ID health and call notes. How it works, how it differs from power and predictive dialers, and what to look for." />
+<link rel="canonical" href="https://hershelsigma.ai/ai-dialer" />
+<meta name="robots" content="index, follow, max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hershelsigma.ai/ai-dialer" />
+<meta property="og:site_name" content="Hershel Sigma AI" />
+<meta property="og:title" content="What Is an AI Dialer? How AI Runs an Outbound Dialer" />
+<meta property="og:description" content="Dial pace, caller ID health and call notes, run by AI instead of a manager. How an AI dialer works and how it differs from power and predictive dialers." />
+<meta property="og:image" content="https://hershelsigma.ai/apple-touch-icon.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://hershelsigma.ai/ai-dialer#article",
+      "headline": "What Is an AI Dialer? How AI Runs an Outbound Dialer",
+      "description": "An AI dialer uses AI to make the decisions a dialer manager used to make by hand: dial pace, caller ID health and call notes.",
+      "url": "https://hershelsigma.ai/ai-dialer",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "author": { "@id": "https://hershelsigma.ai/#nathan-yonash" },
+      "publisher": { "@id": "https://hershelsigma.ai/#org" },
+      "about": ["AI dialer", "Predictive dialer", "Power dialer", "Outbound call center"],
+      "mainEntityOfPage": "https://hershelsigma.ai/ai-dialer"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hershelsigma.ai/#nathan-yonash",
+      "name": "Nathan Yonash",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hershelsigma.ai/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://hershelsigma.ai/#org",
+      "name": "Hershel Sigma AI",
+      "legalName": "Hershel Sigma LLC",
+      "url": "https://hershelsigma.ai/",
+      "logo": "https://hershelsigma.ai/apple-touch-icon.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hershel Sigma AI", "item": "https://hershelsigma.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "AI dialer", "item": "https://hershelsigma.ai/ai-dialer" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is an AI dialer the same as an AI voice agent?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. An AI voice agent is a bot that talks to the prospect. An AI dialer, in the sense used here, keeps human agents on the phone and uses AI to run the dialer around them: how fast to dial, which caller IDs to use, and what gets written to the CRM after each call. Some products do both, so ask which one you are buying." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between an AI dialer and a predictive dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A predictive dialer dials several numbers per agent and uses a formula to guess when an agent will be free. Someone still has to choose its settings and watch them all day. An AI dialer is a predictive dialer whose settings are chosen and corrected by AI in real time, and which usually also manages caller ID health and call notes." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does an AI dialer replace sales agents?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not the kind described here. It replaces the manual work around the agents (tuning dial pace, swapping flagged numbers, writing call notes) so agents spend more of each hour in live conversations." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does an AI dialer keep numbers from being flagged as spam?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It watches each outbound caller ID for signs of trouble, such as falling answer rates, spam labels and carrier refusals, and takes a number out of rotation before it drags down the whole campaign. A good one replaces the number automatically and tells a manager what happened." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does an AI dialer cost?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Seat-based dialers charge per agent per month. Managed AI dialers such as Hershel usually charge a setup fee plus a flat monthly rate sized to the floor and its call volume. Hershel quotes come from a demo." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does an AI dialer work with GoHighLevel?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Hershel does. Every appointment-set call is transcribed and turned into a closer brief that lands on the contact in GoHighLevel before the appointment." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand">H<span class="sig">Σ</span>RSHEL <span class="brand-sub">SIGMA AI</span></a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / AI dialer</div>
+  <div class="eyebrow">Guide</div>
+  <h1>What is an AI dialer?</h1>
+  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-09-29">September 29, 2026</time></p>
+
+  <p class="answer">An <strong>AI dialer</strong> is outbound calling software that uses AI to make the decisions a dialer manager normally makes by hand: how fast to dial, which caller IDs to use, and what to record about each call. The result is more live conversations from the same list, with nobody babysitting settings all day.</p>
+
+  <p>Most outbound floors already own a dialer. What they do not have is someone watching it every second of the shift. Dial too slowly and agents sit idle. Dial too fast and live prospects hang up on silence. Let a number get flagged and its answer rate quietly collapses. An AI dialer closes that gap by watching the live numbers and acting on them continuously.</p>
+
+  <h2>How an AI dialer works</h2>
+  <p>Under the hood an AI dialer is still a dialer: it loads a list, places calls over a phone carrier and connects answered calls to agents. The difference is a control loop that runs the whole time the floor is open.</p>
+  <ol>
+    <li><strong>Read the live floor.</strong> Every few seconds it pulls the numbers that matter: agents waiting, agents on calls, calls ringing, drops, answers and leads left to dial.</li>
+    <li><strong>Set the pace.</strong> It raises or lowers how many lines it dials per agent so the next free agent gets a live person, without pushing the drop rate past the ceiling the floor chose.</li>
+    <li><strong>Guard the numbers.</strong> It tracks how each outbound caller ID is performing and pulls one that is getting flagged or refused before it hurts the campaign.</li>
+    <li><strong>Write it down.</strong> After a call that matters, such as a booked appointment, it turns the recording into notes and puts them in the CRM.</li>
+    <li><strong>Escalate only when a human must act.</strong> A manager hears about it when a carrier is down or a setting needs a decision, not every time a number moves.</li>
+  </ol>
+
+  <h2>AI dialer vs power, predictive and progressive dialers</h2>
+  <p>Dialers are usually sorted by how many numbers they call per agent and who decides that number.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Type</th><th>How it dials</th><th>Lines per agent</th><th>Who tunes it</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Preview</td><td>Agent reviews the lead, then clicks to call</td><td>1, agent-started</td><td>Nobody</td><td>Complex B2B, high-value accounts</td></tr>
+        <tr><td>Progressive</td><td>Calls the next lead the moment an agent is free</td><td>1</td><td>Nobody</td><td>Small teams, warm lists</td></tr>
+        <tr><td>Power</td><td>Calls a fixed number of leads per free agent</td><td>Fixed, often 1 to 3</td><td>A manager, by hand</td><td>Mid-size teams, moderate answer rates</td></tr>
+        <tr><td>Predictive</td><td>Forecasts when agents will be free and dials ahead of them</td><td>Varies with a formula</td><td>A manager, by hand, all shift</td><td>Large floors, low answer rates</td></tr>
+        <tr><td>AI dialer</td><td>Predictive dialing whose pace, numbers and notes are run by AI</td><td>Varies second by second</td><td>The AI, within limits the floor sets</td><td>High-volume appointment setting</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Two very different products are called "AI dialer"</h2>
+  <p>The term covers two things that solve different problems. Knowing which one you need saves a lot of demos.</p>
+  <h3>1. AI that talks: voice agents</h3>
+  <p>A voice agent is a bot that places the call and holds the conversation itself. It fits simple, scripted calls: confirmations, reminders, basic qualification. Many floors still want a human on every conversation that is meant to book or close.</p>
+  <h3>2. AI that runs the dialer: AI-managed dialing</h3>
+  <p>Here people still do the talking. The AI runs everything around them: pacing, caller IDs, carrier health and call notes. This is the kind of AI dialer <a href="/">Hershel</a> is. It targets the hours a floor loses to idle agents, dropped calls and burned numbers, rather than trying to replace the setter.</p>
+
+  <h2>What an AI dialer should manage</h2>
+  <h3>Dial pace</h3>
+  <p>Pace is the single biggest lever on talk time. The right pace changes with the time of day, the list, the number of agents logged in and how many calls are being answered, which is why a setting chosen at 9am is usually wrong by 11am. An AI dialer re-decides it continuously and holds the drop rate under the floor's ceiling while it does.</p>
+  <h3>Caller ID health</h3>
+  <p>People do not pick up numbers they do not trust. Hiya's 2026 State of the Call report found that <a href="https://www.hiya.com/state-of-the-call" rel="noopener">86% of calls from unknown numbers go unanswered</a>. A caller ID that picks up a spam label does even worse, and it drags the whole campaign's contact rate down with it. An AI dialer should spot a failing number early, rotate it out and replace it.</p>
+  <h3>Carrier health</h3>
+  <p>Carriers can refuse calls at their own limits, for example on channel or calls-per-second caps, and those refusals often look like ordinary failed calls in the dialer's reports. An AI dialer that reads the carrier's responses catches a trunk throwing calls away before a whole morning is lost.</p>
+  <h3>Call notes and the CRM</h3>
+  <p>Every booked appointment should reach the closer with context. An AI dialer can transcribe the call, summarize what the prospect said and post it to the CRM, so setters keep dialing instead of typing.</p>
+
+  <h2>The numbers an AI dialer watches</h2>
+  <ul>
+    <li><strong>Contact rate:</strong> the share of leads worked that turned into a live conversation. The number most floors care about most.</li>
+    <li><strong>Drop rate:</strong> answered calls that found no free agent, divided by all answered calls. It is the limit on how hard a dialer can push.</li>
+    <li><strong>Agent wait time:</strong> seconds an agent sits ready with no call. Long waits mean the dialer is too slow.</li>
+    <li><strong>Dial level:</strong> how many lines the dialer uses per available agent.</li>
+    <li><strong>Answer rate per caller ID:</strong> the early warning that a number is being flagged.</li>
+  </ul>
+
+  <div class="callout">
+    <h3>How Hershel does it</h3>
+    <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
+    <ul>
+      <li><strong>Dialler Manager</strong> reads the floor every few seconds and adjusts the dial level against drop rate and agent wait time.</li>
+      <li><strong>The Shield</strong> watches every caller ID and carrier response, rotates out flagged numbers and pages a manager only when a human has to act.</li>
+      <li><strong>Closable</strong> turns every appointment-set call into a closer brief in GoHighLevel.</li>
+    </ul>
+    <p>It runs as a fully managed service, 24/7, so the floor just sells.</p>
+  </div>
+
+  <h2>Who needs an AI dialer</h2>
+  <p>An AI dialer pays off fastest on floors where these sound familiar:</p>
+  <ul>
+    <li>Several agents dialing large lists for appointments or sales every day.</li>
+    <li>A manager who spends part of every shift adjusting dial settings.</li>
+    <li>Numbers that keep getting marked "Spam Likely" and answer rates that sag for no obvious reason.</li>
+    <li>Closers walking into appointments without knowing what the setter heard.</li>
+  </ul>
+  <p>A single rep calling a short list of warm leads usually does not need one. A preview or power dialer is enough there.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <details>
+      <summary>Is an AI dialer the same as an AI voice agent?</summary>
+      <p>No. An AI voice agent is a bot that talks to the prospect. An AI dialer, in the sense used here, keeps human agents on the phone and uses AI to run the dialer around them: how fast to dial, which caller IDs to use, and what gets written to the CRM after each call. Some products do both, so ask which one you are buying.</p>
+    </details>
+    <details>
+      <summary>What is the difference between an AI dialer and a predictive dialer?</summary>
+      <p>A predictive dialer dials several numbers per agent and uses a formula to guess when an agent will be free. Someone still has to choose its settings and watch them all day. An AI dialer is a predictive dialer whose settings are chosen and corrected by AI in real time, and which usually also manages caller ID health and call notes.</p>
+    </details>
+    <details>
+      <summary>Does an AI dialer replace sales agents?</summary>
+      <p>Not the kind described here. It replaces the manual work around the agents (tuning dial pace, swapping flagged numbers, writing call notes) so agents spend more of each hour in live conversations.</p>
+    </details>
+    <details>
+      <summary>How does an AI dialer keep numbers from being flagged as spam?</summary>
+      <p>It watches each outbound caller ID for signs of trouble, such as falling answer rates, spam labels and carrier refusals, and takes a number out of rotation before it drags down the whole campaign. A good one replaces the number automatically and tells a manager what happened.</p>
+    </details>
+    <details>
+      <summary>How much does an AI dialer cost?</summary>
+      <p>Seat-based dialers charge per agent per month. Managed AI dialers such as Hershel usually charge a setup fee plus a flat monthly rate sized to the floor and its call volume. Hershel quotes come from a demo.</p>
+    </details>
+    <details>
+      <summary>Does an AI dialer work with GoHighLevel?</summary>
+      <p>Hershel does. Every appointment-set call is transcribed and turned into a closer brief that lands on the contact in GoHighLevel before the appointment.</p>
+    </details>
+  </div>
+
+  <div class="cta-box">
+    <h2>See Hershel run a floor</h2>
+    <p>A managed AI dialer: pace, numbers and notes handled 24/7.</p>
+    <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo &rarr;</a>
+  </div>
+
+  <section class="related">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="/">Hershel Sigma AI platform overview</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai</div>
+  </div>
+</footer>
+</body>
+</html>

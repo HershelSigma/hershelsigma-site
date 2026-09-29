@@ -18,6 +18,10 @@ Outbound floors that live on contact rate: solar sales, home services and other 
 
 One setup fee, then a flat monthly rate scoped to floor size and call volume. Quotes come from a demo: info@hershelsigma.ai
 
+## Guides
+
+- [What is an AI dialer?](https://hershelsigma.ai/ai-dialer): how AI runs dial pace, caller IDs and call notes, and how an AI dialer differs from power, predictive and progressive dialers
+
 ## Pages
 
 - [Home](https://hershelsigma.ai/): what Hershel Sigma AI does and how it works
