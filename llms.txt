@@ -1,0 +1,25 @@
+# Hershel Sigma AI
+
+> Hershel is an AI dialer for high-volume outbound sales and appointment-setting teams. It is built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes. Made by Hershel Sigma LLC.
+
+Hershel runs as a fully managed service, 24/7. A sales floor gets a predictive dialer whose pacing, number health and call notes run themselves, so setters stay on the phone and managers stop babysitting settings.
+
+## What the AI does
+
+- **Dialler Manager (AI dial-pace control):** reads live campaign stats every few seconds (drop rate, agent wait time, pause time, leads ready to dial) and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the target the floor sets.
+- **The Shield (caller ID protection):** watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them, and alerts managers. It also catches carrier-side congestion (channel-limit and calls-per-second refusals) that ordinary call records hide. Works with Twilio and Telnyx.
+- **Closable (AI closer briefs):** transcribes the recording of every appointment-set call, writes a structured brief for the closer with AI, and posts it to the contact in GoHighLevel before the appointment.
+
+## Who it is for
+
+Outbound floors that live on contact rate: solar sales, home services and other high-volume B2C appointment setting.
+
+## Pricing
+
+One setup fee, then a flat monthly rate scoped to floor size and call volume. Quotes come from a demo: info@hershelsigma.ai
+
+## Pages
+
+- [Home](https://hershelsigma.ai/): what Hershel Sigma AI does and how it works
+- [Terms and Conditions](https://hershelsigma.ai/terms-and-conditions)
+- [Privacy Policy](https://hershelsigma.ai/privacy)
