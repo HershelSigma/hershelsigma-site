@@ -24,6 +24,7 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 - [What is a predictive dialer?](https://hershelsigma.ai/predictive-dialer): how predictive dialing works, the three settings that decide its results (dial level, drop rate, agent wait time), and how it compares to power, progressive and preview dialers
 - [ViciDial alternative](https://hershelsigma.ai/vicidial-alternative): why floors leave ViciDial, what Hershel keeps from it (the engine, campaigns, lists and statuses), and a self-run vs hosted vs Hershel comparison
 - [What is a managed dialer?](https://hershelsigma.ai/managed-dialer): what a managed dialer service includes, how it differs from self-run and seat-based cloud dialers, and the questions to ask a provider
+- [AI dialer for solar](https://hershelsigma.ai/solar-dialer): what a solar appointment-setting floor needs from a dialer (pace, caller IDs, closer handoff, no double-booking) and how an AI dialer handles each
 
 ## Pages
 
