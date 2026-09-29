@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>What Is a Predictive Dialer? Dial Level, Drop Rate and How It Works (2026) | Hershel Sigma AI</title>
+<meta name="description" content="A predictive dialer calls several numbers per agent and predicts when each agent will be free. How it works, the three settings that decide its results (dial level, drop rate, agent wait) and how it compares to power and progressive dialers." />
+<link rel="canonical" href="https://hershelsigma.ai/predictive-dialer" />
+<meta name="robots" content="index, follow, max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hershelsigma.ai/predictive-dialer" />
+<meta property="og:site_name" content="Hershel Sigma AI" />
+<meta property="og:title" content="What Is a Predictive Dialer? Dial Level, Drop Rate and How It Works" />
+<meta property="og:description" content="How predictive dialing works, the settings that decide its results, and how it compares to power, progressive and AI dialers." />
+<meta property="og:image" content="https://hershelsigma.ai/apple-touch-icon.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://hershelsigma.ai/predictive-dialer#article",
+      "headline": "What Is a Predictive Dialer? Dial Level, Drop Rate and How It Works",
+      "description": "A predictive dialer calls several numbers per agent and predicts when each agent will be free. How it works, the settings that decide its results, and how it compares to power and progressive dialers.",
+      "url": "https://hershelsigma.ai/predictive-dialer",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "author": { "@id": "https://hershelsigma.ai/#nathan-yonash" },
+      "publisher": { "@id": "https://hershelsigma.ai/#org" },
+      "about": ["Predictive dialer", "Power dialer", "Progressive dialer", "Dial level", "Drop rate"],
+      "mainEntityOfPage": "https://hershelsigma.ai/predictive-dialer"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hershelsigma.ai/#nathan-yonash",
+      "name": "Nathan Yonash",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hershelsigma.ai/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://hershelsigma.ai/#org",
+      "name": "Hershel Sigma AI",
+      "legalName": "Hershel Sigma LLC",
+      "url": "https://hershelsigma.ai/",
+      "logo": "https://hershelsigma.ai/apple-touch-icon.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hershel Sigma AI", "item": "https://hershelsigma.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Predictive dialer", "item": "https://hershelsigma.ai/predictive-dialer" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a good drop rate for a predictive dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Lower is better, because every dropped call is a live person who heard silence. US floors hold abandoned calls to no more than 3% of calls answered by a person per campaign, the ceiling in the FTC's Telemarketing Sales Rule, and many run well under it." }
+        },
+        {
+          "@type": "Question",
+          "name": "What dial level should a predictive dialer use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no single right number. It depends on how many calls are being answered right now and how many agents are ready. Floors often land somewhere around 1.5 to 3 lines per agent, higher on lists with very low answer rates, and the right level keeps moving through the day." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a predictive dialer better than a power dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For large floors calling lists with low answer rates, usually yes, because it keeps agents talking instead of waiting. For small teams, warm leads or complex calls, a power or progressive dialer is often the better fit because it never drops a call." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many agents do you need for a predictive dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Predictive dialing relies on averages, so it works best with several agents logged in at once. With only one or two agents the forecast is too noisy and drops climb, so a power or progressive dialer is safer." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a predictive dialer the same as an auto dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A predictive dialer is one kind of auto dialer. Auto dialer is the broad term for any software that places calls automatically. Predictive dialers are the kind that dial more lines than there are free agents and forecast when agents will be ready." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an AI predictive dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "An AI predictive dialer is a predictive dialer whose settings are set and corrected by AI in real time instead of by a manager. The better ones also watch caller ID health and write call notes to the CRM." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand">H<span class="sig">Σ</span>RSHEL <span class="brand-sub">SIGMA AI</span></a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / Predictive dialer</div>
+  <div class="eyebrow">Guide</div>
+  <h1>What is a predictive dialer?</h1>
+  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-09-29">September 29, 2026</time></p>
+
+  <p class="answer">A <strong>predictive dialer</strong> is outbound calling software that dials several numbers for each available agent and uses live call statistics to predict when an agent will be free. Answered calls go straight to a person, while busy signals, no-answers and voicemails never reach the agent. It exists to cut the dead time between conversations.</p>
+
+  <p>Most dialed numbers do not turn into conversations. On a typical consumer list, the large majority of calls ring out, hit voicemail or reach a disconnected line. A rep dialing by hand spends most of the hour listening to rings. A predictive dialer does that waiting in parallel, across many lines at once, and hands the rep only the calls where someone said hello.</p>
+
+  <h2>How a predictive dialer works</h2>
+  <p>A predictive dialer runs a short loop over and over for as long as the campaign is live.</p>
+  <ol>
+    <li><strong>Queue the leads.</strong> It pulls the next batch of dialable leads from the list into a short queue, often called the hopper.</li>
+    <li><strong>Count ready agents.</strong> It checks how many agents are waiting and how many are about to finish their current call.</li>
+    <li><strong>Dial ahead.</strong> It places more calls than there are free agents: ready agents multiplied by the dial level.</li>
+    <li><strong>Filter the results.</strong> Busy signals, no-answers and disconnected numbers are dispositioned automatically. Answered calls are connected to the next free agent.</li>
+    <li><strong>Recalculate.</strong> Every few seconds it looks at answers, drops and wait times and decides how hard to dial next.</li>
+  </ol>
+
+  <h2>The three settings that decide the results</h2>
+  <p>Every predictive dialer balances the same three numbers. Push one and the others move.</p>
+  <h3>Dial level</h3>
+  <p>Dial level is how many lines the dialer uses per ready agent. With 10 agents ready and a dial level of 2.5, the dialer keeps about 25 calls in flight. Raise it and agents wait less, but more answered calls arrive when nobody is free. Floors often land around 1.5 to 3 lines per agent, higher on lists with very low answer rates, and the right number moves through the day as answer rates change.</p>
+  <h3>Drop rate</h3>
+  <p>A drop, or abandoned call, is an answered call that found no free agent. Drop rate is drops divided by answered calls, not by all dials. It is the ceiling on how hard a dialer can push. In the US, the FTC's Telemarketing Sales Rule sets that ceiling at <a href="https://www.law.cornell.edu/cfr/text/16/310.4" rel="noopener">3% of calls answered by a person</a>, measured per campaign over each 30-day period, and many floors run well under it.</p>
+  <h3>Agent wait time</h3>
+  <p>Agent wait time is how long a ready agent sits before the next call arrives. It is the mirror image of drop rate. Long waits mean the dialer is too cautious and the floor is paying people to listen to silence. Near-zero waits usually mean it is dialing hard enough that drops are about to climb.</p>
+  <p>Getting predictive dialing right means holding drops under the ceiling while keeping waits short. The catch is that the answer changes constantly: when agents log in or go on break, when the list moves from fresh leads to recycled ones, and when answer rates shift between the morning and the afternoon.</p>
+
+  <h2>Predictive vs power vs progressive vs preview dialers</h2>
+  <p>The four classic dialer types differ in how many calls they place per agent and whether they ever risk a drop.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Type</th><th>Calls per free agent</th><th>Can drop calls?</th><th>Agent idle time</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Preview</td><td>1, after the agent reviews the lead</td><td>No</td><td>High</td><td>Complex B2B, high-value accounts</td></tr>
+        <tr><td>Progressive</td><td>1, placed automatically</td><td>No</td><td>Medium to high</td><td>Small teams, warm leads</td></tr>
+        <tr><td>Power</td><td>A fixed number, set by a manager</td><td>Yes, if set too high</td><td>Medium</td><td>Mid-size teams, moderate answer rates</td></tr>
+        <tr><td>Predictive</td><td>Varies, forecast from live statistics</td><td>Yes, held under a ceiling</td><td>Low</td><td>Large floors, low answer rates</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>An <a href="/ai-dialer">AI dialer</a> is the next step: predictive dialing where the settings themselves are chosen and corrected by AI, alongside caller ID health and call notes.</p>
+
+  <h2>Why predictive dialers underperform</h2>
+  <p>Most predictive dialers underperform because of how they are run, not because of the math.</p>
+  <ul>
+    <li><strong>Set and forget.</strong> A dial level picked in the morning is rarely right by lunch, and few managers can watch it every minute of every shift.</li>
+    <li><strong>One setting for everything.</strong> Different campaigns and lists answer at different rates. A single blended setting is too slow for one and too aggressive for another.</li>
+    <li><strong>Burned caller IDs.</strong> The dialer can only connect calls people answer. Once a number is labeled as spam, its answer rate falls and no pacing setting can fix it.</li>
+    <li><strong>Silent carrier problems.</strong> When a carrier starts refusing calls at its own limits, many dialers just record failed calls. The floor feels slow and nobody knows why.</li>
+    <li><strong>Lost context.</strong> The fastest dialer in the world still wastes the appointment if the closer walks in blind.</li>
+  </ul>
+
+  <div class="callout">
+    <h3>Where Hershel fits</h3>
+    <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
+    <ul>
+      <li><strong>Dialler Manager</strong> reads each campaign about every 10 seconds and adjusts the dial level against drop rate and agent wait time, inside the ceiling the floor sets.</li>
+      <li><strong>The Shield</strong> watches every caller ID and carrier response and rotates out numbers that are getting flagged.</li>
+      <li><strong>Closable</strong> turns every appointment-set call into a closer brief in GoHighLevel.</li>
+    </ul>
+    <p>See the <a href="/">platform overview</a> for how it runs as a managed service.</p>
+  </div>
+
+  <h2>When not to use a predictive dialer</h2>
+  <p>A predictive dialer is the wrong tool when every call is precious or the team is tiny.</p>
+  <ul>
+    <li><strong>One or two agents.</strong> The forecast needs several agents to average across. With very few, drops spike.</li>
+    <li><strong>Warm or inbound-requested leads.</strong> People who asked for a call should never hear silence. Use progressive or preview dialing.</li>
+    <li><strong>Complex account-based selling.</strong> When reps need to research each prospect first, preview dialing wins.</li>
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <details>
+      <summary>What is a good drop rate for a predictive dialer?</summary>
+      <p>Lower is better, because every dropped call is a live person who heard silence. US floors hold abandoned calls to no more than 3% of calls answered by a person per campaign, the ceiling in the FTC's Telemarketing Sales Rule, and many run well under it.</p>
+    </details>
+    <details>
+      <summary>What dial level should a predictive dialer use?</summary>
+      <p>There is no single right number. It depends on how many calls are being answered right now and how many agents are ready. Floors often land somewhere around 1.5 to 3 lines per agent, higher on lists with very low answer rates, and the right level keeps moving through the day.</p>
+    </details>
+    <details>
+      <summary>Is a predictive dialer better than a power dialer?</summary>
+      <p>For large floors calling lists with low answer rates, usually yes, because it keeps agents talking instead of waiting. For small teams, warm leads or complex calls, a power or progressive dialer is often the better fit because it never drops a call.</p>
+    </details>
+    <details>
+      <summary>How many agents do you need for a predictive dialer?</summary>
+      <p>Predictive dialing relies on averages, so it works best with several agents logged in at once. With only one or two agents the forecast is too noisy and drops climb, so a power or progressive dialer is safer.</p>
+    </details>
+    <details>
+      <summary>Is a predictive dialer the same as an auto dialer?</summary>
+      <p>A predictive dialer is one kind of auto dialer. Auto dialer is the broad term for any software that places calls automatically. Predictive dialers are the kind that dial more lines than there are free agents and forecast when agents will be ready.</p>
+    </details>
+    <details>
+      <summary>What is an AI predictive dialer?</summary>
+      <p>An AI predictive dialer is a predictive dialer whose settings are set and corrected by AI in real time instead of by a manager. The better ones also watch caller ID health and write call notes to the CRM.</p>
+    </details>
+  </div>
+
+  <div class="cta-box">
+    <h2>Stop babysitting the dial level</h2>
+    <p>Hershel runs pace, caller IDs and call notes for you, 24/7.</p>
+    <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo &rarr;</a>
+  </div>
+
+  <section class="related">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="/ai-dialer">What is an AI dialer?</a></li>
+      <li><a href="/">Hershel Sigma AI platform overview</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/predictive-dialer">Predictive dialer</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai</div>
+  </div>
+</footer>
+</body>
+</html>
