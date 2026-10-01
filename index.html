@@ -60,392 +60,670 @@
   ]
 }
 </script>
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
 <style>
-  :root{
-    --bg:#08080a; --bg2:#0e0e12; --card:#141419; --card2:#17171d;
-    --line:#26262e; --line2:#33333d;
-    --red:#E4002B; --red-soft:#ff3355; --green:#22d07b; --green-soft:#3ee08e;
-    --text:#f5f5f7; --muted:#a0a0aa; --dim:#6e6e78;
-    --radius:16px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    background:var(--bg); color:var(--text);
-    -webkit-font-smoothing:antialiased; line-height:1.6; overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red-soft)}
-  .muted{color:var(--muted)}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 24px;border-radius:12px;transition:.18s;cursor:pointer;border:1px solid transparent}
-  .btn-primary{background:var(--red);color:#fff}
-  .btn-primary:hover{background:var(--red-soft);transform:translateY(-1px)}
-  .btn-ghost{background:transparent;border:1px solid var(--line2);color:var(--text)}
-  .btn-ghost:hover{border-color:#55555f;background:#16161c}
+/* light by default; the footer switch sets data-theme="dark" */
+:root {
+  --page: #FFFFFF;
+  --band: #F6F6F7;
+  --canvas: #F6F6F7;
+  --surface: #FFFFFF;
+  --sunken: #F1F1F3;
+  --line: #E5E5E8;
+  --line-strong: #D3D3D8;
+  --frame-line: #E5E5E8;
+  --ink: #0E0E10;
+  --text: #2B2B30;
+  --muted: #64646C;
+  --faint: #9B9BA3;
+  --brand: #E4002B;
+  --ok: #137A45;
+  --warn: #9A5806;
+  --bad: #C42118;
+  --on-ink: #FFFFFF;
+  --rim: 0 0 #0000;
+  --shadow: 0 1px 2px rgba(14, 14, 16, .05), 0 10px 28px -14px rgba(14, 14, 16, .14);
+  --shadow-lg: 0 1px 2px rgba(14, 14, 16, .06), 0 48px 96px -40px rgba(14, 14, 16, .30);
+  --font: 'Mona Sans', ui-sans-serif, -apple-system, 'Segoe UI', sans-serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --gut: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --page: #08090A;
+  --band: #0C0D0F;
+  --canvas: #08090A;
+  --surface: #0F1012;
+  --sunken: #16171A;
+  --line: rgba(255, 255, 255, .075);
+  --line-strong: rgba(255, 255, 255, .13);
+  --frame-line: rgba(255, 255, 255, .14);
+  --ink: #F4F5F6;
+  --text: #CACCD1;
+  --muted: #8B9099;
+  --faint: #5B5F67;
+  --brand: #FF2D4F;
+  --ok: #3DD68C;
+  --warn: #F2A93B;
+  --bad: #FF6259;
+  --on-ink: #08090A;
+  --rim: inset 0 1px 0 rgba(255, 255, 255, .045);
+  --shadow: 0 12px 32px -16px rgba(0, 0, 0, .7);
+  --shadow-lg: 0 60px 120px -40px rgba(0, 0, 0, .9);
+  color-scheme: dark;
+}
 
-  /* NAV */
-  header{position:sticky;top:0;z-index:50;background:rgba(8,8,10,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;height:70px}
-  .brand{font-weight:800;font-size:22px;letter-spacing:.02em}
-  .brand .sig{color:var(--red)}
-  .navlinks{display:flex;gap:34px;font-size:15px;color:var(--muted)}
-  .navlinks a:hover{color:var(--text)}
-  @media(max-width:760px){.navlinks{display:none}}
-  .navcta{display:flex;align-items:center;gap:26px;white-space:nowrap}
-  .login{font-size:15px;font-weight:500;color:var(--muted)}
-  .login:hover{color:var(--text)}
-  /* a phone has room for the wordmark, log in and book a demo on one line only without the suffix */
-  @media(max-width:760px){.brand-sub{display:none}.navcta{gap:18px}}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--page); scrollbar-color: var(--line-strong) transparent; scroll-behavior: smooth; }
+body { margin: 0; background: var(--page); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: color-mix(in srgb, var(--brand) 20%, transparent); color: var(--ink); }
+a { color: inherit; text-decoration: none; text-underline-offset: 3px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3, h4 { margin: 0; color: var(--ink); text-wrap: balance; font-weight: 520; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+[hidden] { display: none !important; }
+svg.i { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.num, table { font-variant-numeric: tabular-nums; }
+.skip { position: absolute; left: 12px; top: -48px; z-index: 50; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--on-ink); font-size: 14px; }
+.skip:focus { top: 12px; }
 
-  /* HERO */
-  .hero{position:relative;text-align:center;min-height:calc(100vh - 70px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-  .hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse at center,rgba(228,0,43,.20),transparent 62%);pointer-events:none}
-  .hero h1{position:relative;font-size:62px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:20px auto 0;max-width:880px}
-  .hero h1 .hl{color:var(--red)}
-  .hero p.sub{position:relative;font-size:20px;color:var(--muted);max-width:620px;margin:26px auto 0;line-height:1.6}
-  .hero .cta{position:relative;display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
-  .hero .trust{position:relative;margin-top:26px;font-size:14px;color:var(--dim)}
-  @media(max-width:760px){.hero h1{font-size:40px}.hero p.sub{font-size:17px}}
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: var(--gut); }
+.wordmark { display: inline-flex; align-items: baseline; gap: 8px; color: var(--ink); line-height: 1; }
+.wordmark b { font-weight: 640; font-stretch: 112%; letter-spacing: .07em; font-size: 17px; }
+.wordmark b span { color: var(--brand); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 8px; border: 1px solid transparent; font-size: 14px; font-weight: 520; white-space: nowrap; transition: background 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease), transform 120ms var(--ease); }
+.btn:active { transform: translateY(1px); }
+.btn-ink { background: var(--ink); color: var(--on-ink); }
+.btn-ink:hover { background: color-mix(in srgb, var(--ink) 86%, var(--page)); }
+.btn-line { background: var(--surface); border-color: var(--line-strong); color: var(--ink); }
+.btn-line:hover { border-color: var(--muted); }
+.btn-quiet { color: var(--muted); }
+.btn-quiet:hover { color: var(--ink); }
+.btn-lg { height: 44px; padding: 0 20px; font-size: 15px; border-radius: 10px; }
 
-  /* SECTIONS */
-  section{padding:84px 0}
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 52px}
-  .sec-head h2{font-size:40px;font-weight:800;letter-spacing:-.02em;margin-top:14px;line-height:1.12}
-  .sec-head p{font-size:18px;color:var(--muted);margin-top:16px}
-  @media(max-width:760px){.sec-head h2{font-size:30px}}
+/* nav */
+.nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--page) 86%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color 200ms var(--ease); }
+.nav.scrolled { border-bottom-color: var(--line); }
+.nav .wrap { height: 64px; display: flex; align-items: center; gap: 40px; }
+.nav nav { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+.nav nav a:hover { color: var(--ink); }
+.nav .right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 
-  /* BEFORE / AFTER */
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  @media(max-width:760px){.cols{grid-template-columns:1fr}}
-  .panel{border-radius:var(--radius);padding:30px;border:1px solid var(--line)}
-  .panel.bad{background:var(--card);border-color:#2a2030}
-  .panel.good{background:linear-gradient(180deg,rgba(34,208,123,.06),var(--card));border-color:#1c3a2c}
-  .panel h3{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
-  .panel.bad h3{color:#d97a8e}
-  .panel.good h3{color:var(--green-soft)}
-  .panel ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:16px}
-  .panel li{display:flex;gap:12px;font-size:15.5px;color:#d4d4dc;line-height:1.5}
-  .panel li .ic{flex:0 0 20px;font-weight:800;font-size:16px}
-  .panel.bad li .ic{color:#d97a8e}
-  .panel.good li .ic{color:var(--green-soft)}
-  .panel li b{color:var(--text);font-weight:700}
+/* hero */
+.hero { padding-top: 88px; scroll-margin-top: 64px; }
+.hero-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: end; }
+.hero h1 { font-size: clamp(40px, 5.4vw, 68px); line-height: 1.02; letter-spacing: -.035em; font-weight: 480; }
+.hero .lede-col { display: flex; flex-direction: column; gap: 22px; padding-bottom: 8px; }
+.hero .lede { font-size: 18px; line-height: 1.5; color: var(--muted); max-width: 44ch; }
+.hero .lede b { color: var(--ink); font-weight: 520; }
+.hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.frame { margin-top: 64px; border-radius: 16px; border: 1px solid var(--frame-line); background: var(--canvas); box-shadow: var(--rim), var(--shadow-lg); overflow: hidden; }
+.frame-screen { position: relative; overflow: hidden; }
+.frame-scale { position: absolute; left: 0; top: 0; width: 1280px; transform-origin: 0 0; }
+.caption { margin-top: 14px; font-size: 13px; color: var(--muted); }
 
-  /* TOOLS */
-  .tools{display:flex;flex-direction:column;gap:18px}
-  .tool{display:flex;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;transition:.18s}
-  .tool:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .tool .badge{flex:0 0 56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:rgba(228,0,43,.12);border:1px solid rgba(228,0,43,.3)}
-  .tool h3{font-size:21px;font-weight:700}
-  .tool .kicker{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red-soft);margin:3px 0 11px}
-  .tool p{font-size:15.5px;color:var(--muted);line-height:1.6;max-width:680px}
+/* sections */
+section { scroll-margin-top: 72px; }
+.sec { padding-top: 128px; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: end; margin-bottom: 56px; }
+.sec-head h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -.03em; font-weight: 480; }
+.sec-head p { font-size: 17px; color: var(--muted); max-width: 52ch; }
+.reach { margin: 0; display: grid; grid-template-columns: 150px minmax(0, 1fr) 80px; row-gap: 18px; column-gap: 24px; align-items: center; }
+.reach .lab { font-size: 15px; color: var(--muted); }
+.reach .lab.strong, .reach .val.strong { color: var(--ink); font-weight: 560; }
+.track { position: relative; height: 40px; border-radius: 6px; background: var(--sunken); overflow: hidden; }
+.track .band { position: absolute; top: 0; bottom: 0; left: 2%; width: 3%; background: var(--line-strong); }
+.track .fill { position: absolute; top: 0; bottom: 0; left: 0; width: 40%; background: var(--ink); border-radius: 6px 0 0 6px; }
+.track .tail { position: absolute; top: 0; bottom: 0; left: 40%; width: 6%; background: linear-gradient(90deg, color-mix(in srgb, var(--ink) 35%, transparent), transparent); }
+.reach .val { font-size: 22px; letter-spacing: -.02em; color: var(--muted); }
+.reach .axis { grid-column: 2; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: -6px; }
+.reach figcaption { grid-column: 2 / 4; font-size: 13px; color: var(--muted); }
+.band-sec { margin-top: 128px; padding-block: 112px; background: var(--band); border-block: 1px solid var(--line); }
+.feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: center; }
+.feature + .feature { margin-top: 96px; }
+.feature.flip .f-copy { order: 2; }
+.f-copy { display: flex; flex-direction: column; gap: 14px; max-width: 46ch; }
+.f-copy h3 { font-size: 26px; letter-spacing: -.025em; line-height: 1.15; }
+.f-copy p { color: var(--muted); font-size: 16px; }
+.f-copy p b { color: var(--ink); font-weight: 540; }
+.shot { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--rim), var(--shadow); overflow: hidden; }
+.shot-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.shot-h b { color: var(--ink); font-weight: 560; }
+.shot-h span { color: var(--muted); }
+.shot .chart { height: 220px; margin: 12px 4px 0; }
+.decisions { list-style: none; margin: 0; padding: 4px 18px 16px; }
+.decisions li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 8px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--text); }
+.decisions time { color: var(--muted); }
+.ids { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ids th { text-align: left; font-weight: 500; color: var(--muted); padding: 10px 18px; border-bottom: 1px solid var(--line); }
+.ids td { padding: 11px 18px; border-bottom: 1px solid var(--line); color: var(--text); }
+.ids tr:last-child td { border-bottom: 0; }
+.ids .r { text-align: right; }
+.brief { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+.brief h4 { font-size: 18px; font-weight: 560; letter-spacing: -.01em; }
+.brief .meta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.brief dl { margin: 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); row-gap: 10px; column-gap: 16px; }
+.brief dt { color: var(--muted); }
+.brief dd { margin: 0; color: var(--text); }
+.st { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); flex: none; }
+.dot.warn { background: var(--warn); }
+.dot.bad { background: var(--bad); }
+.dot.idle { background: var(--faint); }
+.why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.why div { border-top: 1px solid var(--ink); padding-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.why h3 { font-size: 17px; letter-spacing: -.01em; }
+.why p { font-size: 15px; color: var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.steps li { display: flex; flex-direction: column; gap: 10px; position: relative; }
+.steps .n { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--page); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 560; color: var(--ink); position: relative; z-index: 1; }
+.steps li:not(:last-child)::after { content: ''; position: absolute; left: 36px; right: -24px; top: 14px; height: 1px; background: var(--line-strong); }
+.steps h3 { font-size: 19px; letter-spacing: -.015em; margin-top: 6px; }
+.steps p { font-size: 15px; color: var(--muted); max-width: 36ch; }
+.price { margin-top: 128px; border-top: 1px solid var(--line); padding-block: 96px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: end; }
+.price h2 { font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.03em; line-height: 1.08; font-weight: 480; margin-bottom: 14px; }
+.price p { font-size: 17px; color: var(--muted); max-width: 52ch; }
+.price .cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+.price .mail { font-size: 14px; color: var(--muted); }
+.price .mail:hover { color: var(--ink); text-decoration: underline; }
 
-  /* GUARANTEE */
-  .guarantee{background:linear-gradient(180deg,rgba(228,0,43,.07),var(--bg2));border:1px solid #2a1620;border-radius:24px;padding:56px 40px;text-align:center}
-  .guarantee h2{font-size:34px;font-weight:800;letter-spacing:-.02em;max-width:720px;margin:14px auto 0;line-height:1.18}
-  .guarantee p{font-size:17px;color:var(--muted);max-width:600px;margin:18px auto 0}
-  .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-  .pill{font-size:14px;font-weight:600;color:#e6e6ec;background:#16161c;border:1px solid var(--line2);padding:10px 18px;border-radius:999px;display:flex;align-items:center;gap:8px}
-  .pill .ic{color:var(--green-soft);font-weight:800}
+/* footer */
+.foot { border-top: 1px solid var(--line); padding-block: 56px 40px; }
+.foot .cols { display: grid; grid-template-columns: minmax(0, 4fr) repeat(4, minmax(0, 2fr)); gap: 32px; }
+.foot .brand p { margin-top: 14px; font-size: 14px; color: var(--muted); max-width: 30ch; }
+.foot h2 { margin: 0 0 12px; font-size: 13px; font-weight: 560; color: var(--ink); }
+.foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 14px; color: var(--muted); }
+.foot ul a:hover { color: var(--ink); }
+.foot .legal { margin-top: 48px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.foot .legal-r { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.theme { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.theme button { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border: 0; background: none; border-radius: 6px; color: var(--muted); font-size: 12px; font-weight: 520; transition: background 140ms var(--ease), color 140ms var(--ease); }
+.theme button:hover { color: var(--ink); }
+.theme button[aria-pressed="true"] { background: var(--sunken); color: var(--ink); }
+.theme .i { width: 14px; height: 14px; }
 
-  /* STEPS */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:760px){.steps{grid-template-columns:1fr}}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
-  .step .num{font-size:14px;font-weight:800;color:var(--red);letter-spacing:.05em}
-  .step h3{font-size:19px;font-weight:700;margin:12px 0 10px}
-  .step p{font-size:15px;color:var(--muted);line-height:1.6}
+/* hero mock: a picture of the manager floor, sample data only */
+.mock { width: 1280px; height: 780px; overflow: hidden; display: grid; grid-template-columns: 56px minmax(0, 1fr); background: var(--canvas); color: var(--text); font-size: 14px; text-align: left; }
+.mock .rail { border-right: 1px solid var(--line); padding: 12px 8px; display: flex; flex-direction: column; gap: 2px; }
+.mock .rail .home { height: 40px; display: flex; align-items: center; padding-left: 11px; margin-bottom: 10px; font-weight: 640; font-stretch: 112%; letter-spacing: .07em; color: var(--ink); font-size: 15px; }
+.mock .rail .home span { color: var(--brand); }
+.mock .rail i { display: flex; align-items: center; height: 34px; padding: 0 11px; border-radius: 8px; color: var(--muted); }
+.mock .rail i .i { width: 18px; height: 18px; }
+.mock .rail i.on { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+.mock .main { display: flex; flex-direction: column; min-width: 0; }
+.mock .top { height: 52px; display: flex; align-items: center; gap: 14px; padding: 0 24px; border-bottom: 1px solid var(--line); }
+.mock .crumbs { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.mock .crumbs b { color: var(--ink); font-weight: 520; }
+.mock .crumbs .i { width: 14px; height: 14px; color: var(--faint); }
+.mock .sel { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; font-weight: 520; color: var(--ink); }
+.mock .sel .i { width: 14px; height: 14px; color: var(--muted); }
+.mock .top-r { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.mock .sample { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 999px; border: 1px dashed var(--line-strong); color: var(--muted); font-size: 12px; }
+.mock .search { display: inline-flex; align-items: center; gap: 8px; height: 30px; width: 220px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 13px; }
+.mock .av-me { width: 28px; height: 28px; border-radius: 50%; background: var(--sunken); border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 560; color: var(--ink); }
+.mock .page { padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.mock .head { display: flex; align-items: flex-end; justify-content: space-between; }
+.mock .title { font-size: 20px; font-weight: 560; letter-spacing: -.015em; color: var(--ink); }
+.mock .status { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.mock .asof { font-size: 13px; color: var(--muted); }
+.mock .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--rim); min-width: 0; }
+.mock .tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.mock .tab { padding: 14px 18px 13px; display: flex; flex-direction: column; gap: 2px; position: relative; color: var(--muted); }
+.mock .tab + .tab { border-left: 1px solid var(--line); }
+.mock .tab.on::after { content: ''; position: absolute; left: 18px; right: 18px; bottom: -1px; height: 2px; background: var(--ink); border-radius: 2px; }
+.mock .tab small { font-size: 13px; }
+.mock .tab b { font-size: 22px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1.25; font-variant-numeric: tabular-nums; }
+.mock .tab em { font-style: normal; font-size: 12px; }
+.mock .chart { height: 196px; margin: 8px 6px 6px; }
+.mock .grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 16px; align-items: start; }
+.mock .ph { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.mock .ph b { font-size: 14px; font-weight: 560; color: var(--ink); }
+.mock .ph span { font-size: 13px; color: var(--muted); }
+.mock table { width: 100%; border-collapse: collapse; }
+.mock th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 9px 18px; border-bottom: 1px solid var(--line); }
+.mock td { padding: 0 18px; height: 46px; border-bottom: 1px solid var(--line); white-space: nowrap; transition: background 600ms var(--ease); }
+.mock tr:last-child td { border-bottom: 0; }
+.mock tr.changed td { background: var(--sunken); }
+.mock .r { text-align: right; }
+.mock .who { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 500; }
+.mock .av { width: 24px; height: 24px; border-radius: 50%; background: var(--sunken); border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 560; color: var(--muted); }
+.mock .tcell { display: inline-flex; flex-direction: column; align-items: flex-end; line-height: 1.2; min-width: 52px; }
+.mock .tcell small { font-size: 11px; color: var(--bad); }
+.mock tr[data-alert="true"] .tcell span { color: var(--bad); font-weight: 520; }
+.mock .feed { list-style: none; margin: 0; padding: 6px 0; }
+.mock .feed li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; padding: 10px 18px; font-size: 13px; transition: background 900ms var(--ease); }
+.mock .feed li.new { background: var(--sunken); }
+.mock .feed .i { width: 16px; height: 16px; color: var(--muted); margin-top: 1px; }
+.mock .feed time { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
 
-  /* PRICING / CTA */
-  .cta-band{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:90px 0}
-  .cta-band h2{font-size:42px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-  .cta-band p{font-size:18px;color:var(--muted);margin:18px auto 0;max-width:560px}
-  .price-note{font-size:14px;color:var(--dim);margin-top:14px}
-  .cta-band .cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+/* charts */
+.c-grid { stroke: var(--line); stroke-width: 1; }
+.c-future { fill: var(--sunken); opacity: .55; }
+.c-lab { fill: var(--muted); font-size: 11px; font-family: var(--font); }
+.c-line { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.c-area { fill: var(--ink); opacity: .055; }
+.c-ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; }
+.c-now { stroke: var(--line-strong); stroke-width: 1; }
+.c-dot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }
+.c-mark { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
 
-  /* FOOTER */
-  footer{padding:56px 0 40px;border-top:1px solid var(--line);background:var(--bg)}
-  .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-  .foot-brand .brand{font-size:20px}
-  .foot-brand p{font-size:14px;color:var(--dim);margin-top:10px;max-width:320px}
-  .foot-links{display:flex;gap:48px;flex-wrap:wrap}
-  .foot-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-  .foot-col a,.foot-col span{display:block;font-size:14.5px;color:var(--dim);margin-bottom:10px}
-  .foot-col a:hover{color:var(--text)}
-  .foot-col a.fine{font-size:13px;color:#4c4c55}
-  .foot-col a.fine:hover{color:var(--muted)}
-  .legal{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--dim);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-  /* CONTACT-RATE FLOW */
-  .flow{margin-top:6px}
-  .flow svg{width:100%;height:auto;display:block;max-width:960px;margin:0 auto}
-  .fl-base{fill:none;stroke:#23232c;stroke-width:2}
-  .fl-red{fill:none;stroke:var(--red);stroke-width:2.5;stroke-dasharray:7 11;animation:flowmove 1.3s linear infinite;opacity:.85}
-  .fl-green{fill:none;stroke:var(--green);stroke-width:3;stroke-dasharray:7 11;animation:flowmove 1.1s linear infinite}
-  @keyframes flowmove{to{stroke-dashoffset:-180}}
-  .hubglow{animation:hubpulse 2.6s ease-in-out infinite}
-  @keyframes hubpulse{0%,100%{opacity:.35}50%{opacity:.8}}
-
-  /* BENEFITS */
-  .bgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:760px){.bgrid{grid-template-columns:1fr}}
-  .bcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:.18s}
-  .bcard:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .bcard .bic{font-size:24px;width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(228,0,43,.12);border:1px solid rgba(228,0,43,.3);margin-bottom:16px}
-  .bcard h3{font-size:18px;font-weight:700;margin-bottom:8px}
-  .bcard p{font-size:14.5px;color:var(--muted);line-height:1.6}
+@media (max-width: 900px) {
+  .nav nav { display: none; }
+  .hero { padding-top: 56px; }
+  .hero-row, .sec-head, .feature, .price { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .feature.flip .f-copy { order: 0; }
+  .feature { gap: 28px; }
+  .feature + .feature { margin-top: 72px; }
+  .price .cta { justify-content: flex-start; }
+  .why { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps li:not(:last-child)::after { display: none; }
+  .reach { grid-template-columns: 96px minmax(0, 1fr) 56px; column-gap: 14px; }
+  .foot .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sec { padding-top: 96px; }
+  .band-sec { margin-top: 96px; padding-block: 80px; }
+  .price { margin-top: 96px; padding-block: 72px; }
+}
+@media (max-width: 560px) {
+  .nav .wrap { gap: 16px; }
+  .nav .btn-quiet { padding: 0 8px; }
+  .why { grid-template-columns: minmax(0, 1fr); }
+  .foot .cols { grid-template-columns: minmax(0, 1fr); }
+  .brief dl { grid-template-columns: 96px minmax(0, 1fr); }
+  .ids th, .ids td { padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
 </style>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
 
-<header>
+<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-floor" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"></path></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h12l-2.5 4.5L17 13H5"></path></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"></path></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6l7-3z"></path></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7V3z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"></path><path d="M12 17l4.5-5"></path></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></symbol>
+    <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"></path></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M10 7l5 5-5 5"></path></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></symbol>
+  </defs>
+</svg>
+
+<header class="nav" data-nav>
   <div class="wrap">
-    <nav>
-      <a href="#top" class="brand">H<span class="sig">Σ</span>RSHEL <span class="brand-sub" style="font-weight:600;font-size:14px;color:var(--dim)">SIGMA AI</span></a>
-      <div class="navlinks">
-        <a href="#platform">Platform</a>
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
-      </div>
-      <div class="navcta">
-        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
-        <a href="#contact" class="btn btn-primary" style="padding:10px 20px">Book a demo</a>
-      </div>
-    </nav>
+    <a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a>
+    <nav aria-label="Main"><a href="#platform">Platform</a><a href="#how">How it works</a><a href="#pricing">Pricing</a></nav>
+    <div class="right"><a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="btn btn-quiet">Log in</a><a href="#contact" class="btn btn-ink">Book a demo</a></div>
   </div>
 </header>
 
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow">Managed Dialer AI</div>
-      <h1>Reach <span class="hl">40%+</span> of your list, <br/>not 3%.</h1>
-      <p class="sub">Managed dialer AI that tunes pace, guards your numbers, and briefs every closer.</p>
-      <div class="cta">
-        <a href="#contact" class="btn btn-primary">Book a demo &rarr;</a>
-        <a href="#platform" class="btn btn-ghost">See the platform</a>
-      </div>
-      <div class="trust">Fully managed, end to end</div>
-    </div>
-  </section>
-
-  <!-- CONTACT RATE -->
-  <section id="contact-rate" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">Contact rate</div>
-        <h2>Reach the people a standard setup never will</h2>
-        <p>Most floors connect on just 2-5% of their list. Tuned, protected, and managed by Hershel Sigma, that climbs past 40%.</p>
-      </div>
-      <div class="flow">
-        <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Leads, numbers and campaigns flow through Hershel Sigma to reach a 45 percent plus contact rate versus 2 to 5 percent with a standard setup">
-          <ellipse class="hubglow" cx="500" cy="200" rx="160" ry="120" fill="var(--red)" opacity="0.35"/>
-
-          <path class="fl-base" d="M190,115 C300,115 340,200 435,182"/>
-          <path class="fl-base" d="M190,200 C320,200 360,200 435,200"/>
-          <path class="fl-base" d="M190,285 C300,285 340,200 435,218"/>
-          <path class="fl-red" d="M190,115 C300,115 340,200 435,182"/>
-          <path class="fl-red" d="M190,200 C320,200 360,200 435,200"/>
-          <path class="fl-red" d="M190,285 C300,285 340,200 435,218"/>
-
-          <path class="fl-base" d="M565,182 C660,182 690,150 760,150"/>
-          <path class="fl-base" d="M565,218 C660,218 690,282 760,282"/>
-          <path class="fl-green" d="M565,182 C660,182 690,150 760,150"/>
-          <path class="fl-base" d="M565,218 C660,218 690,282 760,282" stroke-dasharray="3 8" opacity="0.5"/>
-
-          <circle r="4" fill="#3ee08e"><animateMotion dur="1.9s" repeatCount="indefinite" path="M565,182 C660,182 690,150 760,150"/></circle>
-          <circle r="4" fill="#3ee08e"><animateMotion dur="1.9s" begin="0.95s" repeatCount="indefinite" path="M565,182 C660,182 690,150 760,150"/></circle>
-
-          <g font-family="Inter,sans-serif">
-            <g>
-              <rect x="40" y="92" width="150" height="46" rx="12" fill="#16161c" stroke="#2c2c36"/>
-              <text x="115" y="120" fill="#d2d2d9" font-size="16" text-anchor="middle">Your leads</text>
-            </g>
-            <g>
-              <rect x="40" y="177" width="150" height="46" rx="12" fill="#16161c" stroke="#2c2c36"/>
-              <text x="115" y="205" fill="#d2d2d9" font-size="16" text-anchor="middle">Your numbers</text>
-            </g>
-            <g>
-              <rect x="40" y="262" width="150" height="46" rx="12" fill="#16161c" stroke="#2c2c36"/>
-              <text x="115" y="290" fill="#d2d2d9" font-size="16" text-anchor="middle">Your campaigns</text>
-            </g>
-
-            <rect x="435" y="135" width="130" height="130" rx="28" fill="#1a0c12" stroke="var(--red)" stroke-width="1.5"/>
-            <text x="500" y="218" fill="#ff3355" font-size="64" font-weight="800" text-anchor="middle">&#931;</text>
-
-            <g>
-              <rect x="760" y="112" width="200" height="78" rx="16" fill="rgba(34,208,123,.10)" stroke="#1f6b4e"/>
-              <text id="cr-num" x="785" y="160" fill="#3ee08e" font-size="34" font-weight="800">0%</text>
-              <text x="785" y="180" fill="#7fcfa9" font-size="13">contact rate</text>
-            </g>
-            <g>
-              <rect x="760" y="250" width="200" height="66" rx="16" fill="#141318" stroke="#2c2c36"/>
-              <text x="785" y="284" fill="#9a9aa2" font-size="22" font-weight="700">2-5%</text>
-              <text x="785" y="303" fill="#6e6e78" font-size="13">standard setup</text>
-            </g>
-          </g>
-        </svg>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-row">
+      <h1 id="hero-title">Reach 40%+ of your list, not 3%.</h1>
+      <div class="lede-col">
+        <p class="lede">Managed dialer AI that tunes pace, guards your numbers, and briefs every closer. <b>Fully managed, end to end.</b></p>
+        <div class="cta"><a href="#contact" class="btn btn-ink btn-lg">Book a demo</a><a href="#platform" class="btn btn-line btn-lg">See the platform</a></div>
       </div>
     </div>
-  </section>
-
-  <!-- PLATFORM -->
-  <section id="platform" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">Three tools, one managed system</div>
-        <h2>The platform behind your floor</h2>
-        <p>A fully managed AI layer that sits on top of your existing dialer, no rip-and-replace.</p>
-      </div>
-      <div class="tools">
-        <div class="tool">
-          <div class="badge">&#9881;</div>
-          <div>
-            <div class="kicker">Autonomous dial-pace control</div>
-            <h3>Dialler Manager</h3>
-            <p>Autonomously perfects your dialer's drop percentage, dial level, and agent wait times, so you stay compliant and your agents talk to as many people as humanly possible.</p>
-          </div>
+    <div class="frame"><div class="frame-screen" data-screen><div class="frame-scale" data-scale>
+      <div class="mock" aria-hidden="true" inert>
+        <div class="rail">
+          <div class="home">H<span>Σ</span></div>
+          <i class="on"><svg class="i"><use href="#i-floor"></use></svg></i>
+          <i><svg class="i"><use href="#i-flag"></use></svg></i>
+          <i><svg class="i"><use href="#i-list"></use></svg></i>
+          <i><svg class="i"><use href="#i-shield"></use></svg></i>
+          <i><svg class="i"><use href="#i-doc"></use></svg></i>
         </div>
-        <div class="tool">
-          <div class="badge">&#128737;</div>
-          <div>
-            <div class="kicker">Always-on carrier protection</div>
-            <h3>The Shield</h3>
-            <p>A live protective layer watching your dialer at all times. Carrier errors and number-health threats are caught and resolved autonomously, before they cost you answer rates.</p>
+        <div class="main">
+          <div class="top">
+            <div class="crumbs"><span>Sample Co.</span><svg class="i"><use href="#i-chev-r"></use></svg><b>Floor</b></div>
+            <span class="sel">INSURANCE-FL<svg class="i"><use href="#i-chev-d"></use></svg></span>
+            <div class="top-r"><span class="sample">Sample data</span><span class="search"><svg class="i"><use href="#i-search"></use></svg>Search</span><span class="av-me">SC</span></div>
           </div>
-        </div>
-        <div class="tool">
-          <div class="badge">&#128221;</div>
-          <div>
-            <div class="kicker">Automated closer briefs</div>
-            <h3>Closable</h3>
-            <p>Every appointment set generates a detailed brief that auto-populates in your CRM, keeping your setters dialing and your closers fully informed before they pick up the phone.</p>
+          <div class="page">
+            <div class="head">
+              <div><div class="title">Floor</div><div class="status"><i class="dot warn" data-status-dot></i><span data-status>Dialing on pace. Dana has been paused 12 minutes.</span></div></div>
+              <span class="asof" data-clock>Live · 2:41 PM CT</span>
+            </div>
+            <div class="panel">
+              <div class="tabs">
+                <div class="tab on"><small>Drop rate</small><b data-v="drop">9.4%</b><em>of answered · limit 15%</em></div>
+                <div class="tab"><small>Agent wait</small><b data-v="wait">27s</b><em>average · target 30s</em></div>
+                <div class="tab"><small>Dial level</small><b data-v="level">2.4</b><em>raised at 2:39 PM</em></div>
+                <div class="tab"><small>Appointments</small><b data-v="sets">11</b><em>31 contacts an hour</em></div>
+              </div>
+              <div class="chart" data-chart="drop"></div>
+            </div>
+            <div class="grid">
+              <div class="panel">
+                <div class="ph"><b>Reps</b><span>6 on shift</span></div>
+                <table>
+                  <thead><tr><th>Rep</th><th>Status</th><th class="r">Time</th><th class="r">Calls</th><th class="r">Contacts</th><th class="r">Sets</th><th>Last outcome</th></tr></thead>
+                  <tbody>
+                    <tr data-rep="dana" data-alert="true"><td><span class="who"><span class="av">D</span>Dana</span></td><td><span class="st"><i class="dot bad" data-f="dot"></i><span data-f="state">Paused</span></span></td><td class="r"><span class="tcell"><span data-f="t">12:30</span><small data-f="flag">over 10 min</small></span></td><td class="r" data-f="calls">41</td><td class="r" data-f="contacts">8</td><td class="r" data-f="sets">0</td><td data-f="last">Not interested</td></tr>
+                    <tr data-rep="alex"><td><span class="who"><span class="av">A</span>Alex</span></td><td><span class="st"><i class="dot" data-f="dot"></i><span data-f="state">On call</span></span></td><td class="r"><span class="tcell"><span data-f="t">3:12</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">142</td><td class="r" data-f="contacts">31</td><td class="r" data-f="sets">3</td><td data-f="last">Appointment set</td></tr>
+                    <tr data-rep="maya"><td><span class="who"><span class="av">M</span>Maya</span></td><td><span class="st"><i class="dot idle" data-f="dot"></i><span data-f="state">Waiting</span></span></td><td class="r"><span class="tcell"><span data-f="t">0:31</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">128</td><td class="r" data-f="contacts">29</td><td class="r" data-f="sets">3</td><td data-f="last">Callback</td></tr>
+                    <tr data-rep="chris"><td><span class="who"><span class="av">C</span>Chris</span></td><td><span class="st"><i class="dot idle" data-f="dot"></i><span data-f="state">Waiting</span></span></td><td class="r"><span class="tcell"><span data-f="t">0:14</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">119</td><td class="r" data-f="contacts">24</td><td class="r" data-f="sets">2</td><td data-f="last">No answer</td></tr>
+                    <tr data-rep="sam"><td><span class="who"><span class="av">S</span>Sam</span></td><td><span class="st"><i class="dot idle" data-f="dot"></i><span data-f="state">Wrapping up</span></span></td><td class="r"><span class="tcell"><span data-f="t">0:41</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">97</td><td class="r" data-f="contacts">22</td><td class="r" data-f="sets">2</td><td data-f="last">Appointment set</td></tr>
+                    <tr data-rep="jordan"><td><span class="who"><span class="av">J</span>Jordan</span></td><td><span class="st"><i class="dot" data-f="dot"></i><span data-f="state">On call</span></span></td><td class="r"><span class="tcell"><span data-f="t">1:05</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">76</td><td class="r" data-f="contacts">15</td><td class="r" data-f="sets">1</td><td data-f="last">Not interested</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="panel">
+                <div class="ph"><b>Hershel activity</b><span>Today</span></div>
+                <ol class="feed" data-feed>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Raised dial level to 2.4. Reps waited 38s.<time>2:39 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Held pace. Drop 11% and falling.<time>2:21 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Lowered dial level to 2.2. Drop 16% and rising.<time>2:02 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-shield"></use></svg><div>Rested 3 caller IDs flagged as spam and swapped in clean ones.<time>1:58 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-doc"></use></svg><div>Sent the closer brief for Sam's 1:40 PM appointment.<time>1:47 PM</time></div></li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </div></div></div>
+    <p class="caption">A manager's floor view, shown with sample data.</p>
   </section>
 
-  <!-- BENEFITS -->
-  <section id="benefits">
+  <section class="sec wrap" id="results" aria-labelledby="results-title">
+    <div class="sec-head">
+      <h2 id="results-title">Reach the people a standard setup never will</h2>
+      <p>Most floors connect on just 2-5% of their list. Tuned, protected, and managed by Hershel Sigma, that climbs past 40%.</p>
+    </div>
+    <figure class="reach" id="contact-rate">
+      <span class="lab">Standard setup</span><div class="track" aria-hidden="true"><i class="band"></i></div><span class="val">2-5%</span>
+      <span class="lab strong">With Hershel</span><div class="track" aria-hidden="true"><i class="fill"></i><i class="tail"></i></div><span class="val strong">40%+</span>
+      <div class="axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+      <figcaption>Contact rate as a share of the list.</figcaption>
+    </figure>
+  </section>
+
+  <section class="band-sec" id="platform" aria-labelledby="platform-title">
     <div class="wrap">
       <div class="sec-head">
-        <div class="eyebrow">Why it matters</div>
-        <h2>More reach. More sales. Lower cost.</h2>
+        <h2 id="platform-title">The platform behind your floor</h2>
+        <p>Three tools, one managed system. Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
       </div>
-      <div class="bgrid">
-        <div class="bcard"><div class="bic">&#128222;</div><h3>Reach far more of your list</h3><p>Every tuned, protected number turns into more live conversations from the same leads.</p></div>
-        <div class="bcard"><div class="bic">&#128200;</div><h3>Sell more, grow faster</h3><p>More contacts mean more sets, more closes, and a business that scales quicker.</p></div>
-        <div class="bcard"><div class="bic">&#9889;</div><h3>Cheaper than a human manager</h3><p>Runs the dialer around the clock, more efficiently than a person ever could, at a fraction of the cost.</p></div>
-        <div class="bcard"><div class="bic">&#129504;</div><h3>Grows with your business</h3><p>An AI custom-fit to your floor that scales the moment your needs do.</p></div>
-      </div>
+
+      <article class="feature">
+        <div class="f-copy">
+          <h3>Dialler Manager</h3>
+          <p><b>Autonomous dial-pace control.</b> Autonomously perfects your dialer's drop percentage, dial level, and agent wait times, so you stay compliant and your agents talk to as many people as humanly possible.</p>
+        </div>
+        <div class="shot" aria-hidden="true">
+          <div class="shot-h"><b>Dial level today</b><span>ROOFING-TX · sample</span></div>
+          <div class="chart" data-chart="level" data-marks="true"></div>
+          <ol class="decisions">
+            <li><time>2:39 PM</time><span>Raised dial level 2.2 → 2.4. Reps waited 38s.</span></li>
+            <li><time>2:02 PM</time><span>Lowered dial level 2.6 → 2.2. Drop 16% and rising.</span></li>
+            <li><time>1:10 PM</time><span>Raised dial level 2.2 → 2.6. Reps waited 41s.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="feature flip">
+        <div class="f-copy">
+          <h3>The Shield</h3>
+          <p><b>Always-on carrier protection.</b> A live protective layer watching your dialer at all times. Carrier errors and number-health threats are caught and resolved autonomously, before they cost you answer rates.</p>
+        </div>
+        <div class="shot" aria-hidden="true">
+          <div class="shot-h"><b>Caller IDs</b><span>48 of 51 in rotation · sample</span></div>
+          <table class="ids">
+            <thead><tr><th>Number</th><th>Status</th><th class="r">Answer rate</th></tr></thead>
+            <tbody>
+              <tr><td>(512) 555-0182</td><td><span class="st"><i class="dot"></i>In rotation</span></td><td class="r">31%</td></tr>
+              <tr><td>(737) 555-0117</td><td><span class="st"><i class="dot"></i>In rotation</span></td><td class="r">29%</td></tr>
+              <tr><td>(512) 555-0164</td><td><span class="st" style="color: var(--warn)"><i class="dot warn"></i>Flagged, resting</span></td><td class="r">9%</td></tr>
+              <tr><td>(737) 555-0149</td><td><span class="st"><i class="dot"></i>Swapped in at 1:58 PM</span></td><td class="r">New</td></tr>
+              <tr><td>(281) 555-0135</td><td><span class="st"><i class="dot"></i>In rotation</span></td><td class="r">27%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-copy">
+          <h3>Closable</h3>
+          <p><b>Automated closer briefs.</b> Every appointment set generates a detailed brief that auto-populates in your CRM, keeping your setters dialing and your closers fully informed before they pick up the phone.</p>
+        </div>
+        <div class="shot" aria-hidden="true">
+          <div class="brief">
+            <div><h4>Closer brief: Marcus Bell</h4><p class="meta">Plano, TX · set at 1:47 PM · roof inspection Thursday at 6 PM · sample</p></div>
+            <dl>
+              <dt>Household</dt><dd>Owns the home. His wife will be there for the inspection.</dd>
+              <dt>Roof</dt><dd>About 14 years old. Hail in April, and two leaks over the back bedroom.</dd>
+              <dt>Insurance</dt><dd>Opened a claim last month. The adjuster hasn't come out yet.</dd>
+              <dt>Watch for</dt><dd>Another roofer pushed him hard last week. Slow down and walk the roof first.</dd>
+              <dt>Best time</dt><dd>Weekday evenings after 6.</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how" style="padding-top:20px">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">How it works</div>
-        <h2>Live on your floor in days, not months</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="num">01</div>
-          <h3>Connect</h3>
-          <p>Plugs into your dialer, carrier, and CRM, then tunes to your campaigns and compliance rules.</p>
-        </div>
-        <div class="step">
-          <div class="num">02</div>
-          <h3>Runs itself</h3>
-          <p>Dial pace, number health, and call notes run on autopilot, monitored 24/7.</p>
-        </div>
-        <div class="step">
-          <div class="num">03</div>
-          <h3>You close</h3>
-          <p>Setters stay on the phone, closers walk in briefed, and the numbers that matter land in a clean report.</p>
-        </div>
-      </div>
+  <section class="sec wrap" id="benefits" aria-labelledby="benefits-title">
+    <div class="sec-head"><h2 id="benefits-title">More reach. More sales. Lower cost.</h2></div>
+    <div class="why">
+      <div><h3>Reach far more of your list</h3><p>Every tuned, protected number turns into more live conversations from the same leads.</p></div>
+      <div><h3>Sell more, grow faster</h3><p>More contacts mean more sets, more closes, and a business that scales quicker.</p></div>
+      <div><h3>Cheaper than a human manager</h3><p>Runs the dialer around the clock, more efficiently than a person ever could, at a fraction of the cost.</p></div>
+      <div><h3>Grows with your business</h3><p>An AI custom-fit to your floor that scales the moment your needs do.</p></div>
     </div>
   </section>
 
-  <!-- PRICING / CTA -->
-  <section id="pricing" class="cta-band">
-    <div class="wrap">
-      <div class="eyebrow">Pricing</div>
-      <h2>Simple managed pricing.</h2>
-      <p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p>
-      <div class="cta" id="contact">
-        <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo &rarr;</a>
-        <a href="mailto:info@hershelsigma.ai" class="btn btn-ghost">info@hershelsigma.ai</a>
-      </div>
-    </div>
+  <section class="sec wrap" id="how" aria-labelledby="how-title">
+    <div class="sec-head"><h2 id="how-title">Live on your floor in days, not months</h2></div>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>Connect</h3><p>Plugs into your dialer, carrier, and CRM, then tunes to your campaigns and compliance rules.</p></li>
+      <li><span class="n">2</span><h3>Runs itself</h3><p>Dial pace, number health, and call notes run on autopilot, monitored 24/7.</p></li>
+      <li><span class="n">3</span><h3>You close</h3><p>Setters stay on the phone, closers walk in briefed, and the numbers that matter land in a clean report.</p></li>
+    </ol>
   </section>
 
+  <section class="wrap" id="pricing" aria-labelledby="pricing-title">
+    <div class="price" id="contact">
+      <div><h2 id="pricing-title">Simple managed pricing.</h2><p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p></div>
+      <div class="cta"><a class="mail" href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a><a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-ink btn-lg">Book a demo</a></div>
+    </div>
+  </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a href="#top" class="brand">H<span class="sig">Σ</span>RSHEL</a>
-        <p>Managed Dialer AI for high-volume outbound sales teams.</p>
-      </div>
-      <div class="foot-links">
-        <div class="foot-col">
-          <h4>Platform</h4>
-          <a href="#platform">Dialler Manager</a>
-          <a href="#platform">The Shield</a>
-          <a href="#platform">Closable</a>
-        </div>
-        <div class="foot-col">
-          <h4>Guides</h4>
-          <a href="/ai-dialer">What is an AI dialer?</a>
-          <a href="/predictive-dialer">What is a predictive dialer?</a>
-          <a href="/vicidial-alternative">ViciDial alternative</a>
-          <a href="/managed-dialer">What is a managed dialer?</a>
-          <a href="/solar-dialer">AI dialer for solar</a>
-          <a href="/gohighlevel-dialer">GoHighLevel dialer</a>
-          <a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a>
-        </div>
-        <div class="foot-col">
-          <h4>Company</h4>
-          <a href="#results">Results</a>
-          <a href="#pricing">Pricing</a>
-          <a href="mailto:info@hershelsigma.ai">Contact</a>
-        </div>
-        <div class="foot-col">
-          <h4>Legal</h4>
-          <a href="terms.html">Terms of Service</a>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms-and-conditions" class="fine">Terms and Conditions</a>
-        </div>
-      </div>
+    <div class="cols">
+      <div class="brand"><a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a><p>Managed Dialer AI for high-volume outbound sales teams.</p></div>
+      <div><h2>Platform</h2><ul><li><a href="#platform">Dialler Manager</a></li><li><a href="#platform">The Shield</a></li><li><a href="#platform">Closable</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="/ai-dialer">What is an AI dialer?</a></li><li><a href="/predictive-dialer">What is a predictive dialer?</a></li><li><a href="/vicidial-alternative">ViciDial alternative</a></li><li><a href="/managed-dialer">What is a managed dialer?</a></li><li><a href="/solar-dialer">AI dialer for solar</a></li><li><a href="/gohighlevel-dialer">GoHighLevel dialer</a></li><li><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="#results">Results</a></li><li><a href="#pricing">Pricing</a></li><li><a href="mailto:info@hershelsigma.ai">Contact</a></li></ul></div>
+      <div><h2>Legal</h2><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms-and-conditions">Terms and Conditions</a></li></ul></div>
     </div>
     <div class="legal">
-      <span>&copy; 2026 Hershel Sigma LLC. All rights reserved.</span>
-      <span>Hershel Sigma LLC &middot; info@hershelsigma.ai</span>
+      <span>© 2026 Hershel Sigma LLC. All rights reserved.</span>
+      <div class="legal-r">
+        <span>Hershel Sigma LLC · info@hershelsigma.ai</span>
+        <div class="theme" role="group" aria-label="Color theme">
+          <button type="button" data-theme-set="light" aria-pressed="true"><svg class="i"><use href="#i-sun"></use></svg>Light</button>
+          <button type="button" data-theme-set="dark" aria-pressed="false"><svg class="i"><use href="#i-moon"></use></svg>Dark</button>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-  var crEl=document.getElementById('cr-num');
-  if(crEl){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){
-      if(!e.isIntersecting||crEl.dataset.done)return; crEl.dataset.done=1;
-      var c=0,t=40;
-      var step=function(){c+=t/32; if(c>=t){crEl.textContent='40%+'}else{crEl.textContent=Math.round(c)+'%';requestAnimationFrame(step)}};
-      step();
-    })},{threshold:.5});
-    io.observe(crEl);
+(() => {
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const root = document.documentElement;
+
+  // light or dark, remembered per browser; light unless the visitor picks dark
+  function syncTheme() {
+    const t = root.dataset.theme === 'dark' ? 'dark' : 'light';
+    $$('[data-theme-set]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeSet === t)));
   }
+  $$('[data-theme-set]').forEach((b) => b.addEventListener('click', () => {
+    const t = b.dataset.themeSet;
+    if (t === 'dark') root.dataset.theme = 'dark'; else delete root.dataset.theme;
+    try { localStorage.setItem('hs-theme', t); } catch (e) { /* storage blocked: theme lasts this visit */ }
+    syncTheme();
+  }));
+  syncTheme();
+
+  const nav = document.querySelector('[data-nav]');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---------- sample day for the charts: 9:00 AM to 2:40 PM in 5-minute steps ----------
+  let seed = 11;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const START = 540, NOW = 880, END = 1200, STEP = 5;
+  const times = [];
+  for (let m = START; m <= NOW; m += STEP) times.push(m);
+  const LEVEL_STEPS = [[540, 2.0], [580, 2.2], [620, 2.4], [665, 2.6], [710, 2.4], [750, 2.2], [790, 2.6], [842, 2.2], [879, 2.4]];
+  const series = {
+    level: times.map((m) => LEVEL_STEPS.reduce((v, [t, l]) => (m >= t ? l : v), 2.0)),
+    drop: times.map((m, i) => {
+      let v = 9.2 + Math.sin(i / 6) * 1.5 + (rand() - 0.5) * 1.3;
+      if (m >= 825 && m <= 845) v = 13 + (m - 825) / 6.5;
+      else if (m > 845) v = 16 - (m - 845) / 5.5;
+      return Math.round(Math.max(5.5, v) * 10) / 10;
+    }),
+  };
+  series.drop[series.drop.length - 1] = 9.4;
+  const METRICS = {
+    drop: { min: 0, max: 20, ticks: [0, 5, 10, 15, 20], tick: (t) => `${t}%`, ref: 15, refLabel: 'Limit 15%' },
+    level: { min: 1.6, max: 3.0, ticks: [1.6, 2.0, 2.4, 2.8], tick: (t) => t.toFixed(1), step: true },
+  };
+  const MARKS = [665, 710, 750, 790, 842, 879];
+  function renderChart(el) {
+    const key = el.dataset.chart; const M = METRICS[key]; const data = series[key];
+    const W = el.clientWidth, H = el.clientHeight; if (!W || !H) return;
+    const pad = { l: 40, r: el.dataset.marks ? 16 : 76, t: 14, b: 26 };
+    const x = (m) => pad.l + (m - START) / (END - START) * (W - pad.l - pad.r);
+    const y = (v) => pad.t + (1 - (v - M.min) / (M.max - M.min)) * (H - pad.t - pad.b);
+    let s = `<rect class="c-future" x="${x(NOW)}" y="${pad.t}" width="${x(END) - x(NOW)}" height="${H - pad.t - pad.b}"></rect>`;
+    for (const t of M.ticks) s += `<line class="c-grid" x1="${pad.l}" x2="${W - pad.r}" y1="${y(t)}" y2="${y(t)}"></line><text class="c-lab" x="${pad.l - 8}" y="${y(t) + 4}" text-anchor="end">${M.tick(t)}</text>`;
+    for (const h of [9, 11, 13, 15, 17, 19]) s += `<text class="c-lab" x="${x(h * 60)}" y="${H - 6}" text-anchor="middle">${h > 12 ? h - 12 : h} ${h >= 12 ? 'PM' : 'AM'}</text>`;
+    let d = '';
+    data.forEach((v, i) => { const px = x(times[i]).toFixed(1), py = y(v).toFixed(1); d += i === 0 ? `M${px},${py}` : (M.step ? `H${px}V${py}` : `L${px},${py}`); });
+    s += `<path class="c-area" d="${d}V${y(M.min)}H${x(times[0])}Z"></path><path class="c-line" d="${d}"></path>`;
+    if (M.ref != null) s += `<line class="c-ref" x1="${pad.l}" x2="${W - pad.r}" y1="${y(M.ref)}" y2="${y(M.ref)}"></line><text class="c-lab" x="${W - pad.r + 8}" y="${y(M.ref) + 4}">${M.refLabel}</text>`;
+    if (el.dataset.marks) for (const m of MARKS) { const i = Math.min(data.length - 1, times.indexOf(m - (m % STEP))); s += `<circle class="c-mark" cx="${x(m)}" cy="${y(data[i])}" r="3.5"></circle>`; }
+    const nx = x(times[times.length - 1]), ny = y(data[data.length - 1]);
+    s += `<line class="c-now" x1="${nx}" x2="${nx}" y1="${pad.t}" y2="${H - pad.b}"></line><circle class="c-dot" cx="${nx}" cy="${ny}" r="4"></circle>`;
+    el.innerHTML = `<svg width="${W}" height="${H}" aria-hidden="true">${s}</svg>`;
+  }
+  const renderCharts = () => $$('[data-chart]').forEach(renderChart);
+
+  // ---------- fit the floor picture to its frame ----------
+  const screen = document.querySelector('[data-screen]');
+  const scale = document.querySelector('[data-scale]');
+  function fit() {
+    const w = screen.clientWidth; if (!w) return;
+    const k = w < 700 ? Math.max(w / 1280, 0.5) : w / 1280;
+    scale.style.transform = `scale(${k})`;
+    screen.style.height = `${Math.round(780 * k)}px`;
+  }
+  let rz;
+  new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => { fit(); renderCharts(); }, 60); }).observe(document.body);
+  fit(); renderCharts();
+  if (document.fonts) document.fonts.ready.then(() => { fit(); renderCharts(); });
+
+  // ---------- the floor picture ticks along while it is on screen ----------
+  const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+  const clockLabel = (sec) => { const h = Math.floor(sec / 3600), m = Math.floor(sec / 60) % 60; return `${h > 12 ? h - 12 : h}:${String(m).padStart(2, '0')} PM`; };
+  let clock = NOW * 60 + 67;
+  const LABEL = { call: 'On call', wait: 'Waiting', wrap: 'Wrapping up', paused: 'Paused' };
+  const DOT = { call: 'dot', wait: 'dot idle', wrap: 'dot idle', paused: 'dot warn' };
+  const OUTCOMES = ['Appointment set', 'Callback', 'Not interested', 'No answer', 'Not interested', 'No answer', 'Callback'];
+  const span = { wait: [6, 22], call: [45, 190], wrap: [8, 22] };
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a));
+  const reps = [
+    { id: 'dana', name: 'Dana', state: 'paused', t: 750, calls: 41, contacts: 8, sets: 0, fixed: true },
+    { id: 'alex', name: 'Alex', state: 'call', t: 192, calls: 142, contacts: 31, sets: 3 },
+    { id: 'maya', name: 'Maya', state: 'wait', t: 31, calls: 128, contacts: 29, sets: 3 },
+    { id: 'chris', name: 'Chris', state: 'wait', t: 14, calls: 119, contacts: 24, sets: 2 },
+    { id: 'sam', name: 'Sam', state: 'wrap', t: 41, calls: 97, contacts: 22, sets: 2 },
+    { id: 'jordan', name: 'Jordan', state: 'call', t: 65, calls: 76, contacts: 15, sets: 1 },
+  ];
+  reps.forEach((r) => { if (!r.fixed) r.until = r.t + rnd(...span[r.state]); });
+  const floor = { drop: 9.4, wait: 27, level: 2.4, sets: 11, lastMove: 0 };
+  const set = (k, v) => $$(`[data-v="${k}"]`).forEach((el) => { el.textContent = v; });
+  function renderRep(r, flash) {
+    const row = document.querySelector(`[data-rep="${r.id}"]`);
+    const f = (k) => row.querySelector(`[data-f="${k}"]`);
+    const alert = r.state === 'paused' && r.t >= 600;
+    row.dataset.alert = String(alert);
+    f('state').textContent = LABEL[r.state];
+    f('dot').className = alert ? 'dot bad' : DOT[r.state];
+    f('t').textContent = fmt(r.t);
+    f('flag').textContent = alert ? 'over 10 min' : '';
+    f('calls').textContent = r.calls; f('contacts').textContent = r.contacts; f('sets').textContent = r.sets;
+    if (r.last) f('last').textContent = r.last;
+    if (flash) { row.classList.add('changed'); setTimeout(() => row.classList.remove('changed'), 700); }
+  }
+  const feedEl = document.querySelector('[data-feed]');
+  function feed(text, icon) {
+    const li = document.createElement('li'); li.className = 'new';
+    li.innerHTML = `<svg class="i"><use href="#i-${icon}"></use></svg><div><span></span><time></time></div>`;
+    li.querySelector('span').textContent = text; li.querySelector('time').textContent = clockLabel(clock);
+    feedEl.prepend(li); while (feedEl.children.length > 5) feedEl.lastElementChild.remove();
+    setTimeout(() => li.classList.remove('new'), 1600);
+  }
+  let tick = 0;
+  function step() {
+    tick++; clock++;
+    for (const r of reps) {
+      r.t++;
+      if (r.fixed || r.t < r.until) { renderRep(r, false); continue; }
+      if (r.state === 'wait') { r.state = 'call'; r.calls++; r.contacts++; }
+      else if (r.state === 'call') {
+        r.state = 'wrap';
+        const o = Math.random() < 0.2 ? 0 : rnd(1, OUTCOMES.length); r.last = OUTCOMES[o];
+        if (o === 0) { r.sets++; floor.sets++; feed(`Sent the closer brief for ${r.name}'s appointment.`, 'doc'); }
+      } else { r.state = 'wait'; r.calls += rnd(1, 4); }
+      r.t = 0; r.until = rnd(...span[r.state]);
+      renderRep(r, true);
+    }
+    if (tick % 4 === 0) {
+      floor.drop = Math.max(7.4, Math.min(13.6, floor.drop + (Math.random() - 0.5) * 0.5));
+      floor.wait = Math.max(19, Math.min(40, floor.wait + Math.round((Math.random() - 0.47) * 3)));
+    }
+    if (tick - floor.lastMove > 14) {
+      if (floor.wait > 31 && floor.drop < 12 && floor.level < 3.0) {
+        floor.level = Math.round((floor.level + 0.2) * 10) / 10; floor.lastMove = tick;
+        feed(`Raised dial level to ${floor.level.toFixed(1)}. Reps waited ${floor.wait}s.`, 'gauge');
+      } else if (floor.drop > 12.8 && floor.level > 1.8) {
+        floor.level = Math.round((floor.level - 0.2) * 10) / 10; floor.lastMove = tick;
+        feed(`Lowered dial level to ${floor.level.toFixed(1)}. Drop ${floor.drop.toFixed(0)}% and rising.`, 'gauge');
+      }
+    }
+    set('drop', `${floor.drop.toFixed(1)}%`); set('wait', `${floor.wait}s`); set('level', floor.level.toFixed(1)); set('sets', String(floor.sets));
+    const dana = reps[0];
+    document.querySelector('[data-status]').textContent = `Dialing on pace. Dana has been paused ${Math.floor(dana.t / 60)} minutes.`;
+    document.querySelector('[data-clock]').textContent = `Live · ${clockLabel(clock)} CT`;
+  }
+  let timer = null, visible = false;
+  const run = () => { const on = visible && !document.hidden; if (on && !timer) timer = setInterval(step, 1000); else if (!on && timer) { clearInterval(timer); timer = null; } };
+  new IntersectionObserver((ents) => { visible = ents[0].isIntersecting; run(); }).observe(screen);
+  document.addEventListener('visibilitychange', run);
+})();
 </script>
 </body>
 </html>
