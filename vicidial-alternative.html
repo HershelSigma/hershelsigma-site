@@ -18,8 +18,9 @@
 <meta name="twitter:card" content="summary" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/guide.css" />
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -102,7 +103,7 @@
 <header>
   <div class="wrap">
     <nav>
-      <a href="/" class="brand">H<span class="sig">Σ</span>RSHEL <span class="brand-sub">SIGMA AI</span></a>
+      <a href="/" class="brand" aria-label="Hershel Sigma AI home">H<span class="sig">Σ</span>RSHEL</a>
       <div class="navcta">
         <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
         <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-primary">Book a demo</a>
@@ -239,8 +240,9 @@
 <footer>
   <div class="wrap foot">
     <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/predictive-dialer">Predictive dialer</a><a href="/vicidial-alternative">ViciDial alternative</a><a href="/managed-dialer">Managed dialer</a><a href="/solar-dialer">AI dialer for solar</a><a href="/gohighlevel-dialer">GoHighLevel dialer</a><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
-    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai</div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai<span class="theme" role="group" aria-label="Color theme"><button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>Light</button><button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button></span></div>
   </div>
 </footer>
+<script src="/assets/theme.js" defer></script>
 </body>
 </html>
