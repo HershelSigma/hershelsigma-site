@@ -26,6 +26,7 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 - [What is a managed dialer?](https://hershelsigma.ai/managed-dialer): what a managed dialer service includes, how it differs from self-run and seat-based cloud dialers, and the questions to ask a provider
 - [AI dialer for solar](https://hershelsigma.ai/solar-dialer): what a solar appointment-setting floor needs from a dialer (pace, caller IDs, closer handoff, no double-booking) and how an AI dialer handles each
 - [GoHighLevel dialer](https://hershelsigma.ai/gohighlevel-dialer): what calling GoHighLevel has built in (Web Dialer, Power Dialer), when a floor needs predictive dialing, and how Hershel works alongside GoHighLevel
+- [Power dialer vs predictive dialer](https://hershelsigma.ai/power-dialer-vs-predictive-dialer): how power, parallel and predictive dialers decide when to dial, what each costs a floor in rep wait and upkeep, the three ways floors run predictive today, and which type fits which floor
 
 ## Pages
 

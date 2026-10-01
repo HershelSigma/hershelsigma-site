@@ -46,6 +46,11 @@ strong{color:var(--text)}
 article a{color:var(--text);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
 article a:hover{color:var(--red-soft)}
 @media(max-width:760px){h1{font-size:34px}h2{font-size:25px}.answer{font-size:17px;padding:18px}}
+.answer + .answer{margin-top:12px}
+.ai-summary{margin-top:12px;padding:18px 22px;border:1px dashed var(--line2);border-radius:12px;background:var(--bg2)}
+.ai-summary .ai-summary-label{margin-top:0;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red-soft)}
+.ai-summary p{margin-top:10px;font-size:16px}
+@media(max-width:760px){.ai-summary{padding:16px}}
 
 .table-wrap{margin-top:22px;overflow-x:auto;border:1px solid var(--line);border-radius:12px}
 table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
