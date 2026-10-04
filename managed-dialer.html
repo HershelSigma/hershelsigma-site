@@ -172,7 +172,7 @@
     <ul>
       <li><strong>Dialler Manager</strong> reads live campaign stats about every 10 seconds (drop rate, agent wait time, pause time and leads ready to dial) and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the ceiling the floor sets.</li>
       <li><strong>The Shield</strong> watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them, and pages a manager only when a human has to act. It works with Twilio and Telnyx.</li>
-      <li><strong>Closable</strong> transcribes every appointment-set call and posts a closer brief on the contact in GoHighLevel before the appointment, then takes the booked lead out of dialing so a second setter never calls a booked prospect.</li>
+      <li><strong>Closable</strong> transcribes every appointment-set call and posts a closer brief on the contact in GoHighLevel before the appointment, and booked leads stop getting dialed, so no prospect gets a second call.</li>
     </ul>
     <p>Each client gets its own dedicated dialer server, and <a href="/">Hershel</a> runs it as a fully managed service, 24/7. Reps work in Hershel's web rep console, and managers run the floor, campaigns and lists from the Hershel Sigma dashboard. Hershel was built and battle-tested on solar appointment-setting floors in Texas and Florida.</p>
   </div>
