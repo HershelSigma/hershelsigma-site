@@ -1,4 +1,4 @@
-// the Book a demo form in #contact: posts the visitor's details to the api, which emails Nathan
+// the Book a demo form in #contact: posts the visitor's details to the api, which emails the team
 (() => {
   const form = document.querySelector('[data-optin]');
   if (!form) return;
