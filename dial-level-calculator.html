@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Dial Level Calculator for Predictive Dialers (Free, 2026) | Hershel Sigma AI</title>
+<meta name="description" content="Free dial level calculator: enter agents, answer rate, dial time and talk time to estimate lines per agent for a predictive dialer, with the math shown." />
+<link rel="canonical" href="https://hershelsigma.ai/dial-level-calculator" />
+<meta name="robots" content="index, follow, max-snippet:-1" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hershelsigma.ai/dial-level-calculator" />
+<meta property="og:site_name" content="Hershel Sigma AI" />
+<meta property="og:title" content="Dial Level Calculator for Predictive Dialers" />
+<meta property="og:description" content="Estimate how many lines per agent a predictive dialer needs from your answer rate, dial time and talk time. Free, with the formula shown." />
+<meta property="og:image" content="https://hershelsigma.ai/apple-touch-icon.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://hershelsigma.ai/dial-level-calculator#app",
+      "name": "Dial level calculator",
+      "url": "https://hershelsigma.ai/dial-level-calculator",
+      "description": "Estimates the dial level (lines per agent) a predictive dialer needs from answer rate, average dial time, talk and wrap time, and target agent wait.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@id": "https://hershelsigma.ai/#org" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://hershelsigma.ai/dial-level-calculator#article",
+      "headline": "Dial level calculator for predictive dialers",
+      "description": "A free calculator and the steady-state formula behind it: dial level equals average dial time divided by answer rate times seconds per call.",
+      "url": "https://hershelsigma.ai/dial-level-calculator",
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "author": { "@id": "https://hershelsigma.ai/#nathan-yonash" },
+      "publisher": { "@id": "https://hershelsigma.ai/#org" },
+      "about": ["Dial level", "Predictive dialer", "Dropped calls", "Agent wait time"],
+      "mainEntityOfPage": "https://hershelsigma.ai/dial-level-calculator"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hershelsigma.ai/#nathan-yonash",
+      "name": "Nathan Yonash",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hershelsigma.ai/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://hershelsigma.ai/#org",
+      "name": "Hershel Sigma AI",
+      "legalName": "Hershel Sigma LLC",
+      "url": "https://hershelsigma.ai/",
+      "logo": "https://hershelsigma.ai/apple-touch-icon.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hershel Sigma AI", "item": "https://hershelsigma.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Dial level calculator", "item": "https://hershelsigma.ai/dial-level-calculator" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a good dial level for a predictive dialer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on the list. The level that keeps agents busy comes from your answer rate, dial time and talk time, which is what this calculator estimates. A list that rarely answers needs a higher level, and one that answers well needs a lower one." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate dial level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Divide the average dial time by the answer rate times the seconds each agent spends per call (talk, wrap and the wait you allow). With 25-second dials, an 8% answer rate and 165 seconds per call, that's 25 / (0.08 x 165), or about 1.9 lines per agent." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does a higher dial level cause more dropped calls?",
+          "acceptedAnswer": { "@type": "Answer", "text": "More lines per agent means more answers arrive at the same moment. When answers outnumber free agents, the extra people are dropped. Adaptive dialers raise and lower the level through the shift to keep drops under the limit the floor sets." }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I set my dialer to the calculated number?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use it as a starting point and a sanity check. Answers come in bursts, so the right level moves with the hour, the list and how many agents are logged in. If your dialer adjusts the level on its own, let it, and check that its cap sits above this estimate." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand" aria-label="Hershel Sigma AI home">H<span class="sig">Σ</span>RSHEL</a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="/#contact" class="btn btn-primary">Book a demo</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / Dial level calculator</div>
+  <div class="eyebrow">Free tool</div>
+  <h1>Dial level calculator</h1>
+  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-10-04">October 4, 2026</time></p>
+
+  <p class="answer"><strong>Dial level</strong> is how many lines a predictive dialer runs for each agent. A steady-state estimate is the average dial time divided by the answer rate times the seconds each agent spends per call. With 25-second dials, an 8% answer rate and 165 seconds per call, that comes to about 1.9 lines per agent.</p>
+
+  <form class="calc" id="calc" aria-label="Dial level calculator" onsubmit="return false">
+    <div class="calc-grid">
+      <label>Agents logged in<span>Reps taking calls on the campaign</span><input id="agents" type="number" inputmode="numeric" min="1" step="1" value="10" /></label>
+      <label>Answer rate (%)<span>Share of dials that reach an agent</span><input id="answer" type="number" inputmode="decimal" min="0.1" max="100" step="0.1" value="8" /></label>
+      <label>Average dial time (sec)<span>How long a line stays busy per attempt, ringing included</span><input id="dial" type="number" inputmode="decimal" min="1" step="1" value="25" /></label>
+      <label>Talk + wrap time (sec)<span>Average seconds per connected call, wrap-up included</span><input id="talk" type="number" inputmode="decimal" min="1" step="1" value="150" /></label>
+      <label>Target agent wait (sec)<span>Idle time you'll accept between calls</span><input id="wait" type="number" inputmode="decimal" min="0" step="1" value="15" /></label>
+    </div>
+    <div class="calc-out" aria-live="polite">
+      <div class="lead">Estimated dial level<output id="o-level" for="answer dial talk wait">1.89</output></div>
+      <div>Lines across the floor<output id="o-lines" for="agents answer dial talk wait">19</output></div>
+      <div>Dials per hour<output id="o-dials" for="agents answer dial talk wait">2,727</output></div>
+      <div>Calls reaching agents per hour<output id="o-calls" for="agents talk wait">218</output></div>
+    </div>
+    <p class="calc-note" id="o-note">Lines per agent, assuming a steady flow of answers.</p>
+    <noscript><p class="calc-note">The calculator needs JavaScript. The formula is below, so you can work it by hand.</p></noscript>
+  </form>
+
+  <h2>How the estimate works</h2>
+  <p>It balances how many connected calls the lines can deliver against how many your agents can take. Each line spends an average of D seconds per dial, and a share p of those dials reach an agent, so one line hands over p &divide; D calls per second. Each agent can take one call every T + W seconds: talk and wrap time, plus the wait you're willing to give them between calls. Set the two equal and the dial level drops out:</p>
+  <p class="formula">dial level = D &divide; (p &times; (T + W))</p>
+  <p>A lower answer rate or shorter talk time pushes the level up, because each agent burns through answers faster than the lines find them. Longer dials push it up too, since a line spends more of each minute ringing out. More wait time pulls it down, which is the trade every floor makes between idle reps and dropped calls.</p>
+
+  <h2>Why the real number keeps moving</h2>
+  <p>Answers don't arrive on a schedule. They bunch up, so a floor dialing at exactly this level will sometimes have a person on the line with no free agent, which is a drop, and sometimes an agent with nobody to talk to. That's why a <a href="/predictive-dialer">predictive dialer</a> recalculates through the shift instead of holding one number, steering the level against a drop limit and stopping at a maximum the admin sets.</p>
+  <p>Treat the result as a starting point and a sanity check. If your dialer runs far above it while drops climb, the list's real answer rate is probably lower than the one you entered. If it sits far below and agents wait, look at the dialer's cap and how it counts agents, since some only dial for agents who are free right now.</p>
+  <p>Below 1.0, the list answers well enough that one line per agent keeps everyone busy, and fixed pacing will do. The guide to <a href="/power-dialer-vs-predictive-dialer">power dialer vs predictive dialer</a> covers when that's the better fit.</p>
+
+  <h2>Getting good inputs</h2>
+  <p>Pull them from the last few days of the same campaign, not a different list. Answer rate here means the share of dials that actually reach an agent: live people, plus answering machines if machine detection is off, since those land on agents too. Dial time is the average a line stays busy per attempt, ringing included. Talk time should include wrap-up, because an agent finishing notes can't take the next call. Run it again when the list changes, since a fresh list and a third-pass list can answer at very different rates.</p>
+
+  <div class="callout">
+    <h3>How Hershel does it</h3>
+    <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
+    <p>Its Dialler Manager doesn't work from a fixed estimate. It reads live campaign stats about every 10 seconds (drop rate, agent wait time, pause time and leads ready to dial) and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the ceiling the floor sets. The full picture is in <a href="/ai-dialer">what an AI dialer is</a> and the <a href="/">platform overview</a>.</p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <details>
+      <summary>What is a good dial level for a predictive dialer?</summary>
+      <p>It depends on the list. The level that keeps agents busy comes from your answer rate, dial time and talk time, which is what this calculator estimates. A list that rarely answers needs a higher level, and one that answers well needs a lower one.</p>
+    </details>
+    <details>
+      <summary>How do you calculate dial level?</summary>
+      <p>Divide the average dial time by the answer rate times the seconds each agent spends per call (talk, wrap and the wait you allow). With 25-second dials, an 8% answer rate and 165 seconds per call, that's 25 / (0.08 x 165), or about 1.9 lines per agent.</p>
+    </details>
+    <details>
+      <summary>Why does a higher dial level cause more dropped calls?</summary>
+      <p>More lines per agent means more answers arrive at the same moment. When answers outnumber free agents, the extra people are dropped. Adaptive dialers raise and lower the level through the shift to keep drops under the limit the floor sets.</p>
+    </details>
+    <details>
+      <summary>Should I set my dialer to the calculated number?</summary>
+      <p>Use it as a starting point and a sanity check. Answers come in bursts, so the right level moves with the hour, the list and how many agents are logged in. If your dialer adjusts the level on its own, let it, and check that its cap sits above this estimate.</p>
+    </details>
+  </div>
+
+  <div class="cta-box">
+    <h2>Stop doing the math by hand</h2>
+    <p>Hershel's AI sets the dial level under your drop ceiling, 24/7.</p>
+    <a href="/#contact" class="btn btn-primary">Book a demo &rarr;</a>
+  </div>
+
+  <section class="related">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="/vicidial-dial-level">ViciDial dial level</a></li>
+      <li><a href="/predictive-dialer">What is a predictive dialer?</a></li>
+      <li><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a></li>
+      <li><a href="/ai-dialer">What is an AI dialer?</a></li>
+      <li><a href="/">Hershel Sigma AI platform overview</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/predictive-dialer">Predictive dialer</a><a href="/vicidial-alternative">ViciDial alternative</a><a href="/managed-dialer">Managed dialer</a><a href="/solar-dialer">AI dialer for solar</a><a href="/gohighlevel-dialer">GoHighLevel dialer</a><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a><a href="/vicidial-dial-level">ViciDial dial level</a><a href="/spam-likely">Spam Likely calls</a><a href="/dial-level-calculator">Dial level calculator</a><a href="/about">About</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai<span class="theme" role="group" aria-label="Color theme"><button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>Light</button><button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button></span></div>
+  </div>
+</footer>
+<script src="/assets/theme.js" defer></script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const fmt = (n) => Math.round(n).toLocaleString('en-US');
+  const update = () => {
+    const agents = +$('agents').value, p = +$('answer').value / 100, d = +$('dial').value, t = +$('talk').value, w = +$('wait').value;
+    if (!(agents > 0 && p > 0 && p <= 1 && d > 0 && t > 0 && w >= 0)) { ['o-level', 'o-lines', 'o-dials', 'o-calls'].forEach((id) => { $(id).textContent = '-'; }); $('o-note').textContent = 'Enter a positive number in every field (answer rate between 0.1 and 100).'; return; }
+    const level = d / (p * (t + w));
+    $('o-level').textContent = level.toFixed(2);
+    $('o-lines').textContent = fmt(agents * level);
+    $('o-dials').textContent = fmt(agents * level * 3600 / d);
+    $('o-calls').textContent = fmt(agents * 3600 / (t + w));
+    $('o-note').textContent = level < 1
+      ? 'Under 1.0: one line per agent already keeps everyone busy, so fixed pacing will do at these numbers.'
+      : level > 3
+        ? 'Above 3.0: some dialers cap the level at 3.0 by default, so check that your maximum allows it, and that you have the lines.'
+        : 'Lines per agent, assuming a steady flow of answers.';
+  };
+  $('calc').addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>
