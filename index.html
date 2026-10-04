@@ -55,7 +55,7 @@
       "featureList": [
         "AI dial-pace control: live drop rate, agent wait and dial level tuning",
         "Caller ID health monitoring with automatic rotation of flagged numbers",
-        "Carrier congestion and refusal alerts for Twilio and Telnyx",
+        "Carrier problem alerts",
         "AI closer briefs from call recordings, posted to GoHighLevel"
       ],
       "provider": { "@id": "https://hershelsigma.ai/#org" }
@@ -418,8 +418,8 @@ section { scroll-margin-top: 72px; }
             </div>
             <div class="panel">
               <div class="tabs">
-                <div class="tab on"><small>Drop rate</small><b data-v="drop">9.4%</b><em>of answered · limit 15%</em></div>
-                <div class="tab"><small>Agent wait</small><b data-v="wait">27s</b><em>average · target 30s</em></div>
+                <div class="tab on"><small>Drop rate</small><b data-v="drop">9.4%</b><em>of answered · under limit</em></div>
+                <div class="tab"><small>Agent wait</small><b data-v="wait">27s</b><em>average</em></div>
                 <div class="tab"><small>Dial level</small><b data-v="level">2.4</b><em>raised at 2:39 PM</em></div>
                 <div class="tab"><small>Appointments</small><b data-v="sets">11</b><em>31 contacts an hour</em></div>
               </div>
@@ -431,7 +431,7 @@ section { scroll-margin-top: 72px; }
                 <table>
                   <thead><tr><th>Rep</th><th>Status</th><th class="r">Time</th><th class="r">Calls</th><th class="r">Contacts</th><th class="r">Sets</th><th>Last outcome</th></tr></thead>
                   <tbody>
-                    <tr data-rep="dana" data-alert="true"><td><span class="who"><span class="av">D</span>Dana</span></td><td><span class="st"><i class="dot bad" data-f="dot"></i><span data-f="state">Paused</span></span></td><td class="r"><span class="tcell"><span data-f="t">12:30</span><small data-f="flag">over 10 min</small></span></td><td class="r" data-f="calls">41</td><td class="r" data-f="contacts">8</td><td class="r" data-f="sets">0</td><td data-f="last">Not interested</td></tr>
+                    <tr data-rep="dana" data-alert="true"><td><span class="who"><span class="av">D</span>Dana</span></td><td><span class="st"><i class="dot bad" data-f="dot"></i><span data-f="state">Paused</span></span></td><td class="r"><span class="tcell"><span data-f="t">12:30</span><small data-f="flag">long pause</small></span></td><td class="r" data-f="calls">41</td><td class="r" data-f="contacts">8</td><td class="r" data-f="sets">0</td><td data-f="last">Not interested</td></tr>
                     <tr data-rep="alex"><td><span class="who"><span class="av">A</span>Alex</span></td><td><span class="st"><i class="dot" data-f="dot"></i><span data-f="state">On call</span></span></td><td class="r"><span class="tcell"><span data-f="t">3:12</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">142</td><td class="r" data-f="contacts">31</td><td class="r" data-f="sets">3</td><td data-f="last">Appointment set</td></tr>
                     <tr data-rep="maya"><td><span class="who"><span class="av">M</span>Maya</span></td><td><span class="st"><i class="dot idle" data-f="dot"></i><span data-f="state">Waiting</span></span></td><td class="r"><span class="tcell"><span data-f="t">0:31</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">128</td><td class="r" data-f="contacts">29</td><td class="r" data-f="sets">3</td><td data-f="last">Callback</td></tr>
                     <tr data-rep="chris"><td><span class="who"><span class="av">C</span>Chris</span></td><td><span class="st"><i class="dot idle" data-f="dot"></i><span data-f="state">Waiting</span></span></td><td class="r"><span class="tcell"><span data-f="t">0:14</span><small data-f="flag"></small></span></td><td class="r" data-f="calls">119</td><td class="r" data-f="contacts">24</td><td class="r" data-f="sets">2</td><td data-f="last">No answer</td></tr>
@@ -443,9 +443,9 @@ section { scroll-margin-top: 72px; }
               <div class="panel">
                 <div class="ph"><b>Hershel activity</b><span>Today</span></div>
                 <ol class="feed" data-feed>
-                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Raised dial level to 2.4. Reps waited 38s.<time>2:39 PM</time></div></li>
-                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Held pace. Drop 11% and falling.<time>2:21 PM</time></div></li>
-                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Lowered dial level to 2.2. Drop 16% and rising.<time>2:02 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Raised dial level to 2.4. Reps were waiting.<time>2:39 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Held pace.<time>2:21 PM</time></div></li>
+                  <li><svg class="i"><use href="#i-gauge"></use></svg><div>Lowered dial level to 2.2. Drops climbing.<time>2:02 PM</time></div></li>
                   <li><svg class="i"><use href="#i-shield"></use></svg><div>Rested 3 caller IDs flagged as spam and swapped in clean ones.<time>1:58 PM</time></div></li>
                   <li><svg class="i"><use href="#i-doc"></use></svg><div>Sent the closer brief for Sam's 1:40 PM appointment.<time>1:47 PM</time></div></li>
                 </ol>
@@ -487,9 +487,9 @@ section { scroll-margin-top: 72px; }
           <div class="shot-h"><b>Dial level today</b><span>ROOFING-TX · sample</span></div>
           <div class="chart" data-chart="level" data-marks="true"></div>
           <ol class="decisions">
-            <li><time>2:39 PM</time><span>Raised dial level 2.2 → 2.4. Reps waited 38s.</span></li>
-            <li><time>2:02 PM</time><span>Lowered dial level 2.6 → 2.2. Drop 16% and rising.</span></li>
-            <li><time>1:10 PM</time><span>Raised dial level 2.2 → 2.6. Reps waited 41s.</span></li>
+            <li><time>2:39 PM</time><span>Raised dial level 2.2 → 2.4. Reps were waiting.</span></li>
+            <li><time>2:02 PM</time><span>Lowered dial level 2.6 → 2.2. Drops climbing.</span></li>
+            <li><time>1:10 PM</time><span>Raised dial level 2.2 → 2.6. Reps were waiting.</span></li>
           </ol>
         </div>
       </article>
@@ -639,7 +639,7 @@ section { scroll-margin-top: 72px; }
   };
   series.drop[series.drop.length - 1] = 9.4;
   const METRICS = {
-    drop: { min: 0, max: 20, ticks: [0, 5, 10, 15, 20], tick: (t) => `${t}%`, ref: 15, refLabel: 'Limit 15%' },
+    drop: { min: 0, max: 20, ticks: [0, 5, 10, 15, 20], tick: (t) => `${t}%` },
     level: { min: 1.6, max: 3.0, ticks: [1.6, 2.0, 2.4, 2.8], tick: (t) => t.toFixed(1), step: true },
   };
   const MARKS = [665, 710, 750, 790, 842, 879];
@@ -700,12 +700,12 @@ section { scroll-margin-top: 72px; }
   function renderRep(r, flash) {
     const row = document.querySelector(`[data-rep="${r.id}"]`);
     const f = (k) => row.querySelector(`[data-f="${k}"]`);
-    const alert = r.state === 'paused' && r.t >= 600;
+    const alert = r.state === 'paused' && r.t >= 480;
     row.dataset.alert = String(alert);
     f('state').textContent = LABEL[r.state];
     f('dot').className = alert ? 'dot bad' : DOT[r.state];
     f('t').textContent = fmt(r.t);
-    f('flag').textContent = alert ? 'over 10 min' : '';
+    f('flag').textContent = alert ? 'long pause' : '';
     f('calls').textContent = r.calls; f('contacts').textContent = r.contacts; f('sets').textContent = r.sets;
     if (r.last) f('last').textContent = r.last;
     if (flash) { row.classList.add('changed'); setTimeout(() => row.classList.remove('changed'), 700); }
@@ -738,12 +738,12 @@ section { scroll-margin-top: 72px; }
       floor.wait = Math.max(19, Math.min(40, floor.wait + Math.round((Math.random() - 0.47) * 3)));
     }
     if (tick - floor.lastMove > 14) {
-      if (floor.wait > 31 && floor.drop < 12 && floor.level < 3.0) {
+      if (floor.wait > 34 && floor.drop < 11 && floor.level < 3.0) {
         floor.level = Math.round((floor.level + 0.2) * 10) / 10; floor.lastMove = tick;
-        feed(`Raised dial level to ${floor.level.toFixed(1)}. Reps waited ${floor.wait}s.`, 'gauge');
-      } else if (floor.drop > 12.8 && floor.level > 1.8) {
+        feed(`Raised dial level to ${floor.level.toFixed(1)}. Reps were waiting.`, 'gauge');
+      } else if (floor.drop > 12.4 && floor.level > 1.8) {
         floor.level = Math.round((floor.level - 0.2) * 10) / 10; floor.lastMove = tick;
-        feed(`Lowered dial level to ${floor.level.toFixed(1)}. Drop ${floor.drop.toFixed(0)}% and rising.`, 'gauge');
+        feed(`Lowered dial level to ${floor.level.toFixed(1)}. Drops climbing.`, 'gauge');
       }
     }
     set('drop', `${floor.drop.toFixed(1)}%`); set('wait', `${floor.wait}s`); set('level', floor.level.toFixed(1)); set('sets', String(floor.sets));
