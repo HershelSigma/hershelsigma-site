@@ -31,5 +31,6 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 ## Pages
 
 - [Home](https://hershelsigma.ai/): what Hershel Sigma AI does and how it works
+- [About](https://hershelsigma.ai/about): the company behind Hershel (Hershel Sigma LLC, founder Nathan Yonash), and how the name is spelled: Hershel, with no c (often mistyped as Herschel Sigma)
 - [Terms and Conditions](https://hershelsigma.ai/terms-and-conditions)
 - [Privacy Policy](https://hershelsigma.ai/privacy)
