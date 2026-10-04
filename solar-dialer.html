@@ -146,11 +146,11 @@
 
   <h3>Pace that keeps setters talking</h3>
   <p>Pace on a solar floor is a moving target. Long bill-and-roof calls tie setters up unpredictably, then several free up at once. A pace set at the start of the shift ends up too slow when answers are thin and too fast when every setter is mid-call, which drops live homeowners.</p>
-  <p>An AI dialer reads drop rate, agent wait time, pause time and leads ready to dial, and moves the dial level as they change. Hershel's Dialler Manager does this about every 10 seconds, pushing for as many conversations as possible while it keeps the drop rate (drops divided by answered calls) under the ceiling the floor sets.</p>
+  <p>An AI dialer reads drop rate and agent wait time and moves the dial level as they change. Hershel's Dialler Manager does this all shift, pushing for as many conversations as possible while it keeps the drop rate (drops divided by answered calls) under the ceiling the floor sets.</p>
 
   <h3>Caller IDs that keep getting answered</h3>
   <p>Answer rate lives or dies on the caller ID. Hiya's 2026 State of the Call report found that <a href="https://www.hiya.com/state-of-the-call" rel="noopener">86% of calls from unknown numbers go unanswered</a>, and a number with a spam label does worse. One burned number can quietly drag down a campaign while everyone blames the list.</p>
-  <p>An AI dialer watches each number on its own, not just the campaign average. Hershel's Shield checks every caller ID for spam flags and carrier refusals, pulls and replaces a flagged number, and pages a manager only when a human has to act. It works with Twilio and Telnyx, and it catches channel-limit and calls-per-second refusals that ordinary call records hide.</p>
+  <p>An AI dialer watches each number on its own, not just the campaign average. Hershel's Shield checks every caller ID for spam flags and carrier refusals, pulls and replaces a flagged number, and pages a manager only when a human has to act. It also catches carrier problems that standard call records miss.</p>
 
   <h3>A clean handoff to the closer</h3>
   <p>In a busy shift, setters skip notes or type "interested, call Tues", and the closer walks in cold. An AI dialer closes that gap by transcribing the appointment-set call and turning it into a brief. Hershel's Closable posts that brief as a note on the homeowner's contact in GoHighLevel before the appointment. Each brief sums up who the homeowner is, what they care about and what to watch for, and it's built to be read in about 20 seconds.</p>
@@ -164,7 +164,7 @@
     <table>
       <thead><tr><th>What matters</th><th>Manual / power dialing</th><th>Standard predictive dialer</th><th>AI dialer (Hershel)</th></tr></thead>
       <tbody>
-        <tr><td>What drives calls per setter hour</td><td>Setter click speed and a fixed lines-per-setter setting</td><td>A formula running on settings chosen that morning</td><td>Live floor stats, read about every 10 seconds</td></tr>
+        <tr><td>What drives calls per setter hour</td><td>Setter click speed and a fixed lines-per-setter setting</td><td>A formula running on settings chosen that morning</td><td>Live floor stats, read continuously</td></tr>
         <tr><td>Who tunes pace</td><td>The setter or a manager, by hand</td><td>A manager, by hand, all shift</td><td>AI, inside the drop-rate ceiling the floor sets</td></tr>
         <tr><td>Caller ID burn</td><td>Noticed when answers dry up</td><td>Faster under heavy volume; swaps are manual</td><td>Every number watched; flagged ones pulled and replaced</td></tr>
         <tr><td>Closer handoff</td><td>Setter notes, if there is time</td><td>Setter notes, quality varies</td><td>AI brief in GoHighLevel before the appointment</td></tr>

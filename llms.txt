@@ -6,8 +6,8 @@ Hershel runs as a fully managed service, 24/7. A sales floor gets a predictive d
 
 ## What the AI does
 
-- **Dialler Manager (AI dial-pace control):** reads live campaign stats every few seconds (drop rate, agent wait time, pause time, leads ready to dial) and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the target the floor sets.
-- **The Shield (caller ID protection):** watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them, and alerts managers. It also catches carrier-side congestion (channel-limit and calls-per-second refusals) that ordinary call records hide. Works with Twilio and Telnyx.
+- **Dialler Manager (AI dial-pace control):** reads the live floor and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the target the floor sets.
+- **The Shield (caller ID protection):** watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them, and alerts managers. It also catches carrier problems that standard call records miss.
 - **Closable (AI closer briefs):** transcribes the recording of every appointment-set call, writes a structured brief for the closer with AI, and posts it to the contact in GoHighLevel before the appointment.
 
 ## Who it is for

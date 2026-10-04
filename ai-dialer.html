@@ -126,7 +126,7 @@
   <h2>How an AI dialer works</h2>
   <p>Under the hood an AI dialer is still a dialer: it loads a list, places calls over a phone carrier and connects answered calls to agents. The difference is a control loop that runs the whole time the floor is open.</p>
   <ol>
-    <li><strong>Read the live floor.</strong> Every few seconds it pulls the numbers that matter: agents waiting, agents on calls, calls ringing, drops, answers and leads left to dial.</li>
+    <li><strong>Read the live floor.</strong> It keeps track of who is waiting, who is talking and how calls are landing.</li>
     <li><strong>Set the pace.</strong> It raises or lowers how many lines it dials per agent so the next free agent gets a live person, without pushing the drop rate past the ceiling the floor chose.</li>
     <li><strong>Guard the numbers.</strong> It tracks how each outbound caller ID is performing and pulls one that is getting flagged or refused before it hurts the campaign.</li>
     <li><strong>Write it down.</strong> After a call that matters, such as a booked appointment, it turns the recording into notes and puts them in the CRM.</li>
@@ -178,7 +178,7 @@
     <h3>How Hershel does it</h3>
     <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
     <ul>
-      <li><strong>Dialler Manager</strong> reads the floor every few seconds and adjusts the dial level against drop rate and agent wait time.</li>
+      <li><strong>Dialler Manager</strong> reads the live floor and adjusts the dial level against drop rate and agent wait time.</li>
       <li><strong>The Shield</strong> watches every caller ID and carrier response, rotates out flagged numbers and pages a manager only when a human has to act.</li>
       <li><strong>Closable</strong> turns every appointment-set call into a closer brief in GoHighLevel.</li>
     </ul>

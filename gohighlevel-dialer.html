@@ -86,7 +86,7 @@
         {
           "@type": "Question",
           "name": "Does Hershel work with LC Phone?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. Hershel places calls over Twilio or Telnyx, not LC Phone. The Shield watches those outbound caller IDs for spam flags and carrier refusals and rotates flagged numbers out." }
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Hershel places calls over the floor's own carrier account, not LC Phone. The Shield watches those outbound caller IDs for spam flags and carrier refusals and rotates flagged numbers out." }
         },
         {
           "@type": "Question",
@@ -151,10 +151,10 @@
       <tbody>
         <tr><td>Dialing mode</td><td>Web Dialer for click-to-call; Power Dialer for a workflow-built queue of call tasks</td><td>Predictive dialing, paced by AI</td></tr>
         <tr><td>Lines per agent</td><td>The rep works the queue task by task; multi-line dialing is not described in HighLevel's docs</td><td>Several lines per available agent, adjusted as the floor changes</td></tr>
-        <tr><td>Pace tuning</td><td>Set by how fast the rep moves through the queue</td><td>Reads live campaign stats about every 10 seconds and adjusts the dial level against drop rate and agent wait time</td></tr>
+        <tr><td>Pace tuning</td><td>Set by how fast the rep moves through the queue</td><td>Adjusts the dial level in real time against drop rate and agent wait time</td></tr>
         <tr><td>Caller ID protection</td><td>Voice Integrity registration plus published calling practices</td><td>Watches every outbound caller ID for spam flags and carrier refusals, rotates flagged numbers out, replaces them and alerts managers</td></tr>
         <tr><td>Call notes</td><td>Recordings, plus transcripts and summaries on LC Phone calls when enabled</td><td>A structured closer brief on the GoHighLevel contact before every booked appointment</td></tr>
-        <tr><td>Phone carrier</td><td>LC Phone, typically</td><td>Twilio or Telnyx</td></tr>
+        <tr><td>Phone carrier</td><td>LC Phone, typically</td><td>The floor's own carrier account</td></tr>
         <tr><td>Best for</td><td>Small teams, one-to-one calling, warm and inbound leads</td><td>High-volume appointment-setting floors dialing large lists</td></tr>
       </tbody>
     </table>
@@ -173,8 +173,8 @@
     <h3>How Hershel runs the dialing side</h3>
     <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
     <ul>
-      <li><strong>Dialler Manager</strong> reads live campaign stats about every 10 seconds and adjusts the dial level so reps talk to as many people as possible while the drop rate stays under the ceiling the floor sets.</li>
-      <li><strong>The Shield</strong> watches every outbound caller ID for spam flags and carrier refusals, including channel-limit and calls-per-second refusals that ordinary call records hide, and pages a manager only when a human has to act.</li>
+      <li><strong>Dialler Manager</strong> reads live campaign stats and adjusts the dial level so reps talk to as many people as possible while the drop rate stays under the ceiling the floor sets.</li>
+      <li><strong>The Shield</strong> watches every outbound caller ID for spam flags and carrier refusals, catches carrier problems that standard call records miss, and pages a manager only when a human has to act.</li>
       <li><strong>Closable</strong> writes the closer briefs that land in GoHighLevel.</li>
     </ul>
     <p>Each client gets its own dedicated dialer server, and <a href="/">Hershel</a> runs as a fully managed service, 24/7.</p>
@@ -216,7 +216,7 @@
     </details>
     <details>
       <summary>Does Hershel work with LC Phone?</summary>
-      <p>No. Hershel places calls over Twilio or Telnyx, not LC Phone. The Shield watches those outbound caller IDs for spam flags and carrier refusals and rotates flagged numbers out.</p>
+      <p>No. Hershel places calls over the floor's own carrier account, not LC Phone. The Shield watches those outbound caller IDs for spam flags and carrier refusals and rotates flagged numbers out.</p>
     </details>
     <details>
       <summary>How is Hershel priced?</summary>
