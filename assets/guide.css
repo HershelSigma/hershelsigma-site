@@ -74,6 +74,20 @@ td{color:var(--text);line-height:1.55}
 tr:last-child td{border-bottom:0}
 td:first-child{font-weight:560;color:var(--ink)}
 
+/* dial level calculator (/dial-level-calculator) */
+.calc{margin-top:28px;padding:22px 24px 24px;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--rim)}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px}
+.calc label{display:block;font-size:14px;font-weight:560;color:var(--ink)}
+.calc label span{display:block;margin-top:2px;font-size:13px;font-weight:400;color:var(--muted);line-height:1.4}
+.calc input{display:block;width:100%;margin-top:8px;height:40px;padding:0 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--page);color:var(--ink);font:inherit;font-size:16px;font-variant-numeric:tabular-nums}
+.calc input:focus{outline:2px solid var(--ink);outline-offset:1px}
+.calc-out{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 20px}
+.calc-out div{font-size:13px;color:var(--muted)}
+.calc-out output{display:block;margin-top:2px;font-size:26px;font-weight:540;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.calc-out .lead output{color:var(--brand)}
+.calc-note{margin-top:14px;font-size:14px;color:var(--muted)}
+.formula{margin-top:16px;padding:14px 18px;border-radius:10px;background:var(--sunken);font-size:17px;font-weight:540;color:var(--ink);font-variant-numeric:tabular-nums}
+
 .callout{margin-top:28px;padding:22px 24px;border:1px solid var(--line);border-radius:12px;background:var(--sunken)}
 .callout h3{margin-top:0}
 .callout p:first-of-type{margin-top:10px}

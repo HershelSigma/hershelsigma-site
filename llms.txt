@@ -29,6 +29,7 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 - [Power dialer vs predictive dialer](https://hershelsigma.ai/power-dialer-vs-predictive-dialer): how power, parallel and predictive dialers decide when to dial, what each costs a floor in rep wait and upkeep, the three ways floors run predictive today, and which type fits which floor
 - [ViciDial dial level](https://hershelsigma.ai/vicidial-dial-level): ViciDial's dial level and adaptive dial methods (RATIO, ADAPT_HARD_LIMIT, ADAPT_TAPERED, ADAPT_AVERAGE), the campaign settings that steer them, how ViciDial counts drop percentage (drops divided by answered calls) and how to read agent wait time
 - [Spam Likely calls](https://hershelsigma.ai/spam-likely): why outbound calls show Spam Likely, Scam Likely or Potential Spam, which analytics company labels for AT&T, T-Mobile and Verizon, how to check and register numbers (Free Caller Registry), how to request a review, and how floors keep caller IDs healthy
+- [Dial level calculator](https://hershelsigma.ai/dial-level-calculator): a free calculator that estimates a predictive dialer's dial level (lines per agent) from answer rate, average dial time, talk and wrap time and target agent wait, with the formula: dial level = dial time / (answer rate x (talk + wait))
 
 ## Pages
 
