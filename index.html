@@ -224,12 +224,25 @@ section { scroll-margin-top: 72px; }
 .steps li:not(:last-child)::after { content: ''; position: absolute; left: 36px; right: -24px; top: 14px; height: 1px; background: var(--line-strong); }
 .steps h3 { font-size: 19px; letter-spacing: -.015em; margin-top: 6px; }
 .steps p { font-size: 15px; color: var(--muted); max-width: 36ch; }
-.price { margin-top: 128px; border-top: 1px solid var(--line); padding-block: 96px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: end; }
+.price { margin-top: 128px; border-top: 1px solid var(--line); padding-block: 96px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
 .price h2 { font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.03em; line-height: 1.08; font-weight: 480; margin-bottom: 14px; }
 .price p { font-size: 17px; color: var(--muted); max-width: 52ch; }
-.price .cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
-.price .mail { font-size: 14px; color: var(--muted); }
-.price .mail:hover { color: var(--ink); text-decoration: underline; }
+.optin { display: flex; flex-direction: column; gap: 16px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--rim), var(--shadow); }
+.optin h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
+.optin .sub { margin-top: -8px; font-size: 15px; color: var(--muted); }
+.optin .fields { display: flex; flex-direction: column; gap: 14px; }
+.optin .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.optin .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.optin label { font-size: 13px; font-weight: 520; color: var(--ink); }
+.optin input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--page); color: var(--ink); font: inherit; font-size: 16px; transition: border-color 160ms var(--ease); }
+.optin input:hover { border-color: var(--muted); }
+.optin input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.optin .btn { width: 100%; margin-top: 4px; }
+.optin .btn:disabled { opacity: .6; cursor: progress; }
+.optin .done { font-size: 17px; color: var(--ink); }
+.optin .oops { font-size: 14px; color: var(--muted); }
+.optin .oops a { color: var(--ink); text-decoration: underline; }
+.optin .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
 /* footer */
 .foot { border-top: 1px solid var(--line); padding-block: 56px 40px; }
@@ -318,7 +331,6 @@ section { scroll-margin-top: 72px; }
   .feature.flip .f-copy { order: 0; }
   .feature { gap: 28px; }
   .feature + .feature { margin-top: 72px; }
-  .price .cta { justify-content: flex-start; }
   .why { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .steps li:not(:last-child)::after { display: none; }
@@ -335,6 +347,8 @@ section { scroll-margin-top: 72px; }
   .foot .cols { grid-template-columns: minmax(0, 1fr); }
   .brief dl { grid-template-columns: 96px minmax(0, 1fr); }
   .ids th, .ids td { padding-inline: 12px; }
+  .optin { padding: 20px; }
+  .optin .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -540,7 +554,22 @@ section { scroll-margin-top: 72px; }
   <section class="wrap" id="pricing" aria-labelledby="pricing-title">
     <div class="price" id="contact">
       <div><h2 id="pricing-title">Simple managed pricing.</h2><p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p></div>
-      <div class="cta"><a class="mail" href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a><a href="mailto:info@hershelsigma.ai?subject=Hershel%20Sigma%20demo" class="btn btn-ink btn-lg">Book a demo</a></div>
+      <form class="optin" data-optin aria-labelledby="demo-title">
+        <h3 id="demo-title">Book a demo</h3>
+        <p class="sub" data-optin-hide>Leave your name and email, and someone from our team will reach out to set up a time.</p>
+        <div class="fields" data-optin-hide>
+          <div class="row">
+            <div class="field"><label for="optin-first">First name</label><input id="optin-first" name="firstName" type="text" autocomplete="given-name" maxlength="80" required /></div>
+            <div class="field"><label for="optin-last">Last name</label><input id="optin-last" name="lastName" type="text" autocomplete="family-name" maxlength="80" required /></div>
+          </div>
+          <div class="field"><label for="optin-email">Email</label><input id="optin-email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
+          <div class="field"><label for="optin-phone">Phone (optional)</label><input id="optin-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" pattern="[0-9 +\(\)\-]{7,20}" /></div>
+          <div class="hp" aria-hidden="true"><label for="optin-website">Company website</label><input id="optin-website" name="company_website" type="text" tabindex="-1" autocomplete="off" /></div>
+          <button type="submit" class="btn btn-ink btn-lg">Book my demo</button>
+        </div>
+        <p class="done" role="status" data-optin-done hidden>Got it. Someone from our team will be in touch shortly.</p>
+        <p class="oops" role="alert" data-optin-oops hidden>Something went wrong. Email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -725,5 +754,6 @@ section { scroll-margin-top: 72px; }
   document.addEventListener('visibilitychange', run);
 })();
 </script>
+<script src="/assets/opt-in.js" defer></script>
 </body>
 </html>
