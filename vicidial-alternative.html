@@ -86,7 +86,7 @@
         {
           "@type": "Question",
           "name": "What happens to my caller IDs and numbers?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Your carrier account and caller IDs are connected to Hershel during setup. From then on, the Shield watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them and alerts a manager only when a human has to act. It works with Twilio and Telnyx." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Your carrier account and caller IDs are connected to Hershel during setup. From then on, the Shield watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them and alerts a manager only when a human has to act. It works with the floor's own carrier account." }
         },
         {
           "@type": "Question",
@@ -152,8 +152,8 @@
     <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
     <ul>
       <li><strong>Rep console:</strong> reps work in Hershel's own dark-theme web console. Managers run the floor, campaigns and lists from Hershel's manager screens in the Hershel Sigma dashboard.</li>
-      <li><strong>Dialler Manager</strong> reads live campaign stats about every 10 seconds (drop rate, agent wait time, pause time, leads ready to dial) and adjusts the dial level so reps talk to as many people as possible while the drop rate stays under the ceiling the floor sets.</li>
-      <li><strong>The Shield</strong> watches every outbound caller ID for spam flags and carrier refusals, including channel-limit and calls-per-second refusals that ordinary call records hide, and swaps flagged numbers out.</li>
+      <li><strong>Dialler Manager</strong> reads live campaign stats and adjusts the dial level so reps talk to as many people as possible while the drop rate stays under the ceiling the floor sets.</li>
+      <li><strong>The Shield</strong> watches every outbound caller ID for spam flags and carrier refusals, catches carrier problems that standard call records miss, and swaps flagged numbers out.</li>
       <li><strong>Closable</strong> transcribes every appointment-set call and posts a closer brief on the contact in GoHighLevel before the appointment, built from what the prospect said and meant to be read in about 20 seconds.</li>
     </ul>
     <p>Each client gets its own dedicated dialer server, run as a fully managed service, 24/7.</p>
@@ -168,7 +168,7 @@
         <tr><td>Who hosts it</td><td>You, on your own servers or cloud</td><td>A hosting provider</td><td>Hershel, on a dedicated dialer server per client</td></tr>
         <tr><td>Interface for reps</td><td>ViciDial agent screen</td><td>ViciDial agent screen</td><td>Hershel's own web rep console</td></tr>
         <tr><td>Interface for managers</td><td>ViciDial admin screens</td><td>ViciDial admin screens</td><td>Hershel manager screens (floor, campaigns, lists) in the Hershel Sigma dashboard</td></tr>
-        <tr><td>Dial-pace tuning</td><td>Your manager picks the dial method, drop limit and max dial level, then revisits them</td><td>Usually still your manager, with the same settings</td><td>AI adjusts the dial level from live stats about every 10 seconds, under your drop-rate ceiling</td></tr>
+        <tr><td>Dial-pace tuning</td><td>Your manager picks the dial method, drop limit and max dial level, then revisits them</td><td>Usually still your manager, with the same settings</td><td>AI adjusts the dial level from live stats, under your drop-rate ceiling</td></tr>
         <tr><td>Caller ID protection</td><td>Dials the numbers you load; spotting and swapping flagged ones is manual</td><td>Varies by provider</td><td>The Shield flags, pulls and replaces numbers and alerts a manager when a human has to act</td></tr>
         <tr><td>Call notes to CRM</td><td>Recordings and statuses; notes typed by hand</td><td>Same, unless you add an integration</td><td>AI closer brief on the GoHighLevel contact before the appointment</td></tr>
         <tr><td>Who maintains it</td><td>Your admin: servers, Asterisk, updates, backups</td><td>The provider maintains servers; your team still configures and tunes</td><td>Hershel, as a fully managed service, 24/7</td></tr>
@@ -184,7 +184,7 @@
     <li><strong>Demo.</strong> See the rep console, the manager screens and the AI on a real floor, and get a quote scoped to your floor size and call volume.</li>
     <li><strong>Dedicated server set up.</strong> Hershel stands up a dialer server for your floor alone, not a shared box.</li>
     <li><strong>Campaigns, lists and statuses carried over.</strong> The same names and dispositions, so reports and habits line up.</li>
-    <li><strong>Carrier and caller IDs connected.</strong> Your carrier account and numbers are connected, and the Shield starts watching every caller ID. It works with Twilio and Telnyx.</li>
+    <li><strong>Carrier and caller IDs connected.</strong> Your carrier account and numbers are connected, and the Shield starts watching every caller ID.</li>
     <li><strong>AI tuning goes live.</strong> Dialler Manager takes over dial pace under the drop-rate ceiling you choose, and Closable starts briefing appointment-set calls into GoHighLevel.</li>
     <li><strong>Reps log into the new console.</strong> Same campaigns, same statuses, new screen.</li>
   </ol>
@@ -213,7 +213,7 @@
     </details>
     <details>
       <summary>What happens to my caller IDs and numbers?</summary>
-      <p>Your carrier account and caller IDs are connected to Hershel during setup. From then on, the Shield watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them and alerts a manager only when a human has to act. It works with Twilio and Telnyx.</p>
+      <p>Your carrier account and caller IDs are connected to Hershel during setup. From then on, the Shield watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them and alerts a manager only when a human has to act. It works with the floor's own carrier account.</p>
     </details>
     <details>
       <summary>How is Hershel priced compared with ViciDial?</summary>
