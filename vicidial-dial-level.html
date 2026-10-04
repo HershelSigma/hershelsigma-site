@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>ViciDial Dial Level: Settings and Adaptive Dial Methods Explained (2026) | Hershel Sigma AI</title>
+<meta name="description" content="How ViciDial's dial level works: RATIO vs ADAPT_HARD_LIMIT, ADAPT_TAPERED and ADAPT_AVERAGE, the Drop Percentage Limit, and how to read agent wait time." />
+<link rel="canonical" href="https://hershelsigma.ai/vicidial-dial-level" />
+<meta name="robots" content="index, follow, max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hershelsigma.ai/vicidial-dial-level" />
+<meta property="og:site_name" content="Hershel Sigma AI" />
+<meta property="og:title" content="ViciDial Dial Level: Settings and Adaptive Dial Methods Explained" />
+<meta property="og:description" content="What ViciDial's dial level is, how the ADAPT dial methods move it, how drop percentage is counted and how to tell whether the level is right." />
+<meta property="og:image" content="https://hershelsigma.ai/apple-touch-icon.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://hershelsigma.ai/vicidial-dial-level#article",
+      "headline": "ViciDial Dial Level: Settings and Adaptive Dial Methods Explained",
+      "description": "What the dial level is in ViciDial, how RATIO and the three ADAPT dial methods move it, the campaign settings that steer adaptive dialing, and how ViciDial counts drop percentage.",
+      "url": "https://hershelsigma.ai/vicidial-dial-level",
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "author": { "@id": "https://hershelsigma.ai/#nathan-yonash" },
+      "publisher": { "@id": "https://hershelsigma.ai/#org" },
+      "about": ["ViciDial", "Dial level", "Predictive dialer", "Drop rate"],
+      "mainEntityOfPage": "https://hershelsigma.ai/vicidial-dial-level"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hershelsigma.ai/#nathan-yonash",
+      "name": "Nathan Yonash",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hershelsigma.ai/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://hershelsigma.ai/#org",
+      "name": "Hershel Sigma AI",
+      "legalName": "Hershel Sigma LLC",
+      "url": "https://hershelsigma.ai/",
+      "logo": "https://hershelsigma.ai/apple-touch-icon.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hershel Sigma AI", "item": "https://hershelsigma.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "ViciDial dial level", "item": "https://hershelsigma.ai/vicidial-dial-level" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the auto dial level in ViciDial?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It's the number of lines ViciDial dials per active agent. You set it yourself on RATIO. On the ADAPT methods the dialer sets it, unless you force a level with the ADAPT OVERRIDE checkbox." }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between ADAPT_TAPERED and ADAPT_HARD_LIMIT?",
+          "acceptedAnswer": { "@type": "Answer", "text": "ADAPT_HARD_LIMIT stops dialing aggressively once drops reach the limit and waits for the percentage to fall. ADAPT_TAPERED lets a campaign run over early in the shift and gets stricter as Latest Server Time approaches." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does ViciDial calculate drop percentage?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Dropped calls divided by answered calls for the campaign that day. Only statuses with the human_answered flag set to Y count as answered, so your status setup changes the result." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why won't ViciDial raise my dial level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "First check whether drops are already at the limit. Then look at Maximum Adapt Dial Level, a negative Adapt Intensity Modifier, a Dial Level Difference Target of -1, Available Only Tally set to Y, or an Auto Dial Level Threshold holding the level at 1.0." }
+        },
+        {
+          "@type": "Question",
+          "name": "How often does ViciDial change the dial level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The adaptive script recalculates it every 15 seconds. It works from averages of recent calls, so after a sharp change in answer rates it can take 15 to 30 seconds to catch up." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand" aria-label="Hershel Sigma AI home">H<span class="sig">Σ</span>RSHEL</a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="/#contact" class="btn btn-primary">Book a demo</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / ViciDial dial level</div>
+  <div class="eyebrow">Guide</div>
+  <h1>ViciDial dial level and the adaptive dial methods</h1>
+  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-10-04">October 4, 2026</time></p>
+
+  <p class="answer">In ViciDial, the <strong>dial level</strong> (the Auto Dial Level field) is how many lines the dialer uses for each active agent. On RATIO you pick that number yourself. On the three adaptive methods, ADAPT_HARD_LIMIT, ADAPT_TAPERED and ADAPT_AVERAGE, ViciDial recalculates it every 15 seconds and steers it against the Drop Percentage Limit you set.</p>
+
+  <p>Most pacing trouble on a ViciDial floor, idle agents or customers hearing dead air, comes back to a few fields on the Campaign Detail screen. Field names here follow ViciDial's Manager Manual (2.14-924a edition) and its <a href="https://github.com/inktel/Vicidial/blob/master/docs/PREDICTIVE.txt" rel="noopener">PREDICTIVE.txt</a> notes.</p>
+
+  <h2>What dial level means in ViciDial</h2>
+  <p>Dial level is the multiplier ViciDial applies to active agents to decide how many lines a campaign can use. Ten active agents at 2.0 means up to 20 lines in play. Zero turns auto dialing off, and under predictive dialing the level never drops below 1.0. The general mechanics are in <a href="/predictive-dialer">what is a predictive dialer?</a></p>
+  <p>By default, agents already on calls still count as active. Set Available Only Tally to Y and ViciDial dials only for READY agents, which the manual suggests for very long pitches or extra protection against drops. Auto Dial Level Threshold drops the level to 1.0 whenever the counted agents (logged in, non-paused or waiting) fall below your number. The manual is plain that predictive dialing isn't meant for one or two agents.</p>
+
+  <h2>RATIO vs the three ADAPT dial methods</h2>
+  <p>RATIO holds the level wherever a person sets it, while the three ADAPT methods let ViciDial choose it and differ mainly in how they react to the drop limit. Fixed versus forecast pacing is covered in <a href="/power-dialer-vs-predictive-dialer">power dialer vs predictive dialer</a>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dial Method</th><th>How the level moves</th><th>Near the drop limit</th><th>When floors use it</th></tr></thead>
+      <tbody>
+        <tr><td>RATIO</td><td>Stays at the Auto Dial Level you set</td><td>Ignores the Drop Percentage Limit</td><td>Small teams, or pace set by hand</td></tr>
+        <tr><td>ADAPT_HARD_LIMIT</td><td>Recalculated every 15 seconds</td><td>Stops dialing aggressively at the limit until the percentage falls</td><td>When the ceiling has to hold all shift</td></tr>
+        <tr><td>ADAPT_TAPERED</td><td>Recalculated every 15 seconds</td><td>May run over early, then tightens as Latest Server Time nears</td><td>Floors that push early; the manual's own tutorial uses it</td></tr>
+        <tr><td>ADAPT_AVERAGE</td><td>Recalculated every 15 seconds</td><td>Aims for an average, with softer limits than the other two</td><td>When the day's average matters most</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>With 10 or more hours left before Latest Server Time, the taper doesn't touch the level at all. As that window closes, it pulls the level closer and closer to 1.0. On any ADAPT method the Auto Dial Level field locks, though the ADAPT OVERRIDE checkbox beside it can force a new level, something the manual suggests when contact rates shift dramatically.</p>
+
+  <h2>The campaign settings that steer adaptive dialing</h2>
+  <p>Five fields shape how an ADAPT method behaves, and none of them apply on RATIO.</p>
+  <p>Drop Percentage Limit is the ceiling. The manual's walkthrough uses 3% as its example, but each floor sets its own and should check the rules that apply to its campaigns.</p>
+  <p>Maximum Adapt Dial Level caps how high the level can go. It defaults to 3.0, has to be above one, and should fit your agents and outside lines; the manual's example puts 6 agents on a 24-channel T1 at 4.0.</p>
+  <p>Latest Server Time, used only by ADAPT_TAPERED, is your stop time in server time, so 2100 means 9 PM.</p>
+  <p>Adapt Intensity Modifier sets how fast the level moves. A positive value makes it climb faster and come down slower, and a negative value does the opposite. In the manual's example, a campaign at 1.0 with a calculated target of 2.0 only reaches 1.9 when the modifier is -10.</p>
+  <p>Dial Level Difference Target aims for spare agents or spare calls. At -1 ViciDial tries to keep about one agent free, and at 1 about one call waiting. The manual says -1 often helps when drops won't stay down.</p>
+
+  <h2>How ViciDial counts drop percentage</h2>
+  <p>ViciDial divides dropped calls by answered calls, not by everything it dialed. A drop is a call the carrier showed as answered that hung up before it reached an agent. Every minute, the adaptive script tallies drops and calls over several windows, from the past minute back to midnight.</p>
+  <p>What counts as answered depends on your statuses, because only statuses with the human_answered flag set to Y go into the count. Leave the flag off a disposition agents use for live conversations and the drop percentage reads high. Put it on a status that isn't a live person and it reads low.</p>
+  <p>Since most dials are never answered, the same drops divided by all dials look far smaller, so ask what any drop figure is divided by before you compare it with ViciDial's. UK floors can also turn on a separate UK OFCOM Drop Calculation.</p>
+
+  <h2>Reading agent wait time on the real-time report</h2>
+  <p>Agent wait time tells you whether the level is too low, and the Real-time report shows it next to drops. It refreshes every 40 seconds by default and lists the dial level, today's dropped and answered calls and the drop percentage out of answered calls. Calls waiting turn red and agents waiting turn blue, darkening as they climb. The campaign's Real-Time Agent Time Stats option, off by default, adds average wait and pause times.</p>
+  <p>Lots of blue with drops well under the limit means the level is too low; on an ADAPT method, check the cap, the intensity modifier and the difference target. Red with a climbing drop percentage means it's too high. A TRUNK SHORT number above zero means the campaign wants more lines than the servers have, and raising the cap won't fix that.</p>
+  <p>ViciDial's algorithm paces inside limits a person sets. The right limits shift with the list, the hour and how many agents are logged in, so someone keeps revisiting them.</p>
+
+  <div class="callout">
+    <h3>How Hershel does it</h3>
+    <p>Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
+    <p>Hershel used ViciDial's predictive engine as its blueprint, then built past it. Its Dialler Manager reads live campaign stats about every 10 seconds (drop rate, agent wait time, pause time and leads ready to dial) and adjusts the dial level so the drop rate stays under the ceiling the floor sets. It counts drop rate as drops divided by answered calls, the same denominator ViciDial uses. It runs as a fully managed service; see <a href="/ai-dialer">what is an AI dialer?</a> and the <a href="/">platform overview</a>.</p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <details>
+      <summary>What is the auto dial level in ViciDial?</summary>
+      <p>It's the number of lines ViciDial dials per active agent. You set it yourself on RATIO. On the ADAPT methods the dialer sets it, unless you force a level with the ADAPT OVERRIDE checkbox.</p>
+    </details>
+    <details>
+      <summary>What's the difference between ADAPT_TAPERED and ADAPT_HARD_LIMIT?</summary>
+      <p>ADAPT_HARD_LIMIT stops dialing aggressively once drops reach the limit and waits for the percentage to fall. ADAPT_TAPERED lets a campaign run over early in the shift and gets stricter as Latest Server Time approaches.</p>
+    </details>
+    <details>
+      <summary>How does ViciDial calculate drop percentage?</summary>
+      <p>Dropped calls divided by answered calls for the campaign that day. Only statuses with the human_answered flag set to Y count as answered, so your status setup changes the result.</p>
+    </details>
+    <details>
+      <summary>Why won't ViciDial raise my dial level?</summary>
+      <p>First check whether drops are already at the limit. Then look at Maximum Adapt Dial Level, a negative Adapt Intensity Modifier, a Dial Level Difference Target of -1, Available Only Tally set to Y, or an Auto Dial Level Threshold holding the level at 1.0.</p>
+    </details>
+    <details>
+      <summary>How often does ViciDial change the dial level?</summary>
+      <p>The adaptive script recalculates it every 15 seconds. It works from averages of recent calls, so after a sharp change in answer rates it can take 15 to 30 seconds to catch up.</p>
+    </details>
+  </div>
+
+  <div class="cta-box">
+    <h2>Hand off the dial level</h2>
+    <p>Hershel's AI adjusts pace under your drop ceiling, 24/7.</p>
+    <a href="/#contact" class="btn btn-primary">Book a demo &rarr;</a>
+  </div>
+
+  <section class="related">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="/predictive-dialer">What is a predictive dialer?</a></li>
+      <li><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a></li>
+      <li><a href="/vicidial-alternative">ViciDial alternative</a></li>
+      <li><a href="/ai-dialer">What is an AI dialer?</a></li>
+      <li><a href="/">Hershel Sigma AI platform overview</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/predictive-dialer">Predictive dialer</a><a href="/vicidial-alternative">ViciDial alternative</a><a href="/managed-dialer">Managed dialer</a><a href="/solar-dialer">AI dialer for solar</a><a href="/gohighlevel-dialer">GoHighLevel dialer</a><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a><a href="/vicidial-dial-level">ViciDial dial level</a><a href="/about">About</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai<span class="theme" role="group" aria-label="Color theme"><button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>Light</button><button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button></span></div>
+  </div>
+</footer>
+<script src="/assets/theme.js" defer></script>
+</body>
+</html>
