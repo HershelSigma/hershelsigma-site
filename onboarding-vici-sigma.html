@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Welcome to Sigma: Next Steps for Your ViciDial | Hershel Sigma AI</title>
+<meta name="description" content="Onboarding for floors running Sigma on their own ViciDial: what to have ready, and the steps from signing to your first live day." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand" aria-label="Hershel Sigma AI home">H<span class="sig">Σ</span>RSHEL</a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="btn btn-primary">Log in</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / Onboarding</div>
+  <div class="eyebrow">Vici + Sigma</div>
+  <h1>Welcome to Sigma: next steps for your ViciDial</h1>
+  <p class="byline">For floors running Sigma on their own ViciDial &middot; Updated <time datetime="2026-10-06">October 6, 2026</time></p>
+
+  <p class="answer">Sigma plugs into the ViciDial you already run. Your server, campaigns, lists and reps stay where they are: Sigma signs in as one ViciDial user and runs dial pace, caller-ID health and closer briefs on top.</p>
+
+  <h2>Have these ready</h2>
+  <ul class="need">
+    <li><strong>A ViciDial user for Sigma.</strong> Level 9, with Agent API Access and View Reports turned on (under Users in ViciDial). Make it one only Sigma signs in with: several wrong password tries lock a ViciDial user out for about 15 minutes.</li>
+    <li><strong>Your ViciDial address.</strong> The address you sign in to ViciDial at. If your server only accepts API calls from listed IP addresses, ask us for ours to add.</li>
+    <li><strong>Campaigns.</strong> Dialler Manager manages every active campaign by default. If it should only touch some (say, a dialer shared with another team), list their campaign IDs.</li>
+    <li><strong>Carrier access</strong>, for The Shield. Twilio: the Account SID, plus a Standard API key (its SID starts with SK) and its secret. Telnyx: an API key and the SIP Connection ID. Optional: the ViciDial CID group to mirror number swaps into.</li>
+    <li><strong>GoHighLevel</strong>, if Closable is on your plan. A Private Integration Token (sub-account Settings &gt; Private Integrations) and the Location ID (Settings &gt; Business Profile).</li>
+    <li><strong>People and hours.</strong> Manager emails, a mobile number for critical alerts, your timezone and your calling hours.</li>
+  </ul>
+
+  <h2>Your next steps</h2>
+  <ol class="steps">
+    <li><span class="who">Hershel</span><strong>We create your organization</strong> with the services on your plan and your timezone and hours, then send your invite.</li>
+    <li><span class="who you">You</span><strong>Accept your invite.</strong> Open the email invite within 7 days, choose your name and password, and you land in setup.</li>
+    <li><span class="who you">You</span><strong>Connect ViciDial.</strong> Enter the address, user and password, then press <strong>Test connection</strong>. A pass lists your campaigns; a fail says whether ViciDial refused the login or never answered.</li>
+    <li><span class="who you">You</span><strong>Add keys and your team.</strong> Enter the carrier and GoHighLevel keys for the services on your plan (the setup wizard lists Closable as Talky-Sigma), invite managers, read-only viewers, or agents who get SMS alerts only, then press <strong>Save &amp; Deploy</strong>.</li>
+    <li><span class="who you">You</span><strong>Brief your ViciDial admin.</strong> Dialler Manager now sets the dial level on the campaigns it manages, and The Shield swaps out flagged caller IDs, so leave both to Sigma rather than changing them by hand.</li>
+    <li><span class="who">Together</span><strong>Go live.</strong> The <strong>Setup</strong> card on your dashboard tracks four checks (Dialer connected, Services configured, Manager joined, Services checked in) and goes away once all are done.</li>
+  </ol>
+
+  <p class="daily">Day to day, your sidebar has Dashboard, AI Manager (the dashboard's name for Dialler Manager), The Shield, Team and Settings, plus Command (your assistant), Campaigns, Lists, Reports and Recordings when Dialler Manager is on your plan. Change your timezone and hours anytime under Settings &gt; Organization; services sleep outside them.</p>
+
+  <div class="callout">
+    <p><strong>Questions at any step?</strong> Email info@hershelsigma.ai.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/about">About</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai<span class="theme" role="group" aria-label="Color theme"><button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>Light</button><button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button></span></div>
+  </div>
+</footer>
+<script src="/assets/theme.js" defer></script>
+</body>
+</html>
