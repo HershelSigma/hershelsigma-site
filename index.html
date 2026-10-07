@@ -246,6 +246,13 @@ section { scroll-margin-top: 72px; }
 .optin .oops { font-size: 14px; color: var(--muted); }
 .optin .oops a { color: var(--ink); text-decoration: underline; }
 .optin .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.optin .book, .optin .pick { display: flex; flex-direction: column; gap: 12px; }
+.optin .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.optin .chip { height: 34px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--page); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; transition: border-color 160ms var(--ease), background 160ms var(--ease), color 160ms var(--ease); }
+.optin .chip:hover { border-color: var(--muted); }
+.optin .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.optin .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.optin .msg { font-size: 15px; color: var(--ink); }
 
 /* footer */
 .foot { border-top: 1px solid var(--line); padding-block: 56px 40px; }
@@ -571,6 +578,16 @@ section { scroll-margin-top: 72px; }
           <button type="submit" class="btn btn-ink btn-lg">Book my demo</button>
         </div>
         <p class="done" role="status" data-optin-done hidden>Got it. Someone from our team will be in touch shortly.</p>
+        <div class="book" data-book hidden>
+          <div class="pick" data-book-pick>
+            <div class="chips" role="group" aria-label="Day" data-book-days></div>
+            <div class="chips" role="group" aria-label="Time" data-book-times></div>
+            <p class="msg" role="status" data-book-note hidden></p>
+            <button type="button" class="btn btn-ink btn-lg" data-book-go hidden></button>
+            <p class="oops" role="alert" data-book-oops hidden>That didn't go through. Try another time, or email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
+          </div>
+          <p class="msg" role="status" data-book-done hidden></p>
+        </div>
         <p class="oops" role="alert" data-optin-oops hidden>Something went wrong. Email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
       </form>
     </div>
