@@ -35,5 +35,6 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 
 - [Home](https://hershelsigma.ai/): what Hershel Sigma AI does and how it works
 - [About](https://hershelsigma.ai/about): the company behind Hershel (Hershel Sigma LLC, founder Nathan Yonash), and how the name is spelled: Hershel, with no c (often mistyped as Herschel Sigma)
+- [Support](https://hershelsigma.ai/support): help for the Hershel app for HighLevel (connecting a sub-account, the call notes and tags it writes, the Send to Hershel workflow step, disconnecting) and how to contact support: info@hershelsigma.ai
 - [Terms and Conditions](https://hershelsigma.ai/terms-and-conditions)
-- [Privacy Policy](https://hershelsigma.ai/privacy)
+- [Privacy Policy](https://hershelsigma.ai/privacy): what data Hershel and the Hershel app for HighLevel collect, how it is used, how long it is kept and how to delete it

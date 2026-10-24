@@ -25,6 +25,11 @@
   .updated{font-size:13px;color:var(--dim);margin-top:8px}
   h2{font-size:18px;font-weight:600;margin:34px 0 8px}
   p{font-size:15px;color:var(--muted);max-width:720px}
+  p + p{margin-top:10px}
+  ul{max-width:720px;margin:8px 0 10px 20px}
+  li{font-size:15px;color:var(--muted);margin-top:6px}
+  li strong{color:var(--text);font-weight:600}
+  main a{text-decoration:underline}
   footer{border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:13px;color:var(--dim)}
 </style>
 </head>
@@ -37,25 +42,42 @@
 </header>
 <main>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated June 2026</p>
+  <p class="updated">Last updated October 24, 2026</p>
+
+  <p>This policy covers hershelsigma.ai, the Hershel dashboard and dialer service, and the Hershel app for HighLevel. Hershel Sigma LLC ("we") runs all three.</p>
 
   <h2>Information we collect</h2>
-  <p>We collect information you provide when you contact us or become a customer (such as name, business email, and company details), and operational data needed to provide the managed dialer service.</p>
+  <p>We collect information you give us when you contact us, book a demo or become a customer, such as your name, business email, phone number and company details. To run the managed dialer service we also hold the operational data a customer loads or creates in Hershel, such as lead lists, call records, call recordings and user accounts.</p>
+
+  <h2>The Hershel app for HighLevel</h2>
+  <p>When a customer connects a HighLevel sub-account to Hershel, the app handles the following data, and only for that sub-account.</p>
+  <ul>
+    <li><strong>Connection details.</strong> The sub-account (location) ID, the HighLevel company ID, the time it was connected, and the access and refresh tokens HighLevel issues. The tokens are encrypted at rest and are used only by Hershel's own servers.</li>
+    <li><strong>Contacts it reads.</strong> To match a call to a contact, Hershel searches the sub-account's contacts by the phone number called and reads the matching records. When a workflow runs the Send to Hershel step, Hershel reads that contact and adds its phone number, name, email, address and HighLevel contact ID to the Hershel list the step names, on the customer's own dialer.</li>
+    <li><strong>What it writes.</strong> When the customer switches on Send calls to HighLevel, Hershel posts a note on the contact for each call a rep handles (outcome, rep name, call length, call time, the rep's notes and a recording link) and adds a tag naming the outcome. If no contact has the number, Hershel creates one with the phone number, the name on the lead, and the source "Hershel".</li>
+    <li><strong>Records of what it sent.</strong> For each call posted, Hershel keeps the dialer's lead ID, the call time and the HighLevel contact ID, so the same call is never posted twice.</li>
+    <li><strong>The Hershel page in HighLevel.</strong> When someone opens Hershel from the HighLevel menu, HighLevel tells Hershel the sub-account ID, user ID and email of that person. Hershel uses the sub-account ID to open the right rep console and does not store these details.</li>
+  </ul>
+  <p>The app's HighLevel permissions also cover reading and updating opportunities, and reading the sub-account's workflow list, users and tags. They are there for features we are building: moving a contact's opportunity to a pipeline stage and starting one of your workflows from a call's outcome. Hershel does not use them yet, and we will update this policy before it does.</p>
+  <p>Hershel does not delete contacts, notes, tags or opportunities in HighLevel, and the app has no access to calendars, conversations or messages.</p>
 
   <h2>How we use it</h2>
-  <p>We use this information to provide and improve our services, to communicate with you, and to process billing. We do not sell your personal information.</p>
+  <p>We use this information to provide, support and improve our services, to communicate with you, and to process billing. HighLevel data is used only to provide the features described above to the customer who connected it. We do not sell personal information, and we do not use HighLevel data for advertising.</p>
 
   <h2>Data sharing</h2>
-  <p>We share data only with service providers needed to operate the service (such as payment processing and infrastructure providers), and where required by law.</p>
+  <p>We share data only with service providers needed to operate the service, such as hosting and database, error monitoring, email delivery, payment processing, and the AI providers that transcribe call recordings and write call briefs for customers who use that feature. We also share data where required by law. Notes, tags and contacts Hershel writes to HighLevel are stored in the customer's HighLevel account.</p>
 
   <h2>Data retention</h2>
-  <p>We retain personal information for as long as needed to provide the service and to meet legal and accounting obligations, then delete or anonymize it.</p>
+  <p>HighLevel access tokens are kept while the sub-account is connected and are deleted when the customer clicks Disconnect in Hershel. Records of posted calls are kept while the customer's Hershel account is active, or until we delete them on request. Contacts added to dialer lists stay there until the customer removes them, the account ends, or we delete them on request. Recording links on HighLevel notes stop working once the sub-account is disconnected. Other personal information is kept for as long as needed to provide the service and to meet legal and accounting obligations, then deleted or anonymized. Data Hershel wrote into HighLevel stays in the customer's HighLevel account until the customer deletes it there.</p>
 
-  <h2>Your choices</h2>
-  <p>You may request access to, correction of, or deletion of your personal information by emailing info@hershelsigma.ai.</p>
+  <h2>Security</h2>
+  <p>HighLevel tokens and other stored credentials are encrypted at rest. Only admins and managers of a Hershel organization can connect or disconnect HighLevel.</p>
+
+  <h2>Your choices and deletion</h2>
+  <p>A customer can stop Hershel's access at any time by clicking Disconnect on the GoHighLevel card in Hershel Settings, and can also uninstall the app from the sub-account in HighLevel. You may request access to, correction of, or deletion of your personal information, including the HighLevel data described above, by emailing info@hershelsigma.ai. We will confirm when the request is done.</p>
 
   <h2>Contact</h2>
-  <p>Hershel Sigma LLC &middot; info@hershelsigma.ai.</p>
+  <p>Hershel Sigma LLC &middot; info@hershelsigma.ai &middot; <a href="/support">Support</a></p>
 </main>
 <footer>&copy; 2026 Hershel Sigma LLC. All rights reserved.</footer>
 </body>
