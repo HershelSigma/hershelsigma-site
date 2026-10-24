@@ -1,4 +1,5 @@
-// the Book a demo form in #contact: posts the visitor's details to the api, which emails the team
+// the Book a demo form in #contact: asks for an email first, then a name and phone, and posts
+// them to the api, which emails the team; the thank-you offers a time when the calendar has one
 (() => {
   const form = document.querySelector('[data-optin]');
   if (!form) return;
@@ -7,11 +8,33 @@
   const button = form.querySelector('button[type="submit"]');
   const label = button.textContent;
   const done = form.querySelector('[data-optin-done]');
+  const head = done.querySelector('[data-done-head]');
+  const next = done.querySelector('[data-done-next]');
   const oops = form.querySelector('[data-optin-oops]');
+  const step = form.querySelector('[data-step]');
+  const more = form.querySelector('[data-more]');
+  const v = (name) => form.elements[name].value.trim();
+
+  // two steps: the email alone, then the name and phone. Without this script every field shows
+  // at once. A disabled fieldset skips the browser's required checks, so Enter on the email moves on.
+  const showStep = (n) => {
+    more.disabled = n === 1;
+    more.hidden = n === 1;
+    step.textContent = n === 1 ? 'Step 1 of 2: your email' : 'Step 2 of 2: about you';
+    step.hidden = false;
+    button.textContent = n === 1 ? 'Continue' : label;
+  };
+  let onStep = v('email') && v('firstName') ? 2 : 1;
+  showStep(onStep);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const v = (name) => form.elements[name].value.trim();
+    if (onStep === 1) {
+      onStep = 2;
+      showStep(2);
+      form.elements.firstName.focus();
+      return;
+    }
     const body = {
       firstName: v('firstName'),
       lastName: v('lastName'),
@@ -33,7 +56,9 @@
       });
       if (!res.ok) throw new Error(`demo request failed: ${res.status}`);
       form.querySelectorAll('[data-optin-hide]').forEach((el) => { el.hidden = true; });
+      head.textContent = `Thanks, ${body.firstName}. Your demo request is in.`;
       done.hidden = false;
+      head.focus();
     } catch (err) {
       oops.hidden = false;
       button.disabled = false;
@@ -85,10 +110,12 @@
     })));
   };
 
-  const finish = (text) => {
+  const finish = (when) => {
+    book.querySelectorAll('h4, .sub').forEach((el) => { el.hidden = true; });
     pick.hidden = true;
-    booked.textContent = text;
+    booked.textContent = `Booked: ${when}. A calendar invite with a Google Meet link is on its way to ${v('email')}.`;
     booked.hidden = false;
+    next.hidden = true;
   };
 
   async function offerTimes(bookingToken, message) {
@@ -117,6 +144,7 @@
     note.hidden = !message;
     bookOops.hidden = true;
     book.hidden = false;
+    next.textContent = "None of these work? Skip it, and someone from our team will reach out to set up a time.";
   }
 
   go.addEventListener('click', async () => {
@@ -131,7 +159,7 @@
         body: JSON.stringify({ bookingToken: token, start: slot.start }),
       });
       const out = await res.json().catch(() => ({}));
-      if (res.ok || out.error === 'already_booked') return finish(`Booked: ${out.label}`);
+      if (res.ok || out.error === 'already_booked') return finish(out.label);
       if (out.error === 'slot_taken') return await offerTimes(token, 'That time just went. Pick another.');
       throw new Error(`demo booking failed: ${res.status}`);
     } catch (err) {
