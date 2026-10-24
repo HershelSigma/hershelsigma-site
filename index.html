@@ -227,6 +227,15 @@ section { scroll-margin-top: 72px; }
 .steps li:not(:last-child)::after { content: ''; position: absolute; left: 36px; right: -24px; top: 14px; height: 1px; background: var(--line-strong); }
 .steps h3 { font-size: 19px; letter-spacing: -.015em; margin-top: 6px; }
 .steps p { font-size: 15px; color: var(--muted); max-width: 36ch; }
+.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.path { display: flex; flex-direction: column; gap: 14px; padding: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--rim), var(--shadow); }
+.path .tag { font-size: 13px; font-weight: 560; color: var(--muted); }
+.path h3 { font-size: 24px; letter-spacing: -.025em; line-height: 1.15; }
+.path > p { font-size: 16px; color: var(--muted); }
+.path ul { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.path li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--text); }
+.path li b { color: var(--ink); font-weight: 540; }
+.path .cta { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
 .price { margin-top: 128px; border-top: 1px solid var(--line); padding-block: 96px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
 .price h2 { font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.03em; line-height: 1.08; font-weight: 480; margin-bottom: 14px; }
 .price p { font-size: 17px; color: var(--muted); max-width: 52ch; }
@@ -342,6 +351,7 @@ section { scroll-margin-top: 72px; }
   .feature { gap: 28px; }
   .feature + .feature { margin-top: 72px; }
   .why { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .paths { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .steps li:not(:last-child)::after { display: none; }
   .reach { grid-template-columns: 96px minmax(0, 1fr) 56px; column-gap: 14px; }
@@ -358,6 +368,7 @@ section { scroll-margin-top: 72px; }
   .brief dl { grid-template-columns: 96px minmax(0, 1fr); }
   .ids th, .ids td { padding-inline: 12px; }
   .optin { padding: 20px; }
+  .path { padding: 24px; }
   .optin .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -561,6 +572,37 @@ section { scroll-margin-top: 72px; }
     </ol>
   </section>
 
+  <section class="sec wrap" id="paths" aria-labelledby="paths-title">
+    <div class="sec-head">
+      <h2 id="paths-title">Switch to Hershel, or keep your ViciDial</h2>
+      <p>Move your floor onto a dialer Hershel hosts and runs, or keep the ViciDial you already have and let Hershel run it for you. Dialler Manager, The Shield and Closable work on both.</p>
+    </div>
+    <div class="paths">
+      <article class="path">
+        <span class="tag">Switch to Hershel</span>
+        <h3>A dialer we host and run.</h3>
+        <p>Hershel stands up a dedicated dialer server for your floor. Your campaigns, lists and statuses carry over, so nobody relearns the workflow.</p>
+        <ul>
+          <li><b>Your own dialer server,</b> not a shared box.</li>
+          <li><b>Hershel's rep console</b> for reps, and Hershel's manager screens for managers.</li>
+          <li><b>Fully managed, 24/7.</b> No servers, updates or backups on your side.</li>
+        </ul>
+        <div class="cta"><a href="#contact" class="btn btn-ink">Book a demo</a><a href="/vicidial-alternative" class="btn btn-line">Compare with ViciDial</a></div>
+      </article>
+      <article class="path">
+        <span class="tag">Already on ViciDial?</span>
+        <h3>Keep it. Hershel runs it for you.</h3>
+        <p>Your server, campaigns, lists and reps stay where they are. Hershel signs in to your ViciDial as one user and runs dial pace, caller ID health and closer briefs on top.</p>
+        <ul>
+          <li><b>Dialler Manager</b> sets the dial level on every active campaign, or only the ones you pick.</li>
+          <li><b>The Shield</b> swaps out flagged caller IDs through your Twilio or Telnyx account.</li>
+          <li><b>Closable</b> posts a closer brief to GoHighLevel for every appointment set.</li>
+        </ul>
+        <div class="cta"><a href="#contact" class="btn btn-ink">Book a demo</a><a href="/vicidial-alternative#keep-vicidial" class="btn btn-line">How keeping ViciDial works</a></div>
+      </article>
+    </div>
+  </section>
+
   <section class="wrap" id="pricing" aria-labelledby="pricing-title">
     <div class="price" id="contact">
       <div><h2 id="pricing-title">Simple managed pricing.</h2><p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p></div>
@@ -598,7 +640,7 @@ section { scroll-margin-top: 72px; }
   <div class="wrap">
     <div class="cols">
       <div class="brand"><a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a><p>Managed Dialer AI for high-volume outbound sales teams.</p></div>
-      <div><h2>Platform</h2><ul><li><a href="#platform">Dialler Manager</a></li><li><a href="#platform">The Shield</a></li><li><a href="#platform">Closable</a></li></ul></div>
+      <div><h2>Platform</h2><ul><li><a href="#platform">Dialler Manager</a></li><li><a href="#platform">The Shield</a></li><li><a href="#platform">Closable</a></li><li><a href="#paths">Keep your ViciDial</a></li></ul></div>
       <div><h2>Guides</h2><ul><li><a href="/ai-dialer">What is an AI dialer?</a></li><li><a href="/predictive-dialer">What is a predictive dialer?</a></li><li><a href="/vicidial-alternative">ViciDial alternative</a></li><li><a href="/managed-dialer">What is a managed dialer?</a></li><li><a href="/solar-dialer">AI dialer for solar</a></li><li><a href="/gohighlevel-dialer">GoHighLevel dialer</a></li><li><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a></li><li><a href="/vicidial-dial-level">ViciDial dial level</a></li><li><a href="/spam-likely">Spam Likely calls</a></li><li><a href="/dial-level-calculator">Dial level calculator</a></li></ul></div>
       <div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="#results">Results</a></li><li><a href="#pricing">Pricing</a></li><li><a href="mailto:info@hershelsigma.ai">Contact</a></li></ul></div>
       <div><h2>Legal</h2><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms-and-conditions">Terms and Conditions</a></li></ul></div>

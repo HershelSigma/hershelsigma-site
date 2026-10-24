@@ -4,6 +4,8 @@
 
 Hershel runs as a fully managed service, 24/7. A sales floor gets a predictive dialer whose pacing, number health and call notes run themselves, so setters stay on the phone and managers stop babysitting settings.
 
+There are two ways to run it. Switch to Hershel: a dedicated dialer server per client, Hershel's own rep console and manager screens, and campaigns, lists and statuses carried over. Or keep an existing ViciDial: Hershel signs in to the floor's ViciDial as one user and runs dial pace, caller ID health and closer briefs on top, while the server, campaigns, lists and reps stay where they are.
+
 ## What the AI does
 
 - **Dialler Manager (AI dial-pace control):** reads the live floor and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the target the floor sets.
@@ -22,7 +24,7 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 
 - [What is an AI dialer?](https://hershelsigma.ai/ai-dialer): how AI runs dial pace, caller IDs and call notes, and how an AI dialer differs from power, predictive and progressive dialers
 - [What is a predictive dialer?](https://hershelsigma.ai/predictive-dialer): how predictive dialing works, the three settings that decide its results (dial level, drop rate, agent wait time), and how it compares to power, progressive and preview dialers
-- [ViciDial alternative](https://hershelsigma.ai/vicidial-alternative): why floors leave ViciDial, what Hershel keeps from it (the engine, campaigns, lists and statuses), and a self-run vs hosted vs Hershel comparison
+- [ViciDial alternative](https://hershelsigma.ai/vicidial-alternative): why floors leave ViciDial, what Hershel keeps from it (the engine, campaigns, lists and statuses), a self-run vs hosted vs Hershel comparison, and the two paths side by side: switch to Hershel, or keep ViciDial and let Hershel run dial pace, caller IDs and closer briefs on top
 - [What is a managed dialer?](https://hershelsigma.ai/managed-dialer): what a managed dialer service includes, how it differs from self-run and seat-based cloud dialers, and the questions to ask a provider
 - [AI dialer for solar](https://hershelsigma.ai/solar-dialer): what a solar appointment-setting floor needs from a dialer (pace, caller IDs, closer handoff, no double-booking) and how an AI dialer handles each
 - [GoHighLevel dialer](https://hershelsigma.ai/gohighlevel-dialer): what calling GoHighLevel has built in (Web Dialer, Power Dialer), when a floor needs predictive dialing, and how Hershel works alongside GoHighLevel

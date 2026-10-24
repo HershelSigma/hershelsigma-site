@@ -6,7 +6,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <title>ViciDial Alternative: Self-Run vs Hosted vs Hershel (2026) | Hershel Sigma AI</title>
-<meta name="description" content="Looking for a ViciDial alternative? What ViciDial does well, why floors replace it, and how self-run ViciDial, hosted ViciDial and Hershel compare on hosting, dial-pace tuning, caller IDs, call notes and pricing." />
+<meta name="description" content="Looking for a ViciDial alternative? What ViciDial does well, why floors replace it, how self-run ViciDial, hosted ViciDial and Hershel compare, and how to keep your ViciDial and let Hershel run pace, caller IDs and call notes on top." />
 <link rel="canonical" href="https://hershelsigma.ai/vicidial-alternative" />
 <meta name="robots" content="index, follow, max-snippet:-1" />
 <meta property="og:type" content="article" />
@@ -32,7 +32,7 @@
       "description": "Why outbound floors look for a ViciDial alternative, what ViciDial does well, and how self-run ViciDial, hosted ViciDial and Hershel compare on hosting, tuning, caller IDs, call notes and pricing.",
       "url": "https://hershelsigma.ai/vicidial-alternative",
       "datePublished": "2026-09-29",
-      "dateModified": "2026-09-29",
+      "dateModified": "2026-10-24",
       "author": { "@id": "https://hershelsigma.ai/#nathan-yonash" },
       "publisher": { "@id": "https://hershelsigma.ai/#org" },
       "about": ["ViciDial alternative", "ViciDial", "Predictive dialer", "AI dialer", "Outbound call center"],
@@ -80,6 +80,11 @@
         },
         {
           "@type": "Question",
+          "name": "Can Hershel run on the ViciDial I already have?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Hershel signs in to your ViciDial as one user and runs dial pace, caller ID health and closer briefs on top. Your server, campaigns, lists and reps stay where they are, and your ViciDial admin keeps the server running. Dialler Manager can manage every active campaign or only the ones you list." }
+        },
+        {
+          "@type": "Question",
           "name": "Do my reps need retraining?",
           "acceptedAnswer": { "@type": "Answer", "text": "Not on the workflow. The campaigns, lists and statuses they know carry over, so they learn a new screen, not a new process. Dial pace is handled by the AI, which leaves fewer settings for anyone on the floor to learn." }
         },
@@ -117,11 +122,11 @@
   <div class="crumbs"><a href="/">Hershel Sigma AI</a> / ViciDial alternative</div>
   <div class="eyebrow">Guide</div>
   <h1>A ViciDial alternative that keeps what works</h1>
-  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-09-29">September 29, 2026</time></p>
+  <p class="byline">By <strong>Nathan Yonash</strong>, Founder, Hershel Sigma AI &middot; Updated <time datetime="2026-10-24">October 24, 2026</time></p>
 
   <p class="answer">A <strong>ViciDial alternative</strong> is a dialer that keeps what ViciDial gets right (a proven predictive engine and its campaigns, lists and statuses) and replaces what floors outgrow: dated admin screens, dial pace tuned by hand, caller ID reputation left to the manager and servers someone has to maintain. Hershel is built to be exactly that.</p>
 
-  <p><strong>Coming from ViciDial?</strong> Hershel used it as the blueprint and built past it. Your campaigns, lists and statuses carry over, so nobody relearns anything.</p>
+  <p><strong>Coming from ViciDial?</strong> There are two ways in. <a href="#switch-or-keep">Switch to Hershel</a> and your campaigns, lists and statuses carry over, so nobody relearns anything. Or <a href="#keep-vicidial">keep your ViciDial</a> exactly where it is and let Hershel run dial pace, caller IDs and closer briefs on top of it.</p>
 
   <p>ViciDial has earned its place on outbound floors. It is free, open source and dials hard. The trouble is rarely the dialing itself. It is the daily work a floor does around the dialer to keep the dialing good.</p>
 
@@ -178,6 +183,37 @@
   </div>
   <p>Self-run ViciDial is the cheapest on software and the most expensive in attention. Hosted ViciDial takes the servers off your plate but leaves the tuning, the numbers and the notes with your team. Hershel takes on all four. For a closer look at what AI should manage on a dialer, see <a href="/ai-dialer">what an AI dialer is</a>.</p>
 
+  <h2 id="switch-or-keep">Switch to Hershel, or keep your ViciDial</h2>
+  <p>Not every floor needs to leave ViciDial to stop babysitting it. If your ViciDial works and you have someone keeping the server up, Hershel can run on top of it instead of replacing it. Dialler Manager, The Shield and Closable do the same jobs on both paths; what changes is whose server it is and which screens your team works in.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Area</th><th>Switch to Hershel</th><th>Keep your ViciDial</th></tr></thead>
+      <tbody>
+        <tr><td>Dialer server</td><td>A dedicated Hershel dialer server for your floor</td><td>Your existing ViciDial server, run as it is today</td></tr>
+        <tr><td>What reps work in</td><td>Hershel's own web rep console</td><td>The ViciDial agent screen they already know</td></tr>
+        <tr><td>What managers work in</td><td>Hershel manager screens in the Hershel Sigma dashboard</td><td>ViciDial admin as today, plus the Hershel Sigma dashboard for Dialler Manager, The Shield and your team</td></tr>
+        <tr><td>Campaigns, lists and statuses</td><td>Carried over</td><td>Stay where they are</td></tr>
+        <tr><td>Dial pace</td><td>Dialler Manager adjusts the dial level under your drop-rate ceiling</td><td>Dialler Manager sets the dial level on every active campaign, or only the campaigns you list</td></tr>
+        <tr><td>Caller IDs</td><td>The Shield flags, pulls and replaces numbers</td><td>The Shield swaps flagged numbers through your Twilio or Telnyx account, and can mirror swaps into a ViciDial CID group</td></tr>
+        <tr><td>Closer briefs</td><td>Closable posts a brief on the GoHighLevel contact</td><td>Same: Closable posts a brief on the GoHighLevel contact</td></tr>
+        <tr><td>Who keeps the dialer running</td><td>Hershel, as a fully managed service, 24/7</td><td>Your ViciDial admin keeps the server up; Hershel runs pace, numbers and notes during your calling hours</td></tr>
+        <tr><td>Best fit</td><td>Floors done running servers and admin screens</td><td>Floors with a ViciDial that works and an admin they trust</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="keep-vicidial">Already on ViciDial? Keep it, Hershel runs it for you</h2>
+  <p>Keeping ViciDial is a connection, not a migration. Hershel signs in to your ViciDial as one user, reads live campaign stats and takes over the work a manager would otherwise do by hand. Your dialer, campaigns and lists stay on your server.</p>
+  <ol>
+    <li><strong>Demo.</strong> See Dialler Manager, The Shield and Closable, and confirm which campaigns Hershel should manage.</li>
+    <li><strong>Create one ViciDial user for Hershel.</strong> Your admin adds a user with API access and report access that only Hershel signs in with.</li>
+    <li><strong>Connect ViciDial.</strong> Enter your ViciDial address and that user in the Hershel Sigma dashboard, then test the connection. A pass lists your campaigns.</li>
+    <li><strong>Add carrier and CRM keys.</strong> Twilio or Telnyx access for The Shield, and GoHighLevel access for Closable.</li>
+    <li><strong>Brief your ViciDial admin.</strong> Dialler Manager now sets the dial level on the campaigns it manages, and The Shield swaps out flagged caller IDs, so both are left to Hershel rather than changed by hand.</li>
+    <li><strong>Go live.</strong> Reps keep dialing in the screen they know. Managers watch pace, numbers and alerts in the Hershel Sigma dashboard.</li>
+  </ol>
+  <p>If you later want Hershel to take the servers too, the switch path below carries the same campaigns, lists and statuses across.</p>
+
   <h2>How switching from ViciDial works</h2>
   <p>A ViciDial migration to Hershel is a handover, not a rebuild: the structure your floor already knows comes with you.</p>
   <ol>
@@ -191,7 +227,7 @@
   <p>How long it takes depends mostly on how many campaigns and lists you run and how quickly carrier access is shared. It is typically quick.</p>
 
   <h2>When self-run ViciDial is still the right call</h2>
-  <p>If you have an in-house admin who likes running Linux and Asterisk, a floor small enough for one person to watch pace, and no closer handoff to feed, self-run ViciDial is hard to beat on software cost. An alternative earns its keep when tuning, number health and call notes eat real hours every day. That is the floor <a href="/">Hershel</a> was built for: it was battle-tested on solar appointment-setting floors in Texas and Florida.</p>
+  <p>If you have an in-house admin who likes running Linux and Asterisk, a floor small enough for one person to watch pace, and no closer handoff to feed, self-run ViciDial is hard to beat on software cost. If that admin is happy keeping the server but not tuning pace, swapping numbers and writing notes, <a href="#keep-vicidial">keep ViciDial and let Hershel run it</a>. An alternative earns its keep when tuning, number health and call notes eat real hours every day. That is the floor <a href="/">Hershel</a> was built for: it was battle-tested on solar appointment-setting floors in Texas and Florida.</p>
 
   <h2>Frequently asked questions</h2>
   <div class="faq">
@@ -206,6 +242,10 @@
     <details>
       <summary>Is Hershel just hosted ViciDial?</summary>
       <p>No. Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes. Hosted ViciDial moves the same software to someone else's server. Hershel changes what reps and managers work in and who tunes the dialer.</p>
+    </details>
+    <details>
+      <summary>Can Hershel run on the ViciDial I already have?</summary>
+      <p>Yes. Hershel signs in to your ViciDial as one user and runs dial pace, caller ID health and closer briefs on top. Your server, campaigns, lists and reps stay where they are, and your ViciDial admin keeps the server running. Dialler Manager can manage every active campaign or only the ones you list.</p>
     </details>
     <details>
       <summary>Do my reps need retraining?</summary>
@@ -223,7 +263,7 @@
 
   <div class="cta-box">
     <h2>Bring your campaigns. Leave the babysitting.</h2>
-    <p>Campaigns, lists and statuses carry over. Pace, numbers and notes are handled 24/7.</p>
+    <p>Switch to Hershel and your campaigns, lists and statuses carry over. Keep your ViciDial and Hershel runs pace, numbers and notes on top of it. Either way, it starts with a demo.</p>
     <a href="/#contact" class="btn btn-primary">Book a demo &rarr;</a>
   </div>
 
