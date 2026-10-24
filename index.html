@@ -242,7 +242,14 @@ section { scroll-margin-top: 72px; }
 .optin input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 .optin .btn { width: 100%; margin-top: 4px; }
 .optin .btn:disabled { opacity: .6; cursor: progress; }
-.optin .done { font-size: 17px; color: var(--ink); }
+.optin .step { font-size: 13px; font-weight: 520; color: var(--muted); }
+.optin .more { display: flex; flex-direction: column; gap: 14px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.optin .done { display: flex; flex-direction: column; gap: 20px; }
+.optin .lead { font-size: 17px; color: var(--ink); outline: none; }
+.optin h4 { font-size: 15px; letter-spacing: -.01em; }
+.optin .next { font-size: 15px; color: var(--muted); }
+.optin .expect { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+.optin .expect ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--muted); }
 .optin .oops { font-size: 14px; color: var(--muted); }
 .optin .oops a { color: var(--ink); text-decoration: underline; }
 .optin .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
@@ -566,27 +573,42 @@ section { scroll-margin-top: 72px; }
       <div><h2 id="pricing-title">Simple managed pricing.</h2><p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p></div>
       <form class="optin" data-optin aria-labelledby="demo-title">
         <h3 id="demo-title">Book a demo</h3>
-        <p class="sub" data-optin-hide>Leave your name and email, and someone from our team will reach out to set up a time.</p>
+        <p class="sub" data-optin-hide>Two quick steps, then pick a 30-minute time on our calendar, or we'll reach out to set one up.</p>
         <div class="fields" data-optin-hide>
-          <div class="row">
-            <div class="field"><label for="optin-first">First name</label><input id="optin-first" name="firstName" type="text" autocomplete="given-name" maxlength="80" required /></div>
-            <div class="field"><label for="optin-last">Last name</label><input id="optin-last" name="lastName" type="text" autocomplete="family-name" maxlength="80" required /></div>
-          </div>
-          <div class="field"><label for="optin-email">Email</label><input id="optin-email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
-          <div class="field"><label for="optin-phone">Phone (optional)</label><input id="optin-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" pattern="[0-9 +\(\)\-]{7,20}" /></div>
-          <div class="hp" aria-hidden="true"><label for="optin-website">Company website</label><input id="optin-website" name="company_website" type="text" tabindex="-1" autocomplete="off" /></div>
+          <p class="step" data-step hidden></p>
+          <div class="field"><label for="optin-email">Work email</label><input id="optin-email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
+          <fieldset class="more" data-more>
+            <div class="row">
+              <div class="field"><label for="optin-first">First name</label><input id="optin-first" name="firstName" type="text" autocomplete="given-name" maxlength="80" required /></div>
+              <div class="field"><label for="optin-last">Last name</label><input id="optin-last" name="lastName" type="text" autocomplete="family-name" maxlength="80" required /></div>
+            </div>
+            <div class="field"><label for="optin-phone">Best phone (optional)</label><input id="optin-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" pattern="[0-9 +\(\)\-]{7,20}" /></div>
+            <div class="hp" aria-hidden="true"><label for="optin-website">Company website</label><input id="optin-website" name="company_website" type="text" tabindex="-1" autocomplete="off" /></div>
+          </fieldset>
           <button type="submit" class="btn btn-ink btn-lg">Book my demo</button>
         </div>
-        <p class="done" role="status" data-optin-done hidden>Got it. Someone from our team will be in touch shortly.</p>
-        <div class="book" data-book hidden>
-          <div class="pick" data-book-pick>
-            <div class="chips" role="group" aria-label="Day" data-book-days></div>
-            <div class="chips" role="group" aria-label="Time" data-book-times></div>
-            <p class="msg" role="status" data-book-note hidden></p>
-            <button type="button" class="btn btn-ink btn-lg" data-book-go hidden></button>
-            <p class="oops" role="alert" data-book-oops hidden>That didn't go through. Try another time, or email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
+        <div class="done" data-optin-done hidden>
+          <p class="lead" role="status" tabindex="-1" data-done-head></p>
+          <div class="book" data-book hidden>
+            <h4>Pick a time for your demo</h4>
+            <p class="sub">30 minutes on Google Meet. Times are Eastern.</p>
+            <div class="pick" data-book-pick>
+              <div class="chips" role="group" aria-label="Day" data-book-days></div>
+              <div class="chips" role="group" aria-label="Time" data-book-times></div>
+              <p class="msg" role="status" data-book-note hidden></p>
+              <button type="button" class="btn btn-ink btn-lg" data-book-go hidden></button>
+              <p class="oops" role="alert" data-book-oops hidden>That didn't go through. Try another time, or email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
+            </div>
+            <p class="msg" role="status" data-book-done hidden></p>
           </div>
-          <p class="msg" role="status" data-book-done hidden></p>
+          <p class="next" data-done-next>Someone from our team will reach out shortly to set up a time.</p>
+          <div class="expect">
+            <h4>On the demo</h4>
+            <ul>
+              <li>A walk through how Hershel would run dial pace, number health and call notes on your floor</li>
+              <li>A flat monthly quote for your floor size and call volume</li>
+            </ul>
+          </div>
         </div>
         <p class="oops" role="alert" data-optin-oops hidden>Something went wrong. Email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
       </form>
