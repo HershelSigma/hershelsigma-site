@@ -240,6 +240,9 @@ section { scroll-margin-top: 72px; }
 .optin input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--page); color: var(--ink); font: inherit; font-size: 16px; transition: border-color 160ms var(--ease); }
 .optin input:hover { border-color: var(--muted); }
 .optin input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.optin .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; font-weight: 400; line-height: 1.45; color: var(--muted); }
+.optin .consent input { flex: none; width: 16px; height: 16px; margin-top: 2px; padding: 0; }
+.optin .consent a { color: inherit; text-decoration: underline; }
 .optin .btn { width: 100%; margin-top: 4px; }
 .optin .btn:disabled { opacity: .6; cursor: progress; }
 .optin .step { font-size: 13px; font-weight: 520; color: var(--muted); }
@@ -583,6 +586,7 @@ section { scroll-margin-top: 72px; }
               <div class="field"><label for="optin-last">Last name</label><input id="optin-last" name="lastName" type="text" autocomplete="family-name" maxlength="80" required /></div>
             </div>
             <div class="field"><label for="optin-phone">Best phone (optional)</label><input id="optin-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" pattern="[0-9 +\(\)\-]{7,20}" /></div>
+            <label class="consent" for="optin-sms"><input id="optin-sms" name="smsConsent" type="checkbox" value="yes" /><span>I agree to get text messages from Hershel Sigma about my demo and my account. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</span></label>
             <div class="hp" aria-hidden="true"><label for="optin-website">Company website</label><input id="optin-website" name="company_website" type="text" tabindex="-1" autocomplete="off" /></div>
           </fieldset>
           <button type="submit" class="btn btn-ink btn-lg">Book my demo</button>
