@@ -38,3 +38,4 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 - [Terms and Conditions](https://hershelsigma.ai/terms-and-conditions)
 - [Privacy Policy](https://hershelsigma.ai/privacy)
 - [Security](https://hershelsigma.ai/security): how client data is protected in Hershel: a dedicated dialer server per client, encrypted keys and backups, the audit log, two-step login for admin accounts, and the providers that run it
+- [Support](https://hershelsigma.ai/support): how to reach Hershel Sigma for help (email info@hershelsigma.ai), what counts as urgent (calls stopped, nothing connecting) and what happens after you write
