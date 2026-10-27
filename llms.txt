@@ -37,3 +37,4 @@ One setup fee, then a flat monthly rate scoped to floor size and call volume. Qu
 - [About](https://hershelsigma.ai/about): the company behind Hershel (Hershel Sigma LLC, founder Nathan Yonash), and how the name is spelled: Hershel, with no c (often mistyped as Herschel Sigma)
 - [Terms and Conditions](https://hershelsigma.ai/terms-and-conditions)
 - [Privacy Policy](https://hershelsigma.ai/privacy)
+- [Security](https://hershelsigma.ai/security): how client data is protected in Hershel: a dedicated dialer server per client, encrypted keys and backups, the audit log, two-step login for admin accounts, and the providers that run it
