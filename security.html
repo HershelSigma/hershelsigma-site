@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Security | Hershel Sigma AI</title>
+<meta name="description" content="How Hershel Sigma protects client data in Hershel: a dedicated dialer server per client, encrypted keys and backups, an audit log you can export, and who on our side can see your account." />
+<link rel="canonical" href="https://hershelsigma.ai/security" />
+<meta name="robots" content="index, follow, max-snippet:-1" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hershelsigma.ai/security" />
+<meta property="og:site_name" content="Hershel Sigma AI" />
+<meta property="og:title" content="Security at Hershel Sigma AI" />
+<meta property="og:description" content="How we protect the leads, call records and logins you put into Hershel." />
+<meta property="og:image" content="https://hershelsigma.ai/apple-touch-icon.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/guide.css" />
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://hershelsigma.ai/security#page",
+      "url": "https://hershelsigma.ai/security",
+      "name": "Security at Hershel Sigma AI",
+      "dateModified": "2026-10-26",
+      "about": { "@id": "https://hershelsigma.ai/#org" },
+      "isPartOf": { "@id": "https://hershelsigma.ai/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hershel Sigma AI", "item": "https://hershelsigma.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Security", "item": "https://hershelsigma.ai/security" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="/" class="brand" aria-label="Hershel Sigma AI home">H<span class="sig">Σ</span>RSHEL</a>
+      <div class="navcta">
+        <a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="login">Log in</a>
+        <a href="/#contact" class="btn btn-primary">Book a demo</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <div class="crumbs"><a href="/">Hershel Sigma AI</a> / Security</div>
+  <div class="eyebrow">Trust</div>
+  <h1>Security</h1>
+  <p class="byline">Hershel Sigma LLC &middot; Updated <time datetime="2026-10-26">October 26, 2026</time></p>
+
+  <p class="answer">This is how we protect what you put into Hershel: your leads, your call records and the accounts you connect to it. We only list what is in place today. If you don't see something here, don't assume we do it.</p>
+
+  <h2>Your own dialer server</h2>
+  <p>Every client dials from its own dedicated dialer server. Your leads, call records and recordings are kept on that server, and no other client dials from it.</p>
+
+  <h2>Clients are walled off from each other</h2>
+  <p>Every account in Hershel belongs to one or more organizations. Before the platform reads or changes anything, it checks that the person asking is a member of that organization, and our database reads are limited to that organization's data. A manager at one company can't open another company's campaigns, reps or reports.</p>
+
+  <h2>Keys and logins are encrypted</h2>
+  <p>When you connect a carrier account like Twilio or Telnyx, a calendar, or another app, we encrypt the keys (AES-GCM) before saving them. Once a key is saved, the dashboard shows it as a row of dots and never sends the saved value back to a browser. To change it, you type in a new one.</p>
+  <p>We don't store passwords. We store a salted hash (PBKDF2 with SHA-512, 300,000 rounds). It can confirm a password is right, but it can't be turned back into the password.</p>
+
+  <h2>HTTPS</h2>
+  <p>The dashboard and this website load only over HTTPS. Plain http:// addresses redirect to the secure version, and the dashboard tells your browser to use nothing but HTTPS with it for the next two years. The dashboard talks to our API over HTTPS too.</p>
+
+  <h2>Signing in</h2>
+  <p>Accounts are invite-only, so there's no public sign-up page. We rate limit sign-in attempts, which makes guessing passwords slow.</p>
+  <p>Our own admin accounts are the only ones that can see more than one client. Each of them has to use two-step login with an authenticator app, and the platform won't let an admin account in until that's set up.</p>
+
+  <h2>A record of changes</h2>
+  <p>Changes to your organization, your team and your services go into an audit log. Each entry says who made the change, when, what it was and which IP address it came from. Managers can read their own organization's log in the dashboard and download it as a CSV file.</p>
+  <p>Each time someone saves new settings for a service, we keep a copy of that version, so we can see exactly what changed and when.</p>
+
+  <h2>Backups</h2>
+  <p>The platform database is backed up every night. Each backup is encrypted (AES-256) before it leaves the machine that makes it, then stored with Cloudflare.</p>
+
+  <h2>Who on our side can see your data</h2>
+  <p>We run Hershel for you as a managed service, so our own team can see your account. We use that access to set up, run, fix and support your dialer. Everyone on our side who has it signs in with an admin account, and admin accounts require two-step login.</p>
+
+  <h2>Watching for problems</h2>
+  <p>Errors in the platform are reported automatically to Sentry, our error tracker, and we work through them. Each service in your account reports in to the platform while it runs. If one stops reporting, the platform marks it as down.</p>
+
+  <h2>Where it runs</h2>
+  <p>We use these providers to run Hershel:</p>
+  <ul>
+    <li>Vercel hosts the dashboard.</li>
+    <li>Cloudflare runs our API and stores the encrypted backups.</li>
+    <li>Neon hosts the platform database (Postgres).</li>
+    <li>DigitalOcean runs the server that starts, stops and watches the services in each account.</li>
+    <li>Sentry receives error reports.</li>
+    <li>Resend sends our email.</li>
+    <li>OpenAI transcribes call recordings, and Anthropic's Claude writes call briefs and runs the AI manager. This only happens if you use those features.</li>
+  </ul>
+
+  <h2>Found a security problem?</h2>
+  <p>Email info@hershelsigma.ai and put "Security" in the subject line. Tell us what you found and how to reproduce it. A person reads that inbox. If your team has a security questionnaire for us to fill out, send it to the same address.</p>
+
+  <div class="cta-box">
+    <h2>Questions before you sign?</h2>
+    <p>Ask us anything on this page during a demo.</p>
+    <a href="/#contact" class="btn btn-primary">Book a demo &rarr;</a>
+  </div>
+
+  <section class="related">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/about">About Hershel Sigma AI</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a href="/">Home</a><a href="/ai-dialer">AI dialer</a><a href="/predictive-dialer">Predictive dialer</a><a href="/vicidial-alternative">ViciDial alternative</a><a href="/managed-dialer">Managed dialer</a><a href="/solar-dialer">AI dialer for solar</a><a href="/gohighlevel-dialer">GoHighLevel dialer</a><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a><a href="/vicidial-dial-level">ViciDial dial level</a><a href="/spam-likely">Spam Likely calls</a><a href="/dial-level-calculator">Dial level calculator</a><a href="/about">About</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/security">Security</a></div>
+    <div>&copy; 2026 Hershel Sigma LLC &middot; info@hershelsigma.ai<span class="theme" role="group" aria-label="Color theme"><button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>Light</button><button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button></span></div>
+  </div>
+</footer>
+<script src="/assets/theme.js" defer></script>
+</body>
+</html>
