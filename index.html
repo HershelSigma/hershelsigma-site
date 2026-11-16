@@ -63,7 +63,7 @@
   ]
 }
 </script>
-<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+<script>try { if (localStorage.getItem('hs-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {} document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..115,400..650&display=swap" rel="stylesheet" />
@@ -344,6 +344,69 @@ section { scroll-margin-top: 72px; }
 .c-dot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }
 .c-mark { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
 
+/* ---------- founding sale: a bar that drops in under the top of the page, the Pricing cards, the prompt ---------- */
+:root { --sale: #E4002B; --on-sale: #FFFFFF; }
+html { scroll-padding-top: 44px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* the bar is 12px taller than it shows, so its drop can overshoot without opening a gap above it */
+.salebar { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; height: 56px; padding: 12px var(--gut) 0; margin-top: -12px; border: 0; background: var(--sale); color: var(--on-sale); font-size: 14px; font-weight: 480; text-align: center; transition: margin-top .85s cubic-bezier(.34, 1.55, .64, 1) !important; }
+.nav { display: flow-root; }
+.js .salebar { margin-top: -56px; }
+.js.sale-down .salebar { margin-top: -12px; }
+.salebar b { padding: 2px 9px; border-radius: 5px; background: var(--on-sale); color: var(--sale); font-size: 12px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
+.salebar u { font-weight: 560; white-space: nowrap; }
+.salebar .short { display: none; }
+.salebar:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
+.trust { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.trust li { padding: 14px 16px 14px 0; font-size: 14px; line-height: 1.4; color: var(--muted); }
+.trust b { display: block; color: var(--ink); font-weight: 520; }
+.pricing { margin-top: 128px; border-top: 1px solid var(--line); padding-top: 96px; }
+.pricing > h2 { font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -.03em; line-height: 1.08; font-weight: 480; margin-bottom: 14px; }
+.pricing > p { font-size: 17px; color: var(--muted); max-width: 52ch; }
+.salestrip { display: flex; align-items: center; gap: 22px; width: 100%; margin-top: 32px; padding: 18px 24px; border: 0; border-radius: 12px; background: var(--sale); color: var(--on-sale); text-align: left; }
+.salestrip .eyebrow { font-size: 12px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.salestrip .big { font-size: 21px; font-weight: 560; letter-spacing: -.02em; line-height: 1.15; }
+.salestrip .pts { font-size: 15px; opacity: .95; }
+.salestrip .go { margin-left: auto; display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 8px; background: var(--on-sale); color: var(--sale); font-size: 14px; font-weight: 560; white-space: nowrap; }
+.salestrip:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.plan { position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 250px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--rim); }
+.plan h3 { display: flex; align-items: center; gap: 10px; min-height: 24px; font-size: 16px; font-weight: 520; }
+.saletag { padding: 2px 8px; border: 0; border-radius: 5px; background: var(--sale); color: var(--on-sale); font-size: 12px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
+.plan .amt { display: flex; align-items: baseline; gap: 8px; margin: 8px 0 0; min-height: 56px; color: var(--ink); }
+.plan .amt small { font-size: 15px; color: var(--muted); }
+.plan .num, .plan .ent { display: inline-block; font-size: 52px; font-weight: 560; letter-spacing: -.035em; line-height: 1; white-space: nowrap; }
+/* at rest: the sale price is the large number and the regular price sits slashed in the card's corner */
+.plan .reg { position: absolute; right: 24px; bottom: 26px; font-size: .36em; color: var(--muted); }
+.plan .reg::after { content: ""; position: absolute; left: -9%; right: -9%; top: 50%; height: .19em; margin-top: -.095em; border-radius: 2px; background: linear-gradient(var(--sale), var(--sale)) no-repeat left center; background-size: 100% 100%; transform: rotate(-16deg); }
+.plan .was, .plan .note { margin: 0; color: var(--muted); }
+.plan .was { font-size: 15px; }
+.plan .note { font-size: 13px; }
+.plan .btn { align-self: flex-start; margin-top: auto; }
+/* the price animation (assets/sale.js adds .anim to each card): regular price first, a slash, it drops to the corner, the sale price takes its place.
+   These few short moves are kept under "reduce motion" on purpose: the order regular then sale is the point of the section. */
+.plan.anim .num { position: relative; width: var(--w, auto); transition: width .5s cubic-bezier(.2, .8, .2, 1) !important; }
+.plan.anim .reg { left: 0; top: 0; right: auto; bottom: auto; font-size: 1em; color: var(--ink); transform-origin: left top; transition: transform .65s cubic-bezier(.2, .8, .2, 1), color .4s !important; }
+.plan.anim .reg::after { background-size: 0% 100%; transition: background-size .2s cubic-bezier(.7, 0, .2, 1) !important; }
+.plan.anim .new { opacity: 0; transform: translateY(10px); transition: opacity .45s .2s, transform .45s .2s !important; }
+.plan.anim .saletag { opacity: 0; transform: scale(.7); transition: opacity .3s .25s, transform .3s .25s !important; }
+.plan.anim .was { opacity: 0; transition: opacity .4s .35s !important; }
+@keyframes price-hit { 30% { translate: 5px 0; } 60% { translate: -3px 0; } }
+.plan.anim[data-stage="1"] .reg { animation: price-hit .28s ease-out .12s !important; }
+.plan.anim[data-stage="1"] .reg::after, .plan.anim[data-stage="2"] .reg::after { background-size: 100% 100%; }
+.plan.anim[data-stage="2"] .reg { transform: translate(var(--dx, 0), var(--dy, 0)) scale(.36); color: var(--muted); }
+.plan.anim[data-stage="2"] .new, .plan.anim[data-stage="2"] .saletag, .plan.anim[data-stage="2"] .was { opacity: 1; transform: none; }
+.fine { margin: 16px 0 0; font-size: 13px; color: var(--muted); }
+.pricing + .price { margin-top: 72px; }
+.saleprompt { width: min(520px, calc(100vw - 32px)); padding: 28px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--text); box-shadow: var(--shadow-lg); }
+.saleprompt::backdrop { background: rgba(8, 9, 10, .55); }
+.saleprompt .eyebrow { margin: 0 0 8px; color: var(--brand); font-size: 12px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; }
+.saleprompt h2 { font-size: 28px; letter-spacing: -.02em; line-height: 1.1; }
+.saleprompt p { margin: 10px 0 0; color: var(--muted); }
+.saleprompt .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.btn-sale { background: var(--sale); color: var(--on-sale); }
+.btn-sale:hover { background: color-mix(in srgb, var(--sale) 88%, #000); }
+.saleprompt .x { margin-top: 16px; padding: 0; border: 0; background: none; color: var(--muted); font-size: 14px; text-decoration: underline; }
 @media (max-width: 900px) {
   .nav nav { display: none; }
   .hero { padding-top: 56px; }
@@ -359,6 +422,17 @@ section { scroll-margin-top: 72px; }
   .sec { padding-top: 96px; }
   .band-sec { margin-top: 96px; padding-block: 80px; }
   .price { margin-top: 96px; padding-block: 72px; }
+  .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trust li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .plans { grid-template-columns: minmax(0, 1fr); }
+  .plan { min-height: 0; }
+  .plan .btn { margin-top: 18px; }
+  .salestrip { flex-wrap: wrap; gap: 10px 22px; }
+  .salestrip .go { margin-left: 0; }
+  .pricing { margin-top: 96px; padding-top: 72px; }
+  .pricing + .price { margin-top: 48px; }
+  .salebar .long { display: none; }
+  .salebar .short { display: inline; }
 }
 @media (max-width: 560px) {
   .nav .wrap { gap: 16px; }
@@ -368,6 +442,9 @@ section { scroll-margin-top: 72px; }
   .brief dl { grid-template-columns: 96px minmax(0, 1fr); }
   .ids th, .ids td { padding-inline: 12px; }
   .optin { padding: 20px; }
+  .salebar { gap: 10px; font-size: 13px; }
+  .salebar u { display: none; }
+  .plan .num, .plan .ent { font-size: 44px; }
   .optin .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -396,6 +473,7 @@ section { scroll-margin-top: 72px; }
 </svg>
 
 <header class="nav" data-nav>
+  <button type="button" class="salebar" data-sale><b>Sale</b><span class="long">Founding sale: first week of dialing free, setup waived, half price for 3 months. Ends December 31.</span><span class="short">Founding sale: first week of dialing free.</span><u>Reserve your server</u></button>
   <div class="wrap">
     <a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a>
     <nav aria-label="Main"><a href="#platform">Platform</a><a href="#how">How it works</a><a href="#pricing">Pricing</a></nav>
@@ -406,12 +484,18 @@ section { scroll-margin-top: 72px; }
 <main id="main">
   <section class="hero wrap" aria-labelledby="hero-title">
     <div class="hero-row">
-      <h1 id="hero-title">Reach 40%+ of your list, not 3%.</h1>
+      <h1 id="hero-title">The managed outbound engine for your floor.</h1>
       <div class="lede-col">
         <p class="lede">Managed dialer AI that tunes pace, guards your numbers, and briefs every closer. <b>Fully managed, end to end.</b></p>
         <div class="cta"><a href="#contact" class="btn btn-ink btn-lg">Book a demo</a><a href="#platform" class="btn btn-line btn-lg">See the platform</a></div>
       </div>
     </div>
+    <ul class="trust">
+      <li><b>Reps pause at close</b>Nobody takes a call after your hours</li>
+      <li><b>Every recording play logged</b>Who listened, and when</li>
+      <li><b>Your own dialer server</b>No other client dials from it</li>
+      <li><b>Live status page</b><a href="https://status.hershelsigma.ai">status.hershelsigma.ai</a></li>
+    </ul>
     <div class="frame"><div class="frame-screen" data-screen><div class="frame-scale" data-scale>
       <div class="mock" aria-hidden="true" inert>
         <div class="rail">
@@ -435,7 +519,7 @@ section { scroll-margin-top: 72px; }
             </div>
             <div class="panel">
               <div class="tabs">
-                <div class="tab on"><small>Drop rate</small><b data-v="drop">9.4%</b><em>of answered · under limit</em></div>
+                <div class="tab on"><small>Drop rate</small><b data-v="drop">9.4%</b><em>of answered</em></div>
                 <div class="tab"><small>Agent wait</small><b data-v="wait">27s</b><em>average</em></div>
                 <div class="tab"><small>Dial level</small><b data-v="level">2.4</b><em>raised at 2:39 PM</em></div>
                 <div class="tab"><small>Appointments</small><b data-v="sets">11</b><em>31 contacts an hour</em></div>
@@ -572,11 +656,40 @@ section { scroll-margin-top: 72px; }
   </section>
 
   <section class="wrap" id="pricing" aria-labelledby="pricing-title">
+    <div class="pricing">
+      <h2 id="pricing-title">Simple per seat pricing.</h2>
+      <p>One price per rep login. Fully managed, on your own dedicated dialer server.</p>
+      <button type="button" class="salestrip" data-sale><span class="eyebrow">Founding sale</span><span class="big">Your first week of dialing is free.</span><span class="pts">Setup waived (normally $2,500). Half price for your first 3 months. Sign by December 31.</span><span class="go">Reserve your server</span></button>
+      <div class="plans" data-plans>
+        <article class="plan" data-price>
+          <h3>1 to 10 seats <button type="button" class="saletag" data-sale>Sale</button></h3>
+          <p class="amt"><span class="num"><span class="reg"><span class="vh">Regular price </span>$249</span><span class="new"><span class="vh">Sale price </span>$125</span></span><small>a seat a month</small></p>
+          <p class="was">for your first 3 months, then the regular price</p>
+          <p class="note">5 seat minimum.</p>
+          <a href="#contact" class="btn btn-ink btn-lg" data-reserve>Reserve your server</a>
+        </article>
+        <article class="plan" data-price>
+          <h3>11 to 20 seats <button type="button" class="saletag" data-sale>Sale</button></h3>
+          <p class="amt"><span class="num"><span class="reg"><span class="vh">Regular price </span>$199</span><span class="new"><span class="vh">Sale price </span>$99</span></span><small>a seat a month</small></p>
+          <p class="was">for your first 3 months, then the regular price on every seat</p>
+          <p class="note">The lower price applies to every seat.</p>
+          <a href="#contact" class="btn btn-ink btn-lg" data-reserve>Reserve your server</a>
+        </article>
+        <article class="plan">
+          <h3>Enterprise</h3>
+          <p class="amt"><span class="ent">20+ seats</span></p>
+          <p class="was">Pricing built around your floor.</p>
+          <p class="note">Larger floors, more than one site, or special requirements.</p>
+          <a href="mailto:info@hershelsigma.ai?subject=Hershel%20Enterprise%20(20%2B%20seats)" class="btn btn-line btn-lg">Contact us</a>
+        </article>
+      </div>
+      <p class="fine">A seat is one rep login. Calling minutes are billed by your own carrier.</p>
+    </div>
     <div class="price" id="contact">
-      <div><h2 id="pricing-title">Simple managed pricing.</h2><p>One setup fee, then a flat monthly rate scoped to your floor size and call volume. Book a demo for a quote.</p></div>
+      <div><h2>Book a demo or reserve your server.</h2><p>A 30-minute call: watch Hershel run a floor, get your price for your seat count, and reserve your server on the founding sale terms.</p></div>
       <form class="optin" data-optin aria-labelledby="demo-title">
-        <h3 id="demo-title">Book a demo</h3>
-        <p class="sub" data-optin-hide>Two quick steps, then pick a 30-minute time on our calendar, or we'll reach out to set one up.</p>
+        <h3 id="demo-title" data-optin-title>Book a demo</h3>
+        <p class="sub" data-optin-hide data-optin-sub>Two quick steps, then pick a 30-minute time on our calendar, or we'll reach out to set one up.</p>
         <div class="fields" data-optin-hide>
           <p class="step" data-step hidden></p>
           <div class="field"><label for="optin-email">Work email</label><input id="optin-email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
@@ -610,7 +723,7 @@ section { scroll-margin-top: 72px; }
             <h4>On the demo</h4>
             <ul>
               <li>A walk through how Hershel would run dial pace, number health and call notes on your floor</li>
-              <li>A flat monthly quote for your floor size and call volume</li>
+              <li>Your per seat price for your floor size</li>
             </ul>
           </div>
         </div>
@@ -619,6 +732,14 @@ section { scroll-margin-top: 72px; }
     </div>
   </section>
 </main>
+
+<dialog class="saleprompt" data-saleprompt aria-labelledby="sale-title">
+  <p class="eyebrow">Founding sale</p>
+  <h2 id="sale-title">Lock in the founding sale.</h2>
+  <p>First week of dialing free, setup waived, half price for your first 3 months. Ends December 31.</p>
+  <div class="row"><button type="button" class="btn btn-sale btn-lg" data-sale-go="reserve">Reserve your server</button><button type="button" class="btn btn-line btn-lg" data-sale-go="demo">Book a demo</button></div>
+  <button type="button" class="x" data-sale-close>Close</button>
+</dialog>
 
 <footer class="foot">
   <div class="wrap">
@@ -801,5 +922,6 @@ section { scroll-margin-top: 72px; }
 })();
 </script>
 <script src="/assets/opt-in.js" defer></script>
+<script src="/assets/sale.js" defer></script>
 </body>
 </html>
