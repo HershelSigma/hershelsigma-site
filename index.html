@@ -398,6 +398,10 @@ html { scroll-padding-top: 44px; }
 .plan.anim[data-stage="2"] .new, .plan.anim[data-stage="2"] .saletag, .plan.anim[data-stage="2"] .was { opacity: 1; transform: none; }
 .fine { margin: 16px 0 0; font-size: 13px; color: var(--muted); }
 .pricing + .price { margin-top: 72px; }
+.also { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 48px; padding-block: 64px; border-top: 1px solid var(--line); }
+.also h2 { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -.02em; line-height: 1.15; font-weight: 480; }
+.also p { margin: 0; font-size: 17px; color: var(--muted); max-width: 46ch; }
+.also .btn { margin-left: auto; }
 .saleprompt { width: min(520px, calc(100vw - 32px)); padding: 28px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--text); box-shadow: var(--shadow-lg); }
 .saleprompt::backdrop { background: rgba(8, 9, 10, .55); }
 .saleprompt .eyebrow { margin: 0 0 8px; color: var(--brand); font-size: 12px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; }
@@ -429,6 +433,7 @@ html { scroll-padding-top: 44px; }
   .plan .btn { margin-top: 18px; }
   .salestrip { flex-wrap: wrap; gap: 10px 22px; }
   .salestrip .go { margin-left: 0; }
+  .also .btn { margin-left: 0; }
   .pricing { margin-top: 96px; padding-top: 72px; }
   .pricing + .price { margin-top: 48px; }
   .salebar .long { display: none; }
@@ -476,7 +481,7 @@ html { scroll-padding-top: 44px; }
   <button type="button" class="salebar" data-sale><b>Sale</b><span class="long">Founding sale: first week of dialing free, setup waived, half price for 3 months. Ends December 31.</span><span class="short">Founding sale: first week of dialing free.</span><u>Reserve your server</u></button>
   <div class="wrap">
     <a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a>
-    <nav aria-label="Main"><a href="#platform">Platform</a><a href="#how">How it works</a><a href="#pricing">Pricing</a></nav>
+    <nav aria-label="Main"><a href="#platform">Platform</a><a href="#pricing">Pricing</a></nav>
     <div class="right"><a href="https://dashboard.hershelsigma.ai/auth/sign-in" class="btn btn-quiet">Log in</a><a href="#contact" class="btn btn-ink">Book a demo</a></div>
   </div>
 </header>
@@ -576,13 +581,13 @@ html { scroll-padding-top: 44px; }
     <div class="wrap">
       <div class="sec-head">
         <h2 id="platform-title">The platform behind your floor</h2>
-        <p>Three tools, one managed system. Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace, caller IDs and call notes.</p>
+        <p>Two tools, one managed system. Hershel is an AI dialer built on a proven open-source dialing engine, then rebuilt around AI: its own rep console, its own manager screens, and AI that runs dial pace and caller IDs.</p>
       </div>
 
       <article class="feature">
         <div class="f-copy">
-          <h3>Dialler Manager</h3>
-          <p><b>Autonomous dial-pace control.</b> Autonomously perfects your dialer's drop percentage, dial level, and agent wait times, so you stay compliant and your agents talk to as many people as humanly possible.</p>
+          <h3>Agentic Manager</h3>
+          <p><b>Autonomous pace control.</b> Runs your drop percentage, dial level and wait times, and resets your lists. Always watching your floor, with in-depth reporting on your team's performance and feedback on how to improve your operation.</p>
         </div>
         <div class="shot" aria-hidden="true">
           <div class="shot-h"><b>Dial level today</b><span>ROOFING-TX · sample</span></div>
@@ -597,8 +602,8 @@ html { scroll-padding-top: 44px; }
 
       <article class="feature flip">
         <div class="f-copy">
-          <h3>The Shield</h3>
-          <p><b>Always-on carrier protection.</b> A live protective layer watching your dialer at all times. Carrier errors and number-health threats are caught and resolved autonomously, before they cost you answer rates.</p>
+          <h3>Compliance Shield</h3>
+          <p><b>Always-on carrier protection.</b> Reads SIP responses and spam labels to identify burned numbers, then swaps them for numbers in the same area code, autonomously. Carrier errors are resolved automatically.</p>
         </div>
         <div class="shot" aria-hidden="true">
           <div class="shot-h"><b>Caller IDs</b><span>48 of 51 in rotation · sample</span></div>
@@ -615,24 +620,6 @@ html { scroll-padding-top: 44px; }
         </div>
       </article>
 
-      <article class="feature">
-        <div class="f-copy">
-          <h3>Closable</h3>
-          <p><b>Automated closer briefs.</b> Every appointment set generates a detailed brief that auto-populates in your CRM, keeping your setters dialing and your closers fully informed before they pick up the phone.</p>
-        </div>
-        <div class="shot" aria-hidden="true">
-          <div class="brief">
-            <div><h4>Closer brief: Marcus Bell</h4><p class="meta">Plano, TX · set at 1:47 PM · roof inspection Thursday at 6 PM · sample</p></div>
-            <dl>
-              <dt>Household</dt><dd>Owns the home. His wife will be there for the inspection.</dd>
-              <dt>Roof</dt><dd>About 14 years old. Hail in April, and two leaks over the back bedroom.</dd>
-              <dt>Insurance</dt><dd>Opened a claim last month. The adjuster hasn't come out yet.</dd>
-              <dt>Watch for</dt><dd>Another roofer pushed him hard last week. Slow down and walk the roof first.</dd>
-              <dt>Best time</dt><dd>Weekday evenings after 6.</dd>
-            </dl>
-          </div>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -644,15 +631,6 @@ html { scroll-padding-top: 44px; }
       <div><h3>Cheaper than a human manager</h3><p>Runs the dialer around the clock, more efficiently than a person ever could, at a fraction of the cost.</p></div>
       <div><h3>Grows with your business</h3><p>An AI custom-fit to your floor that scales the moment your needs do.</p></div>
     </div>
-  </section>
-
-  <section class="sec wrap" id="how" aria-labelledby="how-title">
-    <div class="sec-head"><h2 id="how-title">Live on your floor in days, not months</h2></div>
-    <ol class="steps">
-      <li><span class="n">1</span><h3>Connect</h3><p>Plugs into your dialer, carrier, and CRM, then tunes to your campaigns and compliance rules.</p></li>
-      <li><span class="n">2</span><h3>Runs itself</h3><p>Dial pace, number health, and call notes run on autopilot, monitored 24/7.</p></li>
-      <li><span class="n">3</span><h3>You close</h3><p>Setters stay on the phone, closers walk in briefed, and the numbers that matter land in a clean report.</p></li>
-    </ol>
   </section>
 
   <section class="wrap" id="pricing" aria-labelledby="pricing-title">
@@ -686,7 +664,7 @@ html { scroll-padding-top: 44px; }
       <p class="fine">A seat is one rep login. Calling minutes are billed by your own carrier.</p>
     </div>
     <div class="price" id="contact">
-      <div><h2>Book a demo or reserve your server.</h2><p>A 30-minute call: watch Hershel run a floor, get your price for your seat count, and reserve your server on the founding sale terms.</p></div>
+      <div><h2>Book a demo or reserve your server.</h2></div>
       <form class="optin" data-optin aria-labelledby="demo-title">
         <h3 id="demo-title" data-optin-title>Book a demo</h3>
         <p class="sub" data-optin-hide data-optin-sub>Two quick steps, then pick a 30-minute time on our calendar, or we'll reach out to set one up.</p>
@@ -730,6 +708,11 @@ html { scroll-padding-top: 44px; }
         <p class="oops" role="alert" data-optin-oops hidden>Something went wrong. Email us at <a href="mailto:info@hershelsigma.ai">info@hershelsigma.ai</a>.</p>
       </form>
     </div>
+    <div class="also">
+      <h2>Let us automate your business.</h2>
+      <p>Beyond the dialer, the rest of your operation can be automated as well. We're pretty good at it.</p>
+      <a href="mailto:info@hershelsigma.ai?subject=Automating%20my%20business" class="btn btn-line btn-lg">Email info@hershelsigma.ai</a>
+    </div>
   </section>
 </main>
 
@@ -745,7 +728,7 @@ html { scroll-padding-top: 44px; }
   <div class="wrap">
     <div class="cols">
       <div class="brand"><a href="#top" class="wordmark" aria-label="Hershel Sigma AI, back to top"><b>H<span>Σ</span>RSHEL</b></a><p>Managed Dialer AI for high-volume outbound sales teams.</p></div>
-      <div><h2>Platform</h2><ul><li><a href="#platform">Dialler Manager</a></li><li><a href="#platform">The Shield</a></li><li><a href="#platform">Closable</a></li></ul></div>
+      <div><h2>Platform</h2><ul><li><a href="#platform">Agentic Manager</a></li><li><a href="#platform">Compliance Shield</a></li></ul></div>
       <div><h2>Guides</h2><ul><li><a href="/ai-dialer">What is an AI dialer?</a></li><li><a href="/predictive-dialer">What is a predictive dialer?</a></li><li><a href="/vicidial-alternative">ViciDial alternative</a></li><li><a href="/managed-dialer">What is a managed dialer?</a></li><li><a href="/solar-dialer">AI dialer for solar</a></li><li><a href="/gohighlevel-dialer">GoHighLevel dialer</a></li><li><a href="/power-dialer-vs-predictive-dialer">Power dialer vs predictive dialer</a></li><li><a href="/vicidial-dial-level">ViciDial dial level</a></li><li><a href="/spam-likely">Spam Likely calls</a></li><li><a href="/dial-level-calculator">Dial level calculator</a></li></ul></div>
       <div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="#results">Results</a></li><li><a href="#pricing">Pricing</a></li><li><a href="mailto:info@hershelsigma.ai">Contact</a></li><li><a href="/support">Support</a></li><li><a href="https://status.hershelsigma.ai">Status</a></li></ul></div>
       <div><h2>Legal</h2><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="/security">Security</a></li><li><a href="terms-and-conditions">Terms and Conditions</a></li></ul></div>
