@@ -7,6 +7,9 @@
   const ENDPOINT = `${API}/demo-request`;
   const button = form.querySelector('button[type="submit"]');
   const label = button.textContent;
+  // a visitor who picked "Reserve your server" (assets/sale.js sets data-intent) sends the same form, marked as a reservation
+  const reserving = () => form.dataset.intent === 'reserve';
+  const labelNow = () => (reserving() ? 'Reserve my server' : label);
   const done = form.querySelector('[data-optin-done]');
   const head = done.querySelector('[data-done-head]');
   const next = done.querySelector('[data-done-next]');
@@ -22,10 +25,11 @@
     more.hidden = n === 1;
     step.textContent = n === 1 ? 'Step 1 of 2: your email' : 'Step 2 of 2: about you';
     step.hidden = false;
-    button.textContent = n === 1 ? 'Continue' : label;
+    button.textContent = n === 1 ? 'Continue' : labelNow();
   };
   let onStep = v('email') && v('firstName') ? 2 : 1;
   showStep(onStep);
+  form.addEventListener('intentchange', () => { if (!button.disabled && done.hidden) showStep(onStep); });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -39,7 +43,7 @@
       firstName: v('firstName'),
       lastName: v('lastName'),
       email: v('email'),
-      page: location.pathname,
+      page: reserving() ? `${location.pathname} (reserve your server, founding sale)` : location.pathname,
       company_website: v('company_website'),
     };
     if (v('phone')) body.phone = v('phone');
@@ -56,13 +60,13 @@
       });
       if (!res.ok) throw new Error(`demo request failed: ${res.status}`);
       form.querySelectorAll('[data-optin-hide]').forEach((el) => { el.hidden = true; });
-      head.textContent = `Thanks, ${body.firstName}. Your demo request is in.`;
+      head.textContent = reserving() ? `Thanks, ${body.firstName}. Your server reservation request is in.` : `Thanks, ${body.firstName}. Your demo request is in.`;
       done.hidden = false;
       head.focus();
     } catch (err) {
       oops.hidden = false;
       button.disabled = false;
-      button.textContent = label;
+      button.textContent = labelNow();
       return;
     }
     // booking is optional: no token or no open times leaves just the thank-you
