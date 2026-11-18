@@ -49,9 +49,8 @@
     setIntent(t.matches('[data-reserve]') ? 'reserve' : 'demo');
   });
 
-  // Monthly / Annual switch over the Pricing cards. Monthly shows the founding sale; Annual has no sale
-  // (the founding sale is monthly only) and shows its own deal instead: the full yearly price slashed,
-  // the 2 months free price in its place.
+  // Monthly / Annual switch over the Pricing cards. Monthly shows the founding sale; Annual shows its
+  // own deal: the regular monthly price slashed, the annual price (per seat a month) in its place.
   const plans = document.querySelector('[data-plans]');
   const mode = () => (plans && plans.dataset.billing === 'year' ? 'year' : 'month');
   let onSwitch = () => {};
