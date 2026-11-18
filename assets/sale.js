@@ -49,6 +49,18 @@
     setIntent(t.matches('[data-reserve]') ? 'reserve' : 'demo');
   });
 
+  // Monthly / Annual switch over the Pricing cards. Annual has no sale (the founding sale is monthly only),
+  // so the sale tags hide and the cards show the yearly price.
+  const plans = document.querySelector('[data-plans]');
+  const isYear = () => plans && plans.dataset.billing === 'year';
+  let onMonthly = () => {};
+  document.querySelectorAll('[data-bill-set]').forEach((b) => b.addEventListener('click', () => {
+    if (!plans) return;
+    plans.dataset.billing = b.dataset.billSet;
+    document.querySelectorAll('[data-bill-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    if (!isYear()) onMonthly();
+  }));
+
   // Pricing cards. At rest (and with no script) a card shows the sale price large and the regular
   // price slashed in its corner. Here each card is set back to the regular price before it is seen,
   // then plays once when it scrolls into view, so nobody reads the sale price before the regular one.
@@ -58,6 +70,7 @@
   const cards = [...document.querySelectorAll('[data-plans] [data-price]')];
   const play = (card) => {
     const num = card.querySelector('.num'), reg = card.querySelector('.reg'), sale = card.querySelector('.new');
+    card.dataset.stage = 'p';   // playing: still the regular price, and never started twice
     setTimeout(() => { card.dataset.stage = '1'; }, 1000);
     setTimeout(() => {
       // where the slashed regular price will rest: the card's bottom right corner
@@ -71,10 +84,19 @@
     setTimeout(() => { card.classList.remove('anim'); delete card.dataset.stage; num.style.removeProperty('--w'); }, 2700);
   };
   const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
+    // while Annual is showing, a card's monthly price waits; it plays when the visitor switches back
+    if (!entry.isIntersecting || isYear()) return;
     io.unobserve(entry.target);
     play(entry.target);
   }), { threshold: 0.6 });
+  // back on Monthly: an unplayed card already in view plays now (the observer will not fire again
+  // for a card that has not moved); the rest keep waiting for the observer
+  onMonthly = () => cards.forEach((card) => {
+    if (card.dataset.stage !== '0') return;
+    const r = card.getBoundingClientRect();
+    const seen = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
+    if (seen >= r.height * 0.6) { io.unobserve(card); play(card); }
+  });
   cards.forEach((card) => {
     card.classList.add('anim');
     card.dataset.stage = '0';
