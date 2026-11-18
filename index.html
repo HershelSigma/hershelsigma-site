@@ -375,10 +375,11 @@ html { scroll-padding-top: 44px; }
 .saletag { padding: 2px 8px; border: 0; border-radius: 5px; background: var(--sale); color: var(--on-sale); font-size: 12px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
 .plan .amt { display: flex; align-items: baseline; gap: 8px; margin: 8px 0 0; min-height: 56px; color: var(--ink); }
 .plan .amt small { font-size: 15px; color: var(--muted); }
-.plan .num, .plan .ent, .plan .yr { display: inline-block; font-size: 52px; font-weight: 560; letter-spacing: -.035em; line-height: 1; white-space: nowrap; }
+.plan .num, .plan .ent { display: inline-block; font-size: 52px; font-weight: 560; letter-spacing: -.035em; line-height: 1; white-space: nowrap; }
 /* at rest: the sale price is the large number and the regular price sits slashed in the card's corner */
 .plan .reg { position: absolute; right: 24px; bottom: 26px; font-size: .36em; color: var(--muted); }
 .plan .reg::after { content: ""; position: absolute; left: -9%; right: -9%; top: 50%; height: .19em; margin-top: -.095em; border-radius: 2px; background: linear-gradient(var(--sale), var(--sale)) no-repeat left center; background-size: 100% 100%; transform: rotate(-16deg); }
+.plan .new .c { font-size: .5em; letter-spacing: -.02em; vertical-align: .72em; }
 .plan .was, .plan .note { margin: 0; color: var(--muted); }
 .plan .was { font-size: 15px; }
 .plan .note { font-size: 13px; }
@@ -402,13 +403,12 @@ html { scroll-padding-top: 44px; }
 .billing button { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 0; border-radius: 7px; background: none; color: var(--muted); font-size: 14px; font-weight: 520; transition: background 140ms var(--ease), color 140ms var(--ease); }
 .billing button:hover { color: var(--ink); }
 .billing button[aria-pressed="true"] { background: var(--sunken); color: var(--ink); }
-.billing button span { font-size: 12px; font-weight: 560; color: var(--sale); }
+.billing button span { padding: 2px 7px; border-radius: 5px; background: var(--sale); color: var(--on-sale); font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
 .billing button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 .billing + .plans { margin-top: 12px; }
-[data-billing="month"] [data-bill="year"], [data-billing="year"] [data-bill="month"], [data-billing="year"] .saletag { display: none !important; }
+[data-billing="month"] [data-bill="year"], [data-billing="year"] [data-bill="month"] { display: none !important; }
 .fine [data-bill="year"] { display: none; }
 .pricing:has([data-billing="year"]) .fine [data-bill="year"] { display: inline; }
-.plan.anim .was[data-bill="year"] { opacity: 1; }
 .fine { margin: 16px 0 0; font-size: 13px; color: var(--muted); }
 .pricing + .price { margin-top: 72px; }
 .also { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 48px; padding-block: 64px; border-top: 1px solid var(--line); }
@@ -462,7 +462,7 @@ html { scroll-padding-top: 44px; }
   .optin { padding: 20px; }
   .salebar { gap: 10px; font-size: 13px; }
   .salebar u { display: none; }
-  .plan .num, .plan .ent, .plan .yr { font-size: 44px; }
+  .plan .num, .plan .ent { font-size: 44px; }
   .optin .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -654,22 +654,22 @@ html { scroll-padding-top: 44px; }
       <div class="billing" role="group" aria-label="Billing" data-billing-set><button type="button" data-bill-set="month" aria-pressed="true">Monthly</button><button type="button" data-bill-set="year" aria-pressed="false">Annual <span>2 months free</span></button></div>
       <div class="plans" data-plans data-billing="month">
         <article class="plan" data-price>
-          <h3>1 to 10 seats <button type="button" class="saletag" data-sale>Sale</button></h3>
+          <h3>1 to 10 seats <button type="button" class="saletag" data-sale data-bill="month">Sale</button><span class="saletag" data-bill="year">2 months free</span></h3>
           <p class="amt" data-bill="month"><span class="num"><span class="reg"><span class="vh">Regular price </span>$249</span><span class="new"><span class="vh">Sale price </span>$125</span></span><small>a seat a month</small></p>
           <p class="was" data-bill="month">for your first 3 months, then the regular price</p>
-          <p class="amt" data-bill="year"><span class="yr">$2,490</span><small>a seat a year</small></p>
-          <p class="was" data-bill="year">$207.50 a seat a month, 2 months free</p>
+          <p class="amt" data-bill="year"><span class="num"><span class="reg"><span class="vh">Monthly price </span>$249</span><span class="new"><span class="vh">Annual price </span>$207<span class="c">.50</span></span></span><small>a seat a month</small></p>
+          <p class="was" data-bill="year">billed yearly</p>
           <p class="note">5 seat minimum.</p>
           <a href="#contact" class="btn btn-ink btn-lg" data-reserve>Reserve your server</a>
         </article>
         <article class="plan" data-price>
-          <h3>11 to 20 seats <button type="button" class="saletag" data-sale>Sale</button></h3>
+          <h3>11 to 20 seats <button type="button" class="saletag" data-sale data-bill="month">Sale</button><span class="saletag" data-bill="year">2 months free</span></h3>
           <p class="amt" data-bill="month"><span class="num"><span class="reg"><span class="vh">Regular price </span>$199</span><span class="new"><span class="vh">Sale price </span>$99</span></span><small>a seat a month</small></p>
           <p class="was" data-bill="month">for your first 3 months, then the regular price</p>
           <p class="note" data-bill="month">You pay this on each seat past your 10th. The first 10 stay at $249.</p>
-          <p class="amt" data-bill="year"><span class="yr">$1,990</span><small>a seat a year</small></p>
-          <p class="was" data-bill="year">$165.83 a seat a month, 2 months free</p>
-          <p class="note" data-bill="year">You pay this on each seat past your 10th. The first 10 stay at $2,490.</p>
+          <p class="amt" data-bill="year"><span class="num"><span class="reg"><span class="vh">Monthly price </span>$199</span><span class="new"><span class="vh">Annual price </span>$165<span class="c">.83</span></span></span><small>a seat a month</small></p>
+          <p class="was" data-bill="year">billed yearly</p>
+          <p class="note" data-bill="year">You pay this on each seat past your 10th. The first 10 stay at $207.50.</p>
           <a href="#contact" class="btn btn-ink btn-lg" data-reserve>Reserve your server</a>
         </article>
         <article class="plan">

@@ -49,58 +49,78 @@
     setIntent(t.matches('[data-reserve]') ? 'reserve' : 'demo');
   });
 
-  // Monthly / Annual switch over the Pricing cards. Annual has no sale (the founding sale is monthly only),
-  // so the sale tags hide and the cards show the yearly price.
+  // Monthly / Annual switch over the Pricing cards. Monthly shows the founding sale; Annual has no sale
+  // (the founding sale is monthly only) and shows its own deal instead: the full yearly price slashed,
+  // the 2 months free price in its place.
   const plans = document.querySelector('[data-plans]');
-  const isYear = () => plans && plans.dataset.billing === 'year';
-  let onMonthly = () => {};
+  const mode = () => (plans && plans.dataset.billing === 'year' ? 'year' : 'month');
+  let onSwitch = () => {};
   document.querySelectorAll('[data-bill-set]').forEach((b) => b.addEventListener('click', () => {
-    if (!plans) return;
+    if (!plans || plans.dataset.billing === b.dataset.billSet) return;
     plans.dataset.billing = b.dataset.billSet;
     document.querySelectorAll('[data-bill-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    if (!isYear()) onMonthly();
+    onSwitch();
   }));
 
-  // Pricing cards. At rest (and with no script) a card shows the sale price large and the regular
+  // Pricing cards. At rest (and with no script) a card shows the lower price large and the regular
   // price slashed in its corner. Here each card is set back to the regular price before it is seen,
-  // then plays once when it scrolls into view, so nobody reads the sale price before the regular one.
+  // then plays once when it scrolls into view, so nobody reads the lower price before the regular one.
+  // Monthly and Annual each play once per card: Annual plays the first time the visitor switches to it.
   if (!('IntersectionObserver' in window)) return;
   const SCALE = 0.36;   // the corner price's size, as a share of the large one (matches .plan .reg in index.html)
   const INSET_X = 24, INSET_Y = 26;
   const cards = [...document.querySelectorAll('[data-plans] [data-price]')];
+  const played = new Map(cards.map((c) => [c, new Set()]));
+  const timers = new Map(cards.map((c) => [c, []]));
+  const parts = (card) => {
+    const amt = card.querySelector(`.amt[data-bill="${mode()}"]`);
+    return { num: amt.querySelector('.num'), reg: amt.querySelector('.reg'), sale: amt.querySelector('.new') };
+  };
+  // back to the resting styles, stopping any animation still running
+  const rest = (card) => {
+    timers.get(card).forEach(clearTimeout);
+    timers.set(card, []);
+    card.classList.remove('anim');
+    delete card.dataset.stage;
+    card.querySelectorAll('.num').forEach((n) => n.style.removeProperty('--w'));
+  };
+  // the regular price, large, ready to play
+  const prep = (card) => {
+    rest(card);
+    card.classList.add('anim');
+    card.dataset.stage = '0';
+    const { num, reg } = parts(card);
+    num.style.setProperty('--w', `${reg.getBoundingClientRect().width}px`);
+  };
   const play = (card) => {
-    const num = card.querySelector('.num'), reg = card.querySelector('.reg'), sale = card.querySelector('.new');
+    const m = mode(), { num, reg, sale } = parts(card), t = timers.get(card);
     card.dataset.stage = 'p';   // playing: still the regular price, and never started twice
-    setTimeout(() => { card.dataset.stage = '1'; }, 1000);
-    setTimeout(() => {
+    t.push(setTimeout(() => { card.dataset.stage = '1'; }, 1000));
+    t.push(setTimeout(() => {
       // where the slashed regular price will rest: the card's bottom right corner
       const box = card.getBoundingClientRect(), big = reg.getBoundingClientRect();
       card.style.setProperty('--dx', `${box.right - INSET_X - big.width * SCALE - big.left}px`);
       card.style.setProperty('--dy', `${box.bottom - INSET_Y - big.height * SCALE - big.top}px`);
       num.style.setProperty('--w', `${sale.getBoundingClientRect().width}px`);
       card.dataset.stage = '2';
-    }, 1600);
+      played.get(card).add(m);
+    }, 1600));
     // once it has landed, hand the card back to its resting styles so it reflows normally on resize
-    setTimeout(() => { card.classList.remove('anim'); delete card.dataset.stage; num.style.removeProperty('--w'); }, 2700);
+    t.push(setTimeout(() => rest(card), 2700));
+  };
+  const inView = (card) => {
+    const r = card.getBoundingClientRect();
+    return Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) >= r.height * 0.6;
   };
   const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    // while Annual is showing, a card's monthly price waits; it plays when the visitor switches back
-    if (!entry.isIntersecting || isYear()) return;
-    io.unobserve(entry.target);
-    play(entry.target);
+    if (entry.isIntersecting && entry.target.dataset.stage === '0') play(entry.target);
   }), { threshold: 0.6 });
-  // back on Monthly: an unplayed card already in view plays now (the observer will not fire again
-  // for a card that has not moved); the rest keep waiting for the observer
-  onMonthly = () => cards.forEach((card) => {
-    if (card.dataset.stage !== '0') return;
-    const r = card.getBoundingClientRect();
-    const seen = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
-    if (seen >= r.height * 0.6) { io.unobserve(card); play(card); }
+  // on a switch, a card that has not played this mode yet resets to the regular price; if it is
+  // already in view it plays now (the observer only fires when a card moves in or out of view)
+  onSwitch = () => cards.forEach((card) => {
+    if (played.get(card).has(mode())) { rest(card); return; }
+    prep(card);
+    if (inView(card)) play(card);
   });
-  cards.forEach((card) => {
-    card.classList.add('anim');
-    card.dataset.stage = '0';
-    card.querySelector('.num').style.setProperty('--w', `${card.querySelector('.reg').getBoundingClientRect().width}px`);
-    io.observe(card);
-  });
+  cards.forEach((card) => { prep(card); io.observe(card); });
 })();
