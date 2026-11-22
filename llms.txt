@@ -8,7 +8,7 @@ Hershel runs as a fully managed service, 24/7. A sales floor gets a predictive d
 
 - **Dialler Manager (AI dial-pace control):** reads the live floor and adjusts the dial level so agents talk to as many people as possible while the drop rate stays under the target the floor sets.
 - **The Shield (caller ID protection):** watches every outbound caller ID for spam flags and carrier refusals, pulls flagged numbers out of rotation, replaces them, and alerts managers. It also catches carrier problems that standard call records miss.
-- **Closable (AI closer briefs):** transcribes the recording of every appointment-set call, writes a structured brief for the closer with AI, and posts it to the contact in GoHighLevel before the appointment.
+- **Closable (AI closer briefs):** transcribes the recording of every appointment-set call, writes a structured brief for the closer with AI, and posts it to the contact in your CRM before the appointment.
 
 ## Who it is for
 
@@ -25,7 +25,6 @@ Per seat, fully managed, with a 3 seat minimum. Your per seat price depends on y
 - [ViciDial alternative](https://hershelsigma.ai/vicidial-alternative): why floors leave ViciDial, what Hershel keeps from it (the engine, campaigns, lists and statuses), and a self-run vs hosted vs Hershel comparison
 - [What is a managed dialer?](https://hershelsigma.ai/managed-dialer): what a managed dialer service includes, how it differs from self-run and seat-based cloud dialers, and the questions to ask a provider
 - [AI dialer for solar](https://hershelsigma.ai/solar-dialer): what a solar appointment-setting floor needs from a dialer (pace, caller IDs, closer handoff, no double-booking) and how an AI dialer handles each
-- [GoHighLevel dialer](https://hershelsigma.ai/gohighlevel-dialer): what calling GoHighLevel has built in (Web Dialer, Power Dialer), when a floor needs predictive dialing, and how Hershel works alongside GoHighLevel
 - [Power dialer vs predictive dialer](https://hershelsigma.ai/power-dialer-vs-predictive-dialer): how power, parallel and predictive dialers decide when to dial, what each costs a floor in rep wait and upkeep, the three ways floors run predictive today, and which type fits which floor
 - [ViciDial dial level](https://hershelsigma.ai/vicidial-dial-level): ViciDial's dial level and adaptive dial methods (RATIO, ADAPT_HARD_LIMIT, ADAPT_TAPERED, ADAPT_AVERAGE), the campaign settings that steer them, how ViciDial counts drop percentage (drops divided by answered calls) and how to read agent wait time
 - [Spam Likely calls](https://hershelsigma.ai/spam-likely): why outbound calls show Spam Likely, Scam Likely or Potential Spam, which analytics company labels for AT&T, T-Mobile and Verizon, how to check and register numbers (Free Caller Registry), how to request a review, and how floors keep caller IDs healthy

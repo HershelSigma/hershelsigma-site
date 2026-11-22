@@ -126,7 +126,7 @@ footer{padding:40px 0;border-top:1px solid var(--line);font-size:14px;color:var(
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
-/* onboarding one-pagers (/onboarding-hershel, /onboarding-vici-sigma): unlisted, and print to one Letter page */
+/* onboarding one-pagers (/onboarding-hershel): unlisted, and print to one Letter page */
 .need{list-style:none;padding:0;margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .need li{margin:0;padding:14px 16px 14px 44px;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--rim);font-size:15px;line-height:1.55}
 .need li::before{content:"";position:absolute;left:16px;top:18px;width:14px;height:14px;border:1.5px solid var(--line-strong);border-radius:4px}
